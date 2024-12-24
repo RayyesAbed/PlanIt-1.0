@@ -1,0 +1,61 @@
+#navbar {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 25px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  display: flex;
+  align-items: center;
+}
+
+#navbar a {
+  flex-basis: 33%;
+}
+
+#navbar a img {
+  width: 100px;
+  border-radius: 20px;
+}
+
+#navbar ul#normalUl {
+  display: flex;
+  flex-basis: 33%;
+  justify-content: center;
+  list-style-type: none;
+}
+
+#navbar ul li {
+  padding: 20px;
+  color: #fff;
+}
+
+#navbar ul#registerLoginUl {
+  display: flex;
+  list-style-type: none;
+  flex-basis: 33%;
+  justify-content: right;
+}
+
+#navbar ul#registerLoginUl li:first-child,
+#navbar ul#registerLoginUl li:last-child {
+  border-radius: 50px;
+  width: 100px;
+  text-align: center;
+  margin-right: 15px;
+  transition: 0.25s;
+}
+
+#navbar ul#registerLoginUl li:first-child {
+  background-color: #50beba;
+}
+
+#navbar ul#registerLoginUl li:first-child:hover {
+  background-color: #449b98;
+}
+
+#navbar ul#registerLoginUl li:last-child {
+  background-color: #15233c;
+}
+
+#navbar ul#registerLoginUl li:last-child:hover {
+  background-color: #080e19;
+}
