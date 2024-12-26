@@ -1,3 +1,4 @@
+import Features from "../../components/features/Features";
 import IntroNavbar from "../../components/introNavbar/IntroNavbar";
 import Welcome from "../../components/welcomeSection/Welcome";
 import styles from "./Introduction.module.css";
@@ -13,6 +14,7 @@ const Introduction = () => {
     >
       <IntroNavbar />
       <Welcome />
+      <Features />
     </motion.div>
   );
 };
