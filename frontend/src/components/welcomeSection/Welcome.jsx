@@ -23,7 +23,7 @@ const Welcome = () => {
   }, [currentTextIndex, MESSAGES.length]);
 
   return (
-    <div id={styles.welcomeDiv}>
+    <div id="welcome" className={styles.welcomeDiv}>
       <img src={WelcomeSectionImg} alt="Welcome Section Image" />
       <AnimatePresence mode="wait">
         <motion.h1
