@@ -1,4 +1,5 @@
 import About from "../../components/about/About";
+import Download from "../../components/download/Download";
 import Features from "../../components/features/Features";
 import IntroNavbar from "../../components/introNavbar/IntroNavbar";
 import Welcome from "../../components/welcomeSection/Welcome";
@@ -17,6 +18,7 @@ const Introduction = () => {
       <Welcome />
       <Features />
       <About />
+      <Download />
     </motion.div>
   );
 };
