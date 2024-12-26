@@ -1,0 +1,40 @@
+.aboutDiv {
+  background-image: url("../../../public/AboutSectionImg.webp");
+  height: 80vh;
+  padding: 1px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.aboutDiv div {
+  height: 100%;
+  display: flex;
+}
+
+.aboutDiv div section {
+  flex-basis: 50%;
+  margin: 25px;
+  border-radius: 25px;
+}
+
+.aboutDiv div section:first-child {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 25px;
+}
+
+.aboutDiv div section:first-child h1 {
+  text-align: center;
+}
+
+.aboutDiv div section:first-child div {
+  display: flex;
+  flex-direction: column;
+}
+
+.aboutDiv div section:last-child img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 25px;
+}
