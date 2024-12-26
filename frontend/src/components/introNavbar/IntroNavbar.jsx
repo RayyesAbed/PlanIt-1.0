@@ -40,7 +40,9 @@ const IntroNavbar = () => {
           </NavHashLink>
         </li>
         <li>
-          <NavHashLink className={styles.navLinkLi}>DOWNLOAD</NavHashLink>
+          <NavHashLink className={styles.navLinkLi} to="#download">
+            DOWNLOAD
+          </NavHashLink>
         </li>
       </ul>
       <ul id={styles.registerLoginUl}>
