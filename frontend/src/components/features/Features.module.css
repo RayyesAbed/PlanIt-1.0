@@ -1,4 +1,4 @@
-#featuresDiv {
+.featuresDiv {
   height: 100vh;
   background-image: url("../../../public/FeaturesSectionImg.webp");
   padding: 1px;
@@ -6,7 +6,7 @@
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-#featuresDiv div {
+.featuresDiv div {
   background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   margin: 20px;
@@ -15,24 +15,24 @@
   border-radius: 25px;
 }
 
-#featuresDiv div section:first-child,
-#featuresDiv div section:last-child {
+.featuresDiv div section:first-child,
+.featuresDiv div section:last-child {
   flex-basis: 50%;
   text-align: center;
 }
 
-#featuresDiv div section:first-child img {
+.featuresDiv div section:first-child img {
   width: 40%;
   border-radius: 25px;
   box-shadow: 0px 0px 6px #000;
 }
 
-#featuresDiv div section:last-child h1 {
+.featuresDiv div section:last-child h1 {
   color: #fff;
   text-shadow: 0px 2px 4px #000;
 }
 
-#featuresDiv div section:last-child p {
+.featuresDiv div section:last-child p {
   color: #fff;
   padding: 10px 80px;
   font-size: 18px;

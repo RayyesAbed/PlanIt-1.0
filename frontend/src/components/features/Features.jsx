@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 
 const Features = () => {
   return (
-    <div id={styles.featuresDiv}>
+    <div id="features" className={styles.featuresDiv}>
       <div>
         <section>
           <motion.img
