@@ -1,0 +1,75 @@
+.aboutDiv {
+  background-image: url("../../../public/FeaturesSectionImg.webp");
+  height: 80vh;
+  padding: 1px;
+}
+
+.aboutDiv div.wrapper {
+  background-color: rgba(0, 0, 0, 0.7);
+  height: 93%;
+  margin: 20px;
+  border-radius: 25px;
+  display: flex;
+}
+
+.aboutDiv div section {
+  flex-basis: 50%;
+  color: white;
+  text-align: justify;
+  padding: 25px;
+}
+
+.aboutDiv div section:first-child {
+  margin-top: 55px;
+
+  margin-bottom: 55px;
+  border-right: 1px solid #575757;
+}
+
+.aboutDiv div section:last-child {
+  text-align: center;
+  align-self: center;
+}
+
+.aboutDiv div section h1 {
+  text-align: center;
+}
+
+.newsletterWrapper {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.newsletterInput {
+  width: 50%;
+  height: 30px;
+  padding: 10px;
+  font-size: 18px;
+  border: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #000;
+  font-weight: 600;
+  border-radius: 30px;
+}
+
+.newsletterInput::placeholder {
+  color: #000;
+  font-weight: 600;
+}
+
+.newsletterWrapper button {
+  background-color: #a19482;
+  border: 0;
+  color: #fff;
+  width: 20%;
+  height: 50px;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 30px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.newsletterWrapper button:hover {
+  background-color: #514b41;
+}
