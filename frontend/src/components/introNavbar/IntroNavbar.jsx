@@ -35,7 +35,9 @@ const IntroNavbar = () => {
           </NavHashLink>
         </li>
         <li>
-          <NavHashLink className={styles.navLinkLi}>ABOUT</NavHashLink>
+          <NavHashLink className={styles.navLinkLi} to="#about">
+            ABOUT
+          </NavHashLink>
         </li>
         <li>
           <NavHashLink className={styles.navLinkLi}>DOWNLOAD</NavHashLink>
