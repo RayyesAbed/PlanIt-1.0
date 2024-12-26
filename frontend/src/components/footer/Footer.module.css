@@ -1,0 +1,26 @@
+.footer {
+  height: 40vh;
+  background-color: rgb(32, 32, 32);
+}
+
+.footer .wrapper {
+  height: 80%;
+  display: flex;
+  align-items: center;
+}
+
+.footer .wrapper div {
+  flex-basis: 33%;
+  color: #fff;
+  text-align: center;
+}
+
+.footer .wrapper div img {
+  width: 100px;
+  border-radius: 20px;
+}
+
+.copyrightText {
+  background-color: white;
+  padding: 20px;
+}
