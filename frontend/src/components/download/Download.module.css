@@ -1,10 +1,11 @@
-.aboutDiv {
+.downloadDiv {
   background-image: url("../../../public/FeaturesSectionImg.webp");
   height: 80vh;
   padding: 1px;
+  scroll-margin-top: 100px;
 }
 
-.aboutDiv div.wrapper {
+.downloadDiv div.wrapper {
   background-color: rgba(0, 0, 0, 0.7);
   height: 93%;
   margin: 20px;
@@ -12,26 +13,26 @@
   display: flex;
 }
 
-.aboutDiv div section {
+.downloadDiv div section {
   flex-basis: 50%;
   color: white;
   text-align: justify;
   padding: 25px;
 }
 
-.aboutDiv div section:first-child {
+.downloadDiv div section:first-child {
   margin-top: 55px;
 
   margin-bottom: 55px;
   border-right: 1px solid #575757;
 }
 
-.aboutDiv div section:last-child {
+.downloadDiv div section:last-child {
   text-align: center;
   align-self: center;
 }
 
-.aboutDiv div section h1 {
+.downloadDiv div section h1 {
   text-align: center;
 }
 
