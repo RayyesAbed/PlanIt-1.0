@@ -2,6 +2,7 @@
   background-image: url("../../../public/AboutSectionImg.webp");
   height: 80vh;
   padding: 1px;
+  scroll-margin-top: 140px;
 }
 
 .aboutDiv div {
