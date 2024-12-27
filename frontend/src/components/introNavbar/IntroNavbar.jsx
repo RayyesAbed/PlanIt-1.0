@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import styles from "./IntroNavbar.module.css";
 import PlanItLogo from "/PlanItLogo.webp";
 import { NavHashLink, HashLink } from "react-router-hash-link";
+import { useLocation } from "react-router";
 
 const IntroNavbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     function handleScrollY() {
@@ -30,17 +32,41 @@ const IntroNavbar = () => {
       </HashLink>
       <ul id={styles.normalUl}>
         <li>
-          <NavHashLink className={styles.navLinkLi} to="#features">
+          <NavHashLink
+            className={styles.navLinkLi}
+            to="#features"
+            style={
+              location.hash === "#features"
+                ? { borderBottom: "1px solid white", paddingBottom: "10px" }
+                : {}
+            }
+          >
             FEATURES
           </NavHashLink>
         </li>
         <li>
-          <NavHashLink className={styles.navLinkLi} to="#about">
+          <NavHashLink
+            className={styles.navLinkLi}
+            to="#about"
+            style={
+              location.hash === "#about"
+                ? { borderBottom: "1px solid white", paddingBottom: "10px" }
+                : {}
+            }
+          >
             ABOUT
           </NavHashLink>
         </li>
         <li>
-          <NavHashLink className={styles.navLinkLi} to="#download">
+          <NavHashLink
+            className={styles.navLinkLi}
+            to="#download"
+            style={
+              location.hash === "#download"
+                ? { borderBottom: "1px solid white", paddingBottom: "10px" }
+                : {}
+            }
+          >
             DOWNLOAD
           </NavHashLink>
         </li>
