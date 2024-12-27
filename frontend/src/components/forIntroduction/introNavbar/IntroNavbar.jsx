@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./IntroNavbar.module.css";
 import PlanItLogo from "/PlanItLogo.webp";
 import { NavHashLink, HashLink } from "react-router-hash-link";
-import { useLocation } from "react-router";
+import { Link, useLocation } from "react-router";
 
 const IntroNavbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -73,7 +73,9 @@ const IntroNavbar = () => {
       </ul>
       <ul id={styles.registerLoginUl}>
         <li>LOGIN</li>
-        <li>REGISTER</li>
+        <Link to="/register" className={styles.registerLoginLink}>
+          <li>REGISTER</li>
+        </Link>
       </ul>
     </nav>
   );
