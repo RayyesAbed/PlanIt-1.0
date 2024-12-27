@@ -3,7 +3,7 @@ import AppStorePreorder from "/AppStorePreorder.svg";
 
 const Download = () => {
   return (
-    <div id="download" className={styles.aboutDiv}>
+    <div id="download" className={styles.downloadDiv}>
       <div className={styles.wrapper}>
         <section>
           <h1>Downloads</h1>
