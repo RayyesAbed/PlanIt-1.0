@@ -32,7 +32,8 @@
   color: #fff;
 }
 
-#navbar ul li .navLinkLi {
+#navbar ul li .navLinkLi,
+.registerLoginLink {
   text-decoration: none;
   color: #fff;
   transition: 0.25s;
