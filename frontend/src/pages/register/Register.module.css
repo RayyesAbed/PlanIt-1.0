@@ -3,15 +3,12 @@
   height: 100vh;
 }
 
-.regsisterDiv section form {
+.regsisterDiv section:first-child form {
   flex-basis: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 70px;
-}
-
-.regsisterDiv section:first-child form {
   gap: 30px;
 }
 
