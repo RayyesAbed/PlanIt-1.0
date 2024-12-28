@@ -42,6 +42,15 @@
   width: 300px;
 }
 
+.existingAccountLink {
+  color: rgb(206, 151, 103);
+  text-decoration: none;
+}
+
+.existingAccountLink:hover {
+  color: rgb(162, 109, 64);
+}
+
 .regsisterDiv section:last-child img {
   width: 100%;
   height: 100%;
