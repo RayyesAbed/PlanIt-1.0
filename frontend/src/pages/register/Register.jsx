@@ -12,11 +12,14 @@ import {
 } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { Link } from "react-router";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickToggleShowPassword = () => setShowPassword(!showPassword);
+
+  document.title = "PlanIt Register";
 
   return (
     <div className={styles.regsisterDiv}>
@@ -64,6 +67,9 @@ const Register = () => {
             />
           </FormControl>
           <button className={styles.registerButton}>Register</button>
+          <Link to="/signin" className={styles.existingAccountLink}>
+            Already have an account? Then sign in
+          </Link>
         </form>
       </section>
       <section>
