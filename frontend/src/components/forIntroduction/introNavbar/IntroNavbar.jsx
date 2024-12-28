@@ -72,8 +72,10 @@ const IntroNavbar = () => {
         </li>
       </ul>
       <ul id={styles.registerLoginUl}>
-        <li>LOGIN</li>
-        <Link to="/register" className={styles.registerLoginLink}>
+        <Link to="/login" className={styles.loginLink}>
+          <li>LOGIN</li>
+        </Link>
+        <Link to="/register" className={styles.registerLink}>
           <li>REGISTER</li>
         </Link>
       </ul>
