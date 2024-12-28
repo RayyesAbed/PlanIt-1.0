@@ -16,6 +16,16 @@ import { Link } from "react-router";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [userCredentials, setUserCredentials] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChangeEmail = (event) =>
+    setUserCredentials({ ...userCredentials, email: event.target.value });
+
+  const handleChangePassword = (event) =>
+    setUserCredentials({ ...userCredentials, password: event.target.value });
 
   const handleClickToggleShowPassword = () => setShowPassword(!showPassword);
 
@@ -31,8 +41,11 @@ const Login = () => {
           <TextField
             type="email"
             label="Enter your Email"
+            value={userCredentials.email}
+            onChange={handleChangeEmail}
             sx={{ backgroundColor: "rgb(244, 244, 244)" }}
             className={styles.loginInput}
+            required
           />
           <FormControl variant="outlined">
             <InputLabel htmlFor="outlined-adornment-password">
@@ -42,6 +55,8 @@ const Login = () => {
               className={styles.loginInput}
               sx={{ backgroundColor: "rgb(244,244,244)" }}
               id="outlined-adornment-password"
+              value={userCredentials.password}
+              onChange={handleChangePassword}
               type={showPassword ? "text" : "password"}
               endAdornment={
                 <InputAdornment position="end">
@@ -59,6 +74,7 @@ const Login = () => {
                 </InputAdornment>
               }
               label="Enter your Password"
+              required
             />
           </FormControl>
           <Link className={styles.forgotPasswordLink}>
