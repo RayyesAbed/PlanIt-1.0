@@ -16,8 +16,22 @@ import { Link } from "react-router";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [userCredentials, setUserCredentials] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
 
   const handleClickToggleShowPassword = () => setShowPassword(!showPassword);
+
+  const handleChangeName = (event) =>
+    setUserCredentials({ ...userCredentials, name: event.target.value });
+
+  const handleChangeEmail = (event) =>
+    setUserCredentials({ ...userCredentials, email: event.target.value });
+
+  const handleChangePassword = (event) =>
+    setUserCredentials({ ...userCredentials, password: event.target.value });
 
   document.title = "PlanIt Register";
 
@@ -30,14 +44,20 @@ const Register = () => {
           <TextField
             type="text"
             label="Enter your Name"
+            value={userCredentials.name}
+            onChange={handleChangeName}
             sx={{ backgroundColor: "rgb(244, 244, 244)" }}
             className={styles.registerInput}
+            required
           />
           <TextField
             type="email"
             label="Enter your Email"
+            value={userCredentials.email}
+            onChange={handleChangeEmail}
             sx={{ backgroundColor: "rgb(244,244,244)" }}
             className={styles.registerInput}
+            required
           />
           <FormControl variant="outlined">
             <InputLabel htmlFor="outlined-adornment-password">
@@ -47,6 +67,8 @@ const Register = () => {
               className={styles.registerInput}
               sx={{ backgroundColor: "rgb(244,244,244)" }}
               id="outlined-adornment-password"
+              value={userCredentials.password}
+              onChange={handleChangePassword}
               type={showPassword ? "text" : "password"}
               endAdornment={
                 <InputAdornment position="end">
@@ -64,6 +86,7 @@ const Register = () => {
                 </InputAdornment>
               }
               label="Enter your Password"
+              required
             />
           </FormControl>
           <button className={styles.registerButton}>Register</button>
