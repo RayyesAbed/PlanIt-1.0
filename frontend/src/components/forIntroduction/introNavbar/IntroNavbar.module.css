@@ -33,7 +33,8 @@
 }
 
 #navbar ul li .navLinkLi,
-.registerLoginLink {
+.loginLink,
+.registerLink {
   text-decoration: none;
   color: #fff;
   transition: 0.25s;
@@ -52,8 +53,8 @@
   right: 50px;
 }
 
-#navbar ul#registerLoginUl li:first-child,
-#navbar ul#registerLoginUl li:last-child {
+#navbar ul#registerLoginUl .loginLink,
+#navbar ul#registerLoginUl .registerLink {
   border-radius: 50px;
   width: 100px;
   text-align: center;
@@ -61,18 +62,18 @@
   transition: 0.25s;
 }
 
-#navbar ul#registerLoginUl li:first-child {
+#navbar ul#registerLoginUl .loginLink {
   background-color: #50beba;
 }
 
-#navbar ul#registerLoginUl li:first-child:hover {
+#navbar ul#registerLoginUl .loginLink:hover {
   background-color: #449b98;
 }
 
-#navbar ul#registerLoginUl li:last-child {
+#navbar ul#registerLoginUl .registerLink {
   background-color: #15233c;
 }
 
-#navbar ul#registerLoginUl li:last-child:hover {
+#navbar ul#registerLoginUl .registerLink:hover {
   background-color: #080e19;
 }
