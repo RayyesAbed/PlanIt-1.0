@@ -1,0 +1,12 @@
+.loginDiv {
+  display: flex;
+}
+
+.loginDiv section {
+  flex-basis: 50%;
+}
+
+.loginDiv section:first-child img {
+  width: 100%;
+  height: 100vh;
+}
