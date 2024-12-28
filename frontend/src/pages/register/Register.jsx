@@ -67,7 +67,7 @@ const Register = () => {
             />
           </FormControl>
           <button className={styles.registerButton}>Register</button>
-          <Link to="/signin" className={styles.existingAccountLink}>
+          <Link to="/login" className={styles.existingAccountLink}>
             Already have an account? Then sign in
           </Link>
         </form>
