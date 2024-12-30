@@ -1,5 +1,7 @@
-import styles from "./userPage.module.css";
+import styles from "./UserPage.module.css";
 
-const userPage = () => {};
+const UserPage = () => {
+  return <div className={styles.userPageWrapper}></div>;
+};
 
-export default userPage;
+export default UserPage;
