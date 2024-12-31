@@ -1,0 +1,23 @@
+.userPageMenuItem {
+  display: flex;
+  align-items: center;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 45px;
+  margin: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.userPageMenuItem div {
+  margin-left: 50px;
+}
+
+.userPageMenuItem h4 {
+  margin-left: 10px;
+}
+
+.userPageMenuItem:hover {
+  background-color: white;
+  color: black;
+}
