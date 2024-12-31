@@ -1,5 +1,15 @@
+import UserPageMenuItem from "../userPageMenuItem/UserPageMenuItem";
 import styles from "./userPageMenu.module.css";
 import TestImg from "/AbdallahImg.jpg"; // only for testing purposes
+import {
+  Home,
+  FormatListBulleted,
+  AutoStories,
+  Timeline,
+  CalendarMonth,
+  Settings,
+  Logout,
+} from "@mui/icons-material";
 
 const UserPageMenu = () => {
   return (
@@ -11,6 +21,13 @@ const UserPageMenu = () => {
           <p>Free Plan</p> {/* only for testing purposes */}
         </div>
       </div>
+      <UserPageMenuItem iconImg={<Home />} menuItemText="Home" />
+      <UserPageMenuItem iconImg={<FormatListBulleted />} menuItemText="Tasks" />
+      <UserPageMenuItem iconImg={<AutoStories />} menuItemText="My Story" />
+      <UserPageMenuItem iconImg={<Timeline />} menuItemText="Performance" />
+      <UserPageMenuItem iconImg={<CalendarMonth />} menuItemText="Calendar" />
+      <UserPageMenuItem iconImg={<Settings />} menuItemText="Settings" />
+      <UserPageMenuItem iconImg={<Logout />} menuItemText="Logout" />
     </nav>
   );
 };
