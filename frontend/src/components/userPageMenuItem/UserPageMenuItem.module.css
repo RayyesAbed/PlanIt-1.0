@@ -21,3 +21,8 @@
   background-color: white;
   color: black;
 }
+
+.activeNavLink div {
+  background-color: white;
+  color: black;
+}
