@@ -3,7 +3,8 @@ import Introduction from "./pages/introduction/Introduction";
 import { BrowserRouter, Routes, Route } from "react-router";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
-import UserPage from "./pages/userPage/userPage";
+import UserPage from "./pages/userPage/UserPage";
+import Calendar from "./pages/calendar/Calendar";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<UserPage />} />
+        <Route path="/calendar" element={<Calendar />} />
       </Routes>
     </BrowserRouter>
   );
