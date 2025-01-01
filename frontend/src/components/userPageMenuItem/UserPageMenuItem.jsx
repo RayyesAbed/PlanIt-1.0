@@ -1,11 +1,14 @@
 import styles from "./UserPageMenuItem.module.css";
+import { NavLink } from "react-router";
 
-const UserPageMenuItem = ({ iconImg, menuItemText }) => {
+const UserPageMenuItem = ({ to, iconImg, menuItemText }) => {
   return (
-    <div className={styles.userPageMenuItem}>
-      <div>{iconImg}</div>
-      <h4>{menuItemText}</h4>
-    </div>
+    <NavLink style={{ textDecoration: "none" }} to={to}>
+      <div className={styles.userPageMenuItem}>
+        <div>{iconImg}</div>
+        <h4>{menuItemText}</h4>
+      </div>
+    </NavLink>
   );
 };
 
