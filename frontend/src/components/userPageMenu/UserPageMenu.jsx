@@ -22,16 +22,36 @@ const UserPageMenu = () => {
         </div>
       </div>
       <UserPageMenuItem to="/home" iconImg={<Home />} menuItemText="Home" />
-      <UserPageMenuItem iconImg={<FormatListBulleted />} menuItemText="Tasks" />
-      <UserPageMenuItem iconImg={<AutoStories />} menuItemText="My Story" />
-      <UserPageMenuItem iconImg={<Timeline />} menuItemText="Performance" />
+      <UserPageMenuItem
+        to="/tasks"
+        iconImg={<FormatListBulleted />}
+        menuItemText="Tasks"
+      />
+      <UserPageMenuItem
+        to="/mystory"
+        iconImg={<AutoStories />}
+        menuItemText="My Story"
+      />
+      <UserPageMenuItem
+        to="performance"
+        iconImg={<Timeline />}
+        menuItemText="Performance"
+      />
       <UserPageMenuItem
         to="/calendar"
         iconImg={<CalendarMonth />}
         menuItemText="Calendar"
       />
-      <UserPageMenuItem iconImg={<Settings />} menuItemText="Settings" />
-      <UserPageMenuItem iconImg={<Logout />} menuItemText="Logout" />
+      <UserPageMenuItem
+        to="/settings"
+        iconImg={<Settings />}
+        menuItemText="Settings"
+      />
+      <UserPageMenuItem
+        to="/logout"
+        iconImg={<Logout />}
+        menuItemText="Logout"
+      />
     </nav>
   );
 };
