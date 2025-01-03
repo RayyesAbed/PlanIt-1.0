@@ -14,3 +14,37 @@
   background-color: black;
   border-radius: 45px;
 }
+
+/*Calendar header root element*/
+.calendarHeader {
+  max-width: 100%;
+}
+
+/*Previous/next calendar header controls*/
+.calendarHeaderControl {
+  background-color: black;
+  color: white;
+  border: 0;
+  text-align: center;
+}
+
+/*Level control (changes levels when clicked, month -> year -> decade)*/
+.calendarHeaderLevel {
+  background-color: black;
+  border: 0;
+  color: white;
+}
+
+/*day*/
+.day {
+  color: white;
+  background-color: black;
+  border: 0;
+  padding: 40px;
+}
+
+.day:hover,
+.calendarHeaderLevel:hover,
+.calendarHeaderControl:hover {
+  color: black;
+}
