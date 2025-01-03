@@ -11,7 +11,10 @@ const CalendarComponent = () => {
       <div className={styles.calendarContainer}>
         <Calendar
           classNames={{
-            calendarHeader: styles.calendarHeader,
+            calendarHeader: styles.calendarHeader, // Calendar header root element
+            calendarHeaderControl: styles.calendarHeaderControl, // Previous/next calendar header controls
+            calendarHeaderLevel: styles.calendarHeaderLevel, // Level control (changes levels when clicked, month -> year -> decade)
+            day: styles.day, // day
           }}
         />
       </div>
