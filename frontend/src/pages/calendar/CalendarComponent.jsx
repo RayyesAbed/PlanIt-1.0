@@ -8,12 +8,13 @@ const CalendarComponent = () => {
   return (
     <div className={styles.calendarWrapper}>
       <UserPageMenu />
-      <Calendar
-        className={styles.calendarContainer}
-        classNames={{
-          calendarHeader: styles.calendarHeader,
-        }}
-      />
+      <div className={styles.calendarContainer}>
+        <Calendar
+          classNames={{
+            calendarHeader: styles.calendarHeader,
+          }}
+        />
+      </div>
     </div>
   );
 };
