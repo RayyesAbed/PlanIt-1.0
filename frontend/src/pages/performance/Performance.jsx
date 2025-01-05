@@ -1,6 +1,6 @@
 import UserPageMenu from "../../components/forExistingUsers/userPageMenu/UserPageMenu";
 import styles from "./Performance.module.css";
-import { LineChart } from "@mantine/charts";
+import { Chart } from "react-google-charts";
 
 const Performance = () => {
   return (
