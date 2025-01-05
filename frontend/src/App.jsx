@@ -5,6 +5,7 @@ import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import UserPage from "./pages/userPage/UserPage";
 import CalendarComponent from "./pages/calendar/CalendarComponent";
+import Performance from "./pages/performance/Performance";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<UserPage />} />
         <Route path="/calendar" element={<CalendarComponent />} />
+        <Route path="/performance" element={<Performance />} />
       </Routes>
     </BrowserRouter>
   );

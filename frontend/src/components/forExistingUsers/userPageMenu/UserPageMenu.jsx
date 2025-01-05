@@ -33,7 +33,7 @@ const UserPageMenu = () => {
         menuItemText="My Story"
       />
       <UserPageMenuItem
-        to="performance"
+        to="/performance"
         iconImg={<Timeline />}
         menuItemText="Performance"
       />
