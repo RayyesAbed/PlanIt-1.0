@@ -6,9 +6,9 @@ import styles from "./CalendarComponent.module.css";
 
 const CalendarComponent = () => {
   return (
-    <div className={styles.calendarWrapper}>
+    <div className={styles.wrapper}>
       <UserPageMenu />
-      <div className={styles.calendarContainer}>
+      <div className={styles.calendarWrapper}>
         <Calendar
           classNames={{
             calendarHeader: styles.calendarHeader, // Calendar header root element
