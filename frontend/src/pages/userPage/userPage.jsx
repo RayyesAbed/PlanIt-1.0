@@ -1,4 +1,4 @@
-import UserPageMenu from "../../components/userPageMenu/userPageMenu";
+import UserPageMenu from "../../components/forExistingUsers/userPageMenu/UserPageMenu";
 import styles from "./UserPage.module.css";
 
 const UserPage = () => {

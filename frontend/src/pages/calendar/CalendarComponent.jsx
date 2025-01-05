@@ -1,4 +1,4 @@
-import UserPageMenu from "../../components/userPageMenu/UserPageMenu";
+import UserPageMenu from "../../components/forExistingUsers/userPageMenu/UserPageMenu";
 import "@mantine/dates/styles.css";
 import "@mantine/core/styles/global.css";
 import { Calendar } from "@mantine/dates";
