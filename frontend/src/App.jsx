@@ -6,6 +6,7 @@ import Login from "./pages/login/Login";
 import UserPage from "./pages/userPage/UserPage";
 import CalendarComponent from "./pages/calendar/CalendarComponent";
 import Performance from "./pages/performance/Performance";
+import Tasks from "./pages/tasks/Tasks";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/home" element={<UserPage />} />
         <Route path="/calendar" element={<CalendarComponent />} />
         <Route path="/performance" element={<Performance />} />
+        <Route path="/tasks" element={<Tasks />} />
       </Routes>
     </BrowserRouter>
   );
