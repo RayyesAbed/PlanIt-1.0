@@ -11,3 +11,33 @@
   align-self: center;
   border-radius: 45px;
 }
+
+.tasksWrapper div:first-child {
+  display: flex;
+  margin: 20px;
+  gap: 20px;
+}
+
+.tasksWrapper div:first-child h1 {
+  color: white;
+  flex-basis: 20%;
+  text-align: center;
+}
+
+.tasksWrapper div:first-child input {
+  align-self: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  border-radius: 46px;
+  border: 0;
+  color: white;
+  flex-basis: 60%;
+}
+
+.tasksWrapper div:first-child .addTaskDialogIcon {
+  color: white;
+  flex-basis: 20%;
+  font-size: 50px;
+  align-self: center;
+  cursor: pointer;
+}
