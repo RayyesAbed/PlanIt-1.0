@@ -6,6 +6,7 @@ const Tasks = () => {
   return (
     <div className={styles.wrapper}>
       <UserPageMenu />
+      <div className={styles.tasksWrapper}></div>
     </div>
   );
 };
