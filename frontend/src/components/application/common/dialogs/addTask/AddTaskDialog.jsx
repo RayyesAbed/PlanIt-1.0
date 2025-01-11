@@ -23,7 +23,14 @@ const AddTaskDialog = ({ openModal, closeModal }) => {
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0 }}
-        ></motion.dialog>
+          className={styles.addTaskDialog}
+        >
+          <h2>Add Task</h2>
+          <div>
+            <label htmlFor="">Task Name: </label>
+            <input />
+          </div>
+        </motion.dialog>
       )}
     </AnimatePresence>
   );
