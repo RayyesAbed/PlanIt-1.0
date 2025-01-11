@@ -1,0 +1,24 @@
+.addTaskDialog {
+  border-radius: 45px;
+  width: 50%;
+  height: 50%;
+}
+
+.addTaskDialog h2 {
+  text-align: center;
+}
+
+/* label + input */
+.addTaskDialog div {
+  display: flex;
+  justify-content: center;
+}
+
+.addTaskDialog div label {
+  flex-basis: 30%;
+  font-weight: 600;
+}
+
+.addTaskDialog div input {
+  flex-basis: 50%;
+}
