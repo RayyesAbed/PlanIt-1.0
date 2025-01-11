@@ -1,12 +1,12 @@
-import "./App.css";
-import Introduction from "./pages/introduction/Introduction";
+import Introduction from "./components/introduction/introductionPage/Introduction";
 import { BrowserRouter, Routes, Route } from "react-router";
-import Register from "./pages/register/Register";
-import Login from "./pages/login/Login";
-import UserPage from "./pages/userPage/UserPage";
-import CalendarComponent from "./pages/calendar/CalendarComponent";
-import Performance from "./pages/performance/Performance";
-import Tasks from "./pages/tasks/Tasks";
+import Register from "./components/authentication/register/Register";
+import Login from "./components/authentication/login/Login";
+import UserPage from "./components/application/userPage/userPage";
+import CalendarComponent from "./components/application/calendar/CalendarComponent";
+import Performance from "./components/application/performance/Performance";
+import Tasks from "./components/application/tasks/Tasks";
+import "./App.css";
 
 function App() {
   return (

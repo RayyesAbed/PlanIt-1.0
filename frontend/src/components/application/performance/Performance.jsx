@@ -1,4 +1,4 @@
-import UserPageMenu from "../../components/forExistingUsers/userPageMenu/UserPageMenu";
+import UserPageMenu from "../common/userPageMenu/UserPageMenu";
 import styles from "./Performance.module.css";
 import { Chart } from "react-google-charts";
 

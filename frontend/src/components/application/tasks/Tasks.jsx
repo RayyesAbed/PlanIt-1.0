@@ -1,4 +1,4 @@
-import UserPageMenu from "../../components/forExistingUsers/userPageMenu/UserPageMenu";
+import UserPageMenu from "../common/userPageMenu/UserPageMenu";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import Tooltip from "@mui/material/Tooltip";
 

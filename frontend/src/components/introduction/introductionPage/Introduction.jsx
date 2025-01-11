@@ -1,9 +1,9 @@
-import About from "../../components/forIntroduction/about/About";
-import Download from "../../components/forIntroduction/download/Download";
-import Features from "../../components/forIntroduction/features/Features";
-import Footer from "../../components/forIntroduction/footer/Footer";
-import IntroNavbar from "../../components/forIntroduction/introNavbar/IntroNavbar";
-import Welcome from "../../components/forIntroduction/welcomeSection/Welcome";
+import About from "../common/about/About";
+import Download from "../common/download/Download";
+import Features from "../common/features/Features";
+import Footer from "../common/footer/Footer";
+import IntroNavbar from "../common/introNavbar/IntroNavbar";
+import Welcome from "../common/welcomeSection/Welcome";
 import styles from "./Introduction.module.css";
 import { motion } from "motion/react";
 
