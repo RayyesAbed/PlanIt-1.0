@@ -30,6 +30,14 @@ const AddTaskDialog = ({ openModal, closeModal }) => {
             <label htmlFor="">Task Name: </label>
             <input />
           </div>
+          <div>
+            <label htmlFor="">Due Date: </label>
+            <input type="datetime-local" />
+          </div>
+          <div>
+            <label htmlFor="">Task Description: </label>
+            <textarea />
+          </div>
         </motion.dialog>
       )}
     </AnimatePresence>
