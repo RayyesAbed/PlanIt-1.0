@@ -12,6 +12,7 @@
 .addTaskDialog div {
   display: flex;
   justify-content: center;
+  margin-top: 10px;
 }
 
 .addTaskDialog div label {
@@ -19,6 +20,8 @@
   font-weight: 600;
 }
 
-.addTaskDialog div input {
+.addTaskDialog div input,
+.addTaskDialog div textarea {
   flex-basis: 50%;
+  background-color: rgb(225, 225, 225);
 }
