@@ -46,6 +46,7 @@ const AddTaskDialog = ({ openModal, closeModal }) => {
               <option value="urgent">ASAP</option>
             </select>
           </div>
+          <button className={styles.addTaskButton}>Add</button>
         </motion.dialog>
       )}
     </AnimatePresence>
