@@ -1,10 +1,36 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as motion from "motion/react-client";
 import { AnimatePresence } from "motion/react";
 import styles from "./AddTaskDialog.module.css";
 
 const AddTaskDialog = ({ openModal, closeModal }) => {
   const ref = useRef(); // modal ref
+  const [task, setTask] = useState({
+    id: null,
+    taskName: "",
+    taskDueDate: "",
+    taskDescription: "",
+    taskPriority: "",
+  });
+
+  const setTaskName = (event) =>
+    setTask({ ...task, taskName: event.target.value });
+
+  const setTaskDueDate = (event) =>
+    setTask({ ...task, taskDueDate: event.target.value });
+
+  const setTaskDescription = (event) =>
+    setTask({ ...task, taskDescription: event.target.value });
+
+  const setTaskPriority = (event) =>
+    setTask({ ...task, taskPriority: event.target.value });
+
+  const addTaskHandler = (event) => {
+    event.preventDefault();
+    const newTask = { ...task, id: Date.now() };
+    console.log(newTask);
+    closeModal();
+  };
 
   useEffect(() => {
     if (openModal) {
@@ -26,27 +52,49 @@ const AddTaskDialog = ({ openModal, closeModal }) => {
           className={styles.addTaskDialog}
         >
           <h2>Add Task</h2>
-          <div>
-            <label htmlFor="">Task Name: </label>
-            <input />
-          </div>
-          <div>
-            <label htmlFor="">Due Date: </label>
-            <input type="datetime-local" />
-          </div>
-          <div>
-            <label htmlFor="">Task Description: </label>
-            <textarea />
-          </div>
-          <div>
-            <label htmlFor="">Priority: </label>
-            <select name="" className={styles.prioritySelect}>
-              <option value="ok">Someday</option>
-              <option value="important">Focus</option>
-              <option value="urgent">ASAP</option>
-            </select>
-          </div>
-          <button className={styles.addTaskButton}>Add</button>
+          <form method="dialog" onSubmit={addTaskHandler}>
+            <div>
+              <label htmlFor="">Task Name: </label>
+              <input
+                type="text"
+                value={task.taskName}
+                onChange={setTaskName}
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="">Due Date: </label>
+              <input
+                type="datetime-local"
+                value={task.taskDueDate}
+                onChange={setTaskDueDate}
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="">Task Description: </label>
+              <textarea
+                value={task.taskDescription}
+                onChange={setTaskDescription}
+              />
+            </div>
+            <div>
+              <label htmlFor="">Priority: </label>
+              <select
+                className={styles.prioritySelect}
+                value={task.taskPriority}
+                onChange={setTaskPriority}
+                required
+              >
+                <option value="ok">Someday</option>
+                <option value="important">Focus</option>
+                <option value="urgent">ASAP</option>
+              </select>
+            </div>
+            <button className={styles.addTaskButton} type="submit">
+              Add
+            </button>
+          </form>
         </motion.dialog>
       )}
     </AnimatePresence>
