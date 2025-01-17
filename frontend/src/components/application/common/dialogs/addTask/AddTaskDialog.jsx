@@ -38,6 +38,14 @@ const AddTaskDialog = ({ openModal, closeModal }) => {
             <label htmlFor="">Task Description: </label>
             <textarea />
           </div>
+          <div>
+            <label htmlFor="">Priority: </label>
+            <select name="" className={styles.prioritySelect}>
+              <option value="ok">Someday</option>
+              <option value="important">Focus</option>
+              <option value="urgent">ASAP</option>
+            </select>
+          </div>
         </motion.dialog>
       )}
     </AnimatePresence>
