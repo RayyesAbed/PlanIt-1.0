@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import * as motion from "motion/react-client";
 import { AnimatePresence } from "motion/react";
 import styles from "./AddTaskDialog.module.css";
+import useTasksReducer from "../../../../../hooks/useTasksReducer";
 
 const AddTaskDialog = ({ openModal, closeModal }) => {
   const ref = useRef(); // modal ref
@@ -12,6 +13,8 @@ const AddTaskDialog = ({ openModal, closeModal }) => {
     taskDescription: "",
     taskPriority: "",
   });
+
+  const [state, dispatch] = useTasksReducer();
 
   const setTaskName = (event) =>
     setTask({ ...task, taskName: event.target.value });
@@ -28,7 +31,7 @@ const AddTaskDialog = ({ openModal, closeModal }) => {
   const addTaskHandler = (event) => {
     event.preventDefault();
     const newTask = { ...task, id: Date.now() };
-    console.log(newTask);
+    dispatch({ type: "ADD", payload: newTask });
     closeModal();
   };
 
