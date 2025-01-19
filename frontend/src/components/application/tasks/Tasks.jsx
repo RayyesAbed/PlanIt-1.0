@@ -4,10 +4,12 @@ import Tooltip from "@mui/material/Tooltip";
 
 import styles from "./Tasks.module.css";
 import AddTaskDialog from "../common/dialogs/addTask/AddTaskDialog";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { TaskContext } from "../../../contexts/TaskContext";
 
 const Tasks = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const { state } = useContext(TaskContext);
 
   const handleShowDialog = () => setIsDialogOpen(true);
 
