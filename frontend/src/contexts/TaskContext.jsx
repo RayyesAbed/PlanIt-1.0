@@ -1,5 +1,5 @@
 import { createContext } from "react";
 
-const TaskContext = createContext([]);
+export const tasks = [];
 
-export default TaskContext;
+export const TaskContext = createContext(tasks);
