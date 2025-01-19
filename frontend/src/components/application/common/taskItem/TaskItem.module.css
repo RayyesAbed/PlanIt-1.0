@@ -30,3 +30,18 @@
   flex-basis: 15%;
   text-align: center;
 }
+
+.taskEditIcon,
+.taskDeleteIcon {
+  align-self: center;
+  flex-basis: 5%;
+  cursor: pointer;
+}
+
+.taskEditIcon:hover {
+  color: #ced429;
+}
+
+.taskDeleteIcon:hover {
+  color: #d42929;
+}
