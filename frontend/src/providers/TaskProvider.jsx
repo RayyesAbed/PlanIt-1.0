@@ -1,4 +1,4 @@
-import TaskContext from "../contexts/TaskContext";
+import { TaskContext } from "../contexts/TaskContext";
 import useTasksReducer from "../hooks/useTasksReducer";
 
 const TaskProvider = ({ children }) => {
