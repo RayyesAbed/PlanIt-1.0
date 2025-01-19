@@ -11,7 +11,7 @@ const AddTaskDialog = ({ openModal, closeModal }) => {
     taskName: "",
     taskDueDate: "",
     taskDescription: "",
-    taskPriority: "",
+    taskPriority: "Someday",
   });
 
   const { dispatch } = useContext(TaskContext);
@@ -89,9 +89,9 @@ const AddTaskDialog = ({ openModal, closeModal }) => {
                 onChange={setTaskPriority}
                 required
               >
-                <option value="ok">Someday</option>
-                <option value="important">Focus</option>
-                <option value="urgent">ASAP</option>
+                <option value="Someday">Someday</option>
+                <option value="Focus">Focus</option>
+                <option value="ASAP">ASAP</option>
               </select>
             </div>
             <button className={styles.addTaskButton} type="submit">
