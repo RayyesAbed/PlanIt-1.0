@@ -10,11 +10,15 @@ import TaskItem from "../common/taskItem/TaskItem";
 
 const Tasks = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const { state } = useContext(TaskContext); // state includes the array of tasks
+  const { state, dispatch } = useContext(TaskContext); // state includes the array of tasks
 
   const handleShowDialog = () => setIsDialogOpen(true);
 
   const handleCloseDialog = () => setIsDialogOpen(false);
+
+  const handleDeleteTask = (taskId) => {
+    dispatch({ type: "DELETE", payload: taskId });
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -35,6 +39,7 @@ const Tasks = () => {
               taskDueDate={taskItem.taskDueDate}
               taskPriority={taskItem.taskPriority}
               taskDescription={taskItem.taskDescription}
+              onTaskDelete={() => handleDeleteTask(taskItem.id)}
             />
           ))}
         </div>
