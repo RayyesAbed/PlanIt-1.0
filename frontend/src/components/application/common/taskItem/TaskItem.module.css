@@ -4,7 +4,13 @@
   color: white;
   font-size: 11px;
   display: flex;
+  flex-direction: column;
   margin: 20px;
+}
+
+.taskItem div {
+  display: flex;
+  width: 100%;
   gap: 20px;
 }
 
@@ -44,4 +50,10 @@
 
 .taskDeleteIcon:hover {
   color: #d42929;
+}
+
+.taskItem p {
+  padding: 10px;
+  margin-left: 42px;
+  margin-top: -20px;
 }
