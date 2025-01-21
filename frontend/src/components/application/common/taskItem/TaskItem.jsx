@@ -27,7 +27,7 @@ const TaskItem = ({
           <DeleteIcon className={styles.taskDeleteIcon} />
         </Tooltip>
       </div>
-      <p>{taskDescription}</p>
+      {taskDescription && <p>{taskDescription}</p>}
     </div>
   );
 };
