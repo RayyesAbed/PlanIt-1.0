@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import * as motion from "motion/react-client";
 import { AnimatePresence } from "motion/react";
-import styles from "./AddTaskDialog.module.css";
+import styles from "../TaskDialog.module.css";
 import { TaskContext } from "../../../../../contexts/TaskContext";
 
 const AddTaskDialog = ({ openModal, closeModal }) => {
@@ -33,6 +33,12 @@ const AddTaskDialog = ({ openModal, closeModal }) => {
     const newTask = { ...task, id: Date.now() };
     dispatch({ type: "ADD", payload: newTask });
     closeModal();
+    setTask({
+      taskName: "",
+      taskDueDate: "",
+      taskDescription: "",
+      taskPriority: "Someday",
+    });
   };
 
   useEffect(() => {
