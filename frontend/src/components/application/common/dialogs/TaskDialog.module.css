@@ -1,0 +1,47 @@
+.addTaskDialog {
+  border-radius: 45px;
+  width: 50%;
+  height: 50%;
+}
+
+.addTaskDialog h2 {
+  text-align: center;
+}
+
+/* label + input */
+.addTaskDialog div {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.addTaskDialog div label {
+  flex-basis: 30%;
+  font-weight: 600;
+}
+
+.addTaskDialog div input,
+.addTaskDialog div textarea {
+  flex-basis: 50%;
+  background-color: rgb(225, 225, 225);
+}
+
+.addTaskDialog div .prioritySelect {
+  flex-basis: 50%;
+}
+
+.addTaskDialog .addTaskButton {
+  background-color: rgb(46, 46, 46);
+  color: white;
+  padding: 7px 55px;
+  font-weight: 600;
+  border: 0;
+  border-radius: 45px;
+  display: block;
+  margin: 20px auto;
+  cursor: pointer;
+}
+
+.addTaskDialog .addTaskButton:hover {
+  background-color: black;
+}

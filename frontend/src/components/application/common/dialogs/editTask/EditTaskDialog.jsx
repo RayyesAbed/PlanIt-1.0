@@ -1,0 +1,111 @@
+import styles from "../TaskDialog.module.css";
+import { useContext, useEffect, useRef, useState } from "react";
+import * as motion from "motion/react-client";
+import { AnimatePresence } from "motion/react";
+import { TaskContext } from "../../../../../contexts/TaskContext";
+
+const EditTaskDialog = ({ openModal, closeModal, filteredTask }) => {
+  const ref = useRef(); // modal ref
+  const { dispatch } = useContext(TaskContext);
+
+  const [task, setTask] = useState({
+    id: null,
+    taskName: "",
+    taskDueDate: "",
+    taskDescription: "",
+    taskPriority: "Someday",
+  });
+
+  // useEffect to set the task state with the filteredTask
+  useEffect(() => {
+    setTask(filteredTask);
+  }, [filteredTask]);
+
+  const setTaskName = (event) =>
+    setTask({ ...task, taskName: event.target.value });
+
+  const setTaskDueDate = (event) =>
+    setTask({ ...task, taskDueDate: event.target.value });
+
+  const setTaskDescription = (event) =>
+    setTask({ ...task, taskDescription: event.target.value });
+
+  const setTaskPriority = (event) =>
+    setTask({ ...task, taskPriority: event.target.value });
+
+  const editTaskHandler = (event) => {
+    event.preventDefault();
+    dispatch({ type: "EDIT", payload: task });
+    closeModal();
+  };
+
+  useEffect(() => {
+    if (openModal) {
+      ref.current?.showModal();
+    } else {
+      ref.current?.close();
+    }
+  });
+
+  return (
+    <AnimatePresence initial={false}>
+      {openModal && (
+        <motion.dialog
+          ref={ref}
+          onCancel={closeModal}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0 }}
+          className={styles.addTaskDialog}
+        >
+          <h2>Edit Task</h2>
+          <form method="dialog" onSubmit={editTaskHandler}>
+            <div>
+              <label htmlFor="">Task Name: </label>
+              <input
+                type="text"
+                value={task.taskName}
+                onChange={setTaskName}
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="">Due Date: </label>
+              <input
+                type="datetime-local"
+                value={task.taskDueDate}
+                onChange={setTaskDueDate}
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="">Task Description: </label>
+              <textarea
+                value={task.taskDescription}
+                onChange={setTaskDescription}
+              />
+            </div>
+            <div>
+              <label htmlFor="">Priority: </label>
+              <select
+                className={styles.prioritySelect}
+                value={task.taskPriority}
+                onChange={setTaskPriority}
+                required
+              >
+                <option value="Someday">Someday</option>
+                <option value="Focus">Focus</option>
+                <option value="ASAP">ASAP</option>
+              </select>
+            </div>
+            <button className={styles.addTaskButton} type="submit">
+              Edit
+            </button>
+          </form>
+        </motion.dialog>
+      )}
+    </AnimatePresence>
+  );
+};
+
+export default EditTaskDialog;

@@ -6,12 +6,15 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import { MantineProvider } from "@mantine/core";
+import TaskProvider from "./providers/TaskProvider.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <MantineProvider>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <App />
+        <TaskProvider>
+          <App />
+        </TaskProvider>
       </LocalizationProvider>
     </MantineProvider>
   </StrictMode>
