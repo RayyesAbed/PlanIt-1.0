@@ -11,6 +11,7 @@
   height: 95%;
   align-items: center;
   border-radius: 25px;
+  overflow: auto;
 }
 
 .featuresDiv div section:first-child,
@@ -20,7 +21,6 @@
 }
 
 .featuresDiv div section:first-child img {
-  width: 40%;
   border-radius: 25px;
   box-shadow: 0px 0px 6px #000;
 }
@@ -35,4 +35,31 @@
   padding: 10px 80px;
   font-size: 18px;
   text-align: justify;
+}
+
+/* Till Laptop Size */
+@media screen and (max-width: 1024px) {
+  .featuresDiv div {
+    flex-direction: column;
+  }
+  .featuresDiv div section:first-child img {
+    margin-top: 50%;
+  }
+}
+
+/* Till Tablet Size */
+@media screen and (max-width: 768px) {
+  .featuresDiv div section:first-child img {
+    margin-top: 100%;
+  }
+}
+
+/* Till Large Mobile Size */
+@media screen and (max-width: 425px) {
+  .featuresDiv div section:last-child h1 {
+    font-size: 1.5rem;
+  }
+  .featuresDiv div section:last-child p {
+    padding: 15px;
+  }
 }
