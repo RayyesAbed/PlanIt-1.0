@@ -2,6 +2,7 @@ import styles from "./Footer.module.css";
 import PlanItLogo from "/PlanItLogo.webp";
 
 const Footer = () => {
+  const year = new Date().getFullYear();
   return (
     <footer className={styles.footer}>
       <div className={styles.wrapper}>
@@ -19,8 +20,8 @@ const Footer = () => {
         </div>
       </div>
       <p className={styles.copyrightText}>
-        PlanIt AppInnov 2024, all rights reserved. App Store® is a trademark of
-        Apple Inc., registered in the U.S. and other countries.
+        PlanIt AppInnov {year}, all rights reserved. App Store® is a trademark
+        of Apple Inc., registered in the U.S. and other countries.
       </p>
     </footer>
   );
