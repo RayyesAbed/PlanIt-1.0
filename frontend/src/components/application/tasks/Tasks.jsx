@@ -13,6 +13,7 @@ const Tasks = () => {
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const { state, dispatch } = useContext(TaskContext); // state includes the array of tasks
+  const [filteredTask, setFilteredTask] = useState({});
 
   const handleShowAddDialog = () => setIsAddDialogOpen(true);
 
@@ -26,8 +27,9 @@ const Tasks = () => {
     dispatch({ type: "DELETE", payload: taskId });
   };
 
-  const handleEditTask = (taskId) => {
+  const handleEditTask = (task) => {
     handleShowEditDialog();
+    setFilteredTask(task);
   };
 
   return (
@@ -50,7 +52,7 @@ const Tasks = () => {
               taskPriority={taskItem.taskPriority}
               taskDescription={taskItem.taskDescription}
               onTaskDelete={() => handleDeleteTask(taskItem.id)}
-              onTaskEdit={() => handleEditTask(taskItem.id)}
+              onTaskEdit={() => handleEditTask(taskItem)}
             />
           ))}
         </div>
@@ -62,6 +64,7 @@ const Tasks = () => {
       <EditTaskDialog
         openModal={isEditDialogOpen}
         closeModal={handleCloseEditDialog}
+        filteredTask={filteredTask}
       />
     </div>
   );
