@@ -9,7 +9,7 @@ const Features = () => {
         <section>
           <motion.img
             initial={{ opacity: 0, width: 0 }}
-            whileInView={{ opacity: 1, width: "40%" }}
+            whileInView={{ opacity: 1, width: "15vw" }}
             transition={{ delay: 0.75, type: "spring", stiffness: 100 }}
             src={SuccessfulHeroImg}
             alt="Successful Hero Image"
