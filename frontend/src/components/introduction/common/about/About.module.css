@@ -20,6 +20,7 @@
   background-color: rgba(0, 0, 0, 0.7);
   color: white;
   padding: 25px;
+  overflow: auto;
 }
 
 .aboutDiv div section:first-child h1 {
@@ -36,4 +37,14 @@
   height: 100%;
   object-fit: cover;
   border-radius: 25px;
+}
+
+@media screen and (max-width: 1024px) {
+  .aboutDiv {
+    height: 100%;
+  }
+  .aboutDiv div {
+    flex-direction: column-reverse;
+    width: 100%;
+  }
 }
