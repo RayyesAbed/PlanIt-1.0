@@ -24,3 +24,15 @@
   background-color: white;
   padding: 20px;
 }
+
+/* For Large Mobile sizes */
+@media screen and (max-width: 425px) {
+  .footer {
+    height: 100%;
+  }
+
+  .footer .wrapper {
+    padding-top: 10px;
+    flex-direction: column;
+  }
+}
