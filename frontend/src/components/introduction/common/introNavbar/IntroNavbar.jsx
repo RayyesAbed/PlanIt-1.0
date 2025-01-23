@@ -3,10 +3,17 @@ import styles from "./IntroNavbar.module.css";
 import PlanItLogo from "/PlanItLogo.webp";
 import { NavHashLink, HashLink } from "react-router-hash-link";
 import { Link, useLocation } from "react-router";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 
 const IntroNavbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+
+  const toggleMenuHandler = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   useEffect(() => {
     function handleScrollY() {
@@ -30,7 +37,14 @@ const IntroNavbar = () => {
       <HashLink to="#welcome">
         <img src={PlanItLogo} alt="PlanIt Logo" />
       </HashLink>
-      <ul id={styles.normalUl}>
+      <div className={styles.navbarMenu} onClick={toggleMenuHandler}>
+        {isMenuOpen ? (
+          <CloseIcon fontSize="large" />
+        ) : (
+          <MenuIcon fontSize="large" />
+        )}
+      </div>
+      <ul id={styles.normalUl} style={isMenuOpen ? { display: "flex" } : {}}>
         <li>
           <NavHashLink
             className={styles.navLinkLi}
@@ -71,7 +85,10 @@ const IntroNavbar = () => {
           </NavHashLink>
         </li>
       </ul>
-      <ul id={styles.registerLoginUl}>
+      <ul
+        id={styles.registerLoginUl}
+        style={isMenuOpen ? { display: "flex" } : {}}
+      >
         <Link to="/login" className={styles.loginLink}>
           <li>LOGIN</li>
         </Link>
