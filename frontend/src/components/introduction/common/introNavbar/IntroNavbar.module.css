@@ -18,6 +18,12 @@
   border-radius: 20px;
 }
 
+.navbarMenu {
+  display: none;
+  color: #fff;
+  cursor: pointer;
+}
+
 #navbar ul#normalUl {
   display: flex;
   flex-basis: 33%;
@@ -76,4 +82,27 @@
 
 #navbar ul#registerLoginUl .registerLink:hover {
   background-color: #080e19;
+}
+
+/* Devices up to tablet */
+@media screen and (max-width: 768px) {
+  .navbarMenu {
+    display: block;
+  }
+
+  #navbar,
+  #navbar ul#normalUl,
+  #navbar ul#registerLoginUl {
+    flex-direction: column;
+  }
+
+  #navbar ul#normalUl,
+  #navbar ul#registerLoginUl {
+    display: none;
+  }
+
+  #navbar ul#registerLoginUl {
+    gap: 20px;
+    right: 10px;
+  }
 }
