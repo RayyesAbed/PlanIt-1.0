@@ -4,9 +4,9 @@ import * as motion from "motion/react-client";
 import { AnimatePresence } from "motion/react";
 import { TaskContext } from "../../../../../contexts/TaskContext";
 
-const EditTaskDialog = ({ openModal, closeModal }) => {
+const EditTaskDialog = ({ openModal, closeModal, filteredTask }) => {
   const ref = useRef(); // modal ref
-  const { state, dispatch } = useContext(TaskContext);
+  const { dispatch } = useContext(TaskContext);
 
   const [task, setTask] = useState({
     id: null,
@@ -15,6 +15,11 @@ const EditTaskDialog = ({ openModal, closeModal }) => {
     taskDescription: "",
     taskPriority: "Someday",
   });
+
+  // useEffect to set the task state with the filteredTask
+  useEffect(() => {
+    setTask(filteredTask);
+  }, [filteredTask]);
 
   const setTaskName = (event) =>
     setTask({ ...task, taskName: event.target.value });
@@ -30,6 +35,7 @@ const EditTaskDialog = ({ openModal, closeModal }) => {
 
   const editTaskHandler = (event) => {
     event.preventDefault();
+    dispatch({ type: "EDIT", payload: task });
     closeModal();
   };
 
