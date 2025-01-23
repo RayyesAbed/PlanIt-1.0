@@ -30,7 +30,7 @@ const Welcome = () => {
           className={styles.welcomeText}
           key={currentTextIndex}
           initial={{ opacity: 0, fontSize: 0 }}
-          animate={{ opacity: 1, fontSize: "60px" }}
+          animate={{ opacity: 1, fontSize: "4vw" }}
           exit={{ opacity: 0 }}
           transition={{ transition: 1 }}
         >
