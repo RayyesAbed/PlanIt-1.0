@@ -5,6 +5,9 @@ const Settings = () => {
   return (
     <div className={styles.wrapper}>
       <UserPageMenu />
+      <div className={styles.settingsWrapper}>
+        <h1 className={styles.settingsTitle}>Settings</h1>
+      </div>
     </div>
   );
 };
