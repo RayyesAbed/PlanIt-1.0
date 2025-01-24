@@ -1,0 +1,43 @@
+.basicSettingsList {
+  margin-top: 50px;
+}
+
+.basicSettingsList li {
+  display: flex;
+  color: white;
+  align-items: center;
+  margin-right: 20px;
+  margin-top: 10px;
+  border-radius: 45px;
+  padding: 10px 30px;
+  background-color: #151515;
+}
+
+.basicSettingsList li h3 {
+  flex-basis: 60%;
+}
+
+.basicSettingsList li div {
+  flex-basis: 20%;
+}
+
+.basicSettingsList li div button {
+  background-color: #4b4a4a;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  width: 120px;
+  height: 35px;
+}
+
+.basicSettingsList li div button:hover {
+  background-color: white;
+  color: #000;
+}
+
+.basicSettingsList li div img {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
