@@ -17,3 +17,18 @@
   color: white;
   margin: 40px;
 }
+
+.settingsMenu ul .settingsMenuListItem,
+.settingsMenu ul .activeSettingsMenuListItem {
+  text-decoration: none;
+  color: white;
+  margin: 0 20px;
+  padding: 15px 35px;
+  border-radius: 45px;
+  transition: 0.3s;
+}
+
+.settingsMenu ul .settingsMenuListItem:hover,
+.settingsMenu ul .activeSettingsMenuListItem {
+  background-color: rgba(0, 0, 0, 0.7);
+}
