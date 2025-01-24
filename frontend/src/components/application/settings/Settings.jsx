@@ -1,6 +1,7 @@
+import BasicSettings from "../common/basicSettingsPage/BasicSettings";
 import UserPageMenu from "../common/userPageMenu/UserPageMenu";
 import styles from "./Settings.module.css";
-import { NavLink } from "react-router";
+import { NavLink, Route, Routes } from "react-router";
 
 const Settings = () => {
   return (
@@ -41,6 +42,11 @@ const Settings = () => {
               Billing
             </NavLink>
           </ul>
+          <Routes>
+            <Route path="basic" element={<BasicSettings />} />
+            {/* <Route path="security" element={<SecuritySettings />} />
+            <Route path="billing" element={<BillingSettings />} /> */}
+          </Routes>
         </div>
       </div>
     </div>
