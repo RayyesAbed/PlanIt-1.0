@@ -7,6 +7,7 @@ import CalendarComponent from "./components/application/calendar/CalendarCompone
 import Performance from "./components/application/performance/Performance";
 import Tasks from "./components/application/tasks/Tasks";
 import "./App.css";
+import Settings from "./components/application/settings/Settings";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/calendar" element={<CalendarComponent />} />
         <Route path="/performance" element={<Performance />} />
         <Route path="/tasks" element={<Tasks />} />
+        <Route path="/settings" element={<Settings />} />
       </Routes>
     </BrowserRouter>
   );
