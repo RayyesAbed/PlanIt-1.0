@@ -1,5 +1,6 @@
 import UserPageMenu from "../common/userPageMenu/UserPageMenu";
 import styles from "./Settings.module.css";
+import { NavLink } from "react-router";
 
 const Settings = () => {
   return (
@@ -7,6 +8,40 @@ const Settings = () => {
       <UserPageMenu />
       <div className={styles.settingsWrapper}>
         <h1 className={styles.settingsTitle}>Settings</h1>
+        <div className={styles.settingsMenu}>
+          <ul>
+            <NavLink
+              to="/settings/basic"
+              className={({ isActive }) =>
+                isActive
+                  ? styles.activeSettingsMenuListItem
+                  : styles.settingsMenuListItem
+              }
+            >
+              Basic
+            </NavLink>
+            <NavLink
+              to="/settings/security"
+              className={({ isActive }) =>
+                isActive
+                  ? styles.activeSettingsMenuListItem
+                  : styles.settingsMenuListItem
+              }
+            >
+              Security
+            </NavLink>
+            <NavLink
+              to="/settings/billing"
+              className={({ isActive }) =>
+                isActive
+                  ? styles.activeSettingsMenuListItem
+                  : styles.settingsMenuListItem
+              }
+            >
+              Billing
+            </NavLink>
+          </ul>
+        </div>
       </div>
     </div>
   );
