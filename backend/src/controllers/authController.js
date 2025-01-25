@@ -10,8 +10,8 @@ const registerUser = (req, res) => {
     return res.status(400).json({ message: "All fields are required!" });
   }
 
-  // check for special characters in name and email
-  if (isThereSpecialCharacters(name) || isThereSpecialCharacters(email)) {
+  // check for special characters in name
+  if (isThereSpecialCharacters(name)) {
     return res.status(400).json({
       message: "Special characters are not allowed in name and email!",
     });
