@@ -13,6 +13,7 @@ import {
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { Link } from "react-router";
+import { registerUser } from "../../../api/registerUser";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -35,10 +36,15 @@ const Register = () => {
 
   document.title = "PlanIt Register";
 
+  const handleRegister = async (event) => {
+    event.preventDefault();
+    await registerUser(userCredentials);
+  };
+
   return (
     <div className={styles.regsisterDiv}>
       <section>
-        <form>
+        <form onSubmit={handleRegister}>
           <img src={Logo} alt="PlanIt logo" />
           <h1>Create a new account</h1>
           <TextField
