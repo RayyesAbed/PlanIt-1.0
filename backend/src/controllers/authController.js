@@ -1,8 +1,6 @@
-const { isPasswordValid } = require("../utils/isPasswordValid");
-const {
-  isThereSpecialCharacters,
-} = require("../utils/isThereSpecialCharacters");
-const { isValidEmail } = require("../utils/isValidEmail");
+const isPasswordValid = require("../utils/isPasswordValid");
+const isThereSpecialCharacters = require("../utils/isThereSpecialCharacters");
+const isValidEmail = require("../utils/isValidEmail");
 
 const registerUser = (req, res) => {
   const { name, email, password } = req.body;
@@ -14,11 +12,9 @@ const registerUser = (req, res) => {
 
   // check for special characters in name and email
   if (isThereSpecialCharacters(name) || isThereSpecialCharacters(email)) {
-    return res
-      .status(400)
-      .json({
-        message: "Special characters are not allowed in name and email!",
-      });
+    return res.status(400).json({
+      message: "Special characters are not allowed in name and email!",
+    });
   }
 
   // check if email is valid
