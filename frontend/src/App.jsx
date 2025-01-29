@@ -8,6 +8,7 @@ import Performance from "./components/application/performance/Performance";
 import Tasks from "./components/application/tasks/Tasks";
 import "./App.css";
 import Settings from "./components/application/settings/Settings";
+import EmailVerify from "./components/authentication/verify/EmailVerify";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route index path="/" element={<Introduction />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/verify-email" element={<EmailVerify />} />
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<UserPage />} />
         <Route path="/calendar" element={<CalendarComponent />} />
