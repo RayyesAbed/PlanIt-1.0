@@ -1,6 +1,6 @@
 export const registerUser = async (userCredentials) => {
   const response = await fetch(
-    `${import.meta.env.VITE_FRONTEND_URL}/auth/register`,
+    `${import.meta.env.VITE_FRONTEND_URL}/auth/register_request`,
     {
       method: "POST",
       body: JSON.stringify(userCredentials),
