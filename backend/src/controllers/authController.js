@@ -3,7 +3,7 @@ const isThereSpecialCharacters = require("../utils/isThereSpecialCharacters");
 const isValidEmail = require("../utils/isValidEmail");
 const User = require("../schemas/User");
 
-const registerUser = (req, res) => {
+const registerUser = async (req, res) => {
   const { name, email, password } = req.body;
 
   // check if any value of (name, email, password) is empty
@@ -28,7 +28,7 @@ const registerUser = (req, res) => {
     return res.status(400).json({ message: "Password is not secure enough!" });
   }
 
-  let user = User.findOne({ email: email });
+  let user = await User.findOne({ email: email });
   if (user) {
     return res
       .status(400)
