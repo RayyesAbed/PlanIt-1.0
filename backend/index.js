@@ -1,11 +1,11 @@
 // require all modules here
+const dotenv = require("dotenv");
+dotenv.config({ path: "../frontend/.env.development" });
+
 const express = require("express");
 const cors = require("cors");
 const mongooseConnect = require("./src/configs/mongooseConnect");
-const dotenv = require("dotenv");
 const authRoutes = require("./src/routes/authRoutes");
-
-dotenv.config({ path: "../frontend/.env.development" });
 
 const app = express();
 
