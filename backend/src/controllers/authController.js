@@ -5,7 +5,7 @@ const generateToken = require("../services/generateToken");
 const sendEmail = require("../services/sendEmail");
 const User = require("../schemas/User");
 
-const registerUser = async (req, res) => {
+const registerUserRequest = async (req, res) => {
   const { name, email, password } = req.body;
 
   // check if any value of (name, email, password) is empty
@@ -63,5 +63,5 @@ const registerUser = async (req, res) => {
 };
 
 module.exports = {
-  registerUser,
+  registerUserRequest,
 };
