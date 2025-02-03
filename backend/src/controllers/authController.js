@@ -58,7 +58,7 @@ const registerUserRequest = async (req, res) => {
     `
     <p> Hi ${name}, </p>
 
-    <p> Are you ready to start your journey with PlanIt? then please click on the verification link: ${validationURL}. </p>
+    <p> Are you ready to start your journey with PlanIt? then please click on the verification link: ${validationURL}</p>
 
     <p>This link expires in an hour. </p>
 
@@ -81,13 +81,13 @@ const verifyEmail = async (req, res) => {
     const { email } = verifyToken(token);
     const pendingUser = await PendingUser.findOne({ email: email });
 
-    await User.create({
+    User.create({
       name: pendingUser.name,
       email: pendingUser.email,
       password: pendingUser.password,
     });
 
-    PendingUser.deleteOne({ email: email });
+    await PendingUser.deleteOne({ email: email });
 
     return res
       .status(200)
