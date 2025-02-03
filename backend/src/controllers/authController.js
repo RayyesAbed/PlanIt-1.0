@@ -40,7 +40,7 @@ const registerUserRequest = async (req, res) => {
       .json({ message: "A user with that email already exists!" });
   }
 
-  const hashedPassword = hashPassword(password);
+  const hashedPassword = await hashPassword(password);
 
   // Only for passing user's data to verify email function
   await PendingUser.create({
