@@ -1,12 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import styles from "./EmailVerify.module.css";
 import PlanItLogo from "/PlanItLogo.webp";
+import { verifyNewUser } from "../../../api/verifyNewUser";
 
 const EmailVerify = () => {
   const [message, setMessage] = useState("");
   const query = new URLSearchParams(useLocation().search);
   const token = query.get("token");
+
+  useEffect(() => {
+    if (!token) {
+      setMessage("Invalid verification token!");
+      return;
+    }
+
+    const verify = async () => {
+      try {
+        await verifyNewUser(token);
+        setMessage("Account created successfully!");
+      } catch (error) {
+        setMessage("Verification went wrong!");
+        console.error("Verification Error:", error);
+      }
+    };
+
+    verify();
+  }, [token]);
 
   return (
     <div className={styles.emailVerifyDiv}>
