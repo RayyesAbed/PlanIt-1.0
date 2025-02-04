@@ -12,9 +12,5 @@ export const registerUser = async (userCredentials) => {
 
   const responseMessage = await response.json().then((data) => data.message); // get the response message from the backend
 
-  if (!response.ok) {
-    alert(responseMessage);
-  } else {
-    console.log("User registered successfully"); // only for testing purposes
-  }
+  alert(responseMessage);
 };
