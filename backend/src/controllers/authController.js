@@ -1,12 +1,14 @@
 const isPasswordValid = require("../utils/isPasswordValid");
 const isThereSpecialCharacters = require("../utils/isThereSpecialCharacters");
 const isValidEmail = require("../utils/isValidEmail");
+const { validationResult } = require("express-validator");
 const generateToken = require("../services/generateToken");
 const sendEmail = require("../services/sendEmail");
 const User = require("../schemas/User");
 const PendingUser = require("../schemas/PendingUser");
 const verifyToken = require("../services/verifyToken");
 const hashPassword = require("../services/hashPassword");
+const argon2 = require("argon2");
 
 const registerUserRequest = async (req, res) => {
   const { name, email, password } = req.body;
@@ -49,7 +51,7 @@ const registerUserRequest = async (req, res) => {
     password: hashedPassword,
   });
 
-  const emailToken = generateToken(email);
+  const emailToken = generateToken(email, "emailVerification");
   const validationURL = `${process.env.VITE_FRONTEND_URL}/verify-email?token=${emailToken}`;
 
   await sendEmail(
@@ -97,7 +99,39 @@ const verifyEmail = async (req, res) => {
   }
 };
 
+const loginUser = async (req, res) => {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  const { email, password } = req.body;
+
+  const user = await User.findOne({ email: email });
+
+  if (!user) {
+    return res.status(401).json({ message: "Invalid email or password!" });
+  }
+
+  const passwordsMatch = await argon2.verify(user.password, password);
+
+  if (!passwordsMatch) {
+    return res.status(401).json({ message: "Invalid email or password!" });
+  }
+
+  const loginToken = generateToken(email, "login");
+
+  res.cookie("token", loginToken, {
+    httpOnly: true,
+    maxAge: 60 * 60 * 1000,
+  });
+
+  return res.status(200).json({ message: "Logged in successfully!" });
+};
+
 module.exports = {
   registerUserRequest,
   verifyEmail,
+  loginUser,
 };
