@@ -12,10 +12,12 @@ import {
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { loginUser } from "../../../api/loginUser";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
   const [userCredentials, setUserCredentials] = useState({
     email: "",
     password: "",
@@ -29,13 +31,23 @@ const Login = () => {
 
   const handleClickToggleShowPassword = () => setShowPassword(!showPassword);
 
+  const loginUserHandler = async (event) => {
+    event.preventDefault();
+    const result = await loginUser(userCredentials);
+    if (!result) {
+      alert("Invalid email, password or both!");
+    } else {
+      navigate("/home");
+    }
+  };
+
   return (
     <div className={styles.loginDiv}>
       <section>
         <img src={LoginSectionImg} alt="Login Image" />
       </section>
       <section>
-        <form>
+        <form onSubmit={loginUserHandler}>
           <img src={Logo} alt="PlanIt Logo" />
           <h1>Log in to your account</h1>
           <TextField
