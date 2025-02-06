@@ -51,7 +51,7 @@ const registerUserRequest = async (req, res) => {
     password: hashedPassword,
   });
 
-  const emailToken = generateToken(email);
+  const emailToken = generateToken(email, "emailVerification");
   const validationURL = `${process.env.VITE_FRONTEND_URL}/verify-email?token=${emailToken}`;
 
   await sendEmail(
@@ -119,6 +119,15 @@ const loginUser = async (req, res) => {
   if (!passwordsMatch) {
     return res.status(401).json({ message: "Invalid email or password!" });
   }
+
+  const loginToken = generateToken(email, "login");
+
+  res.cookie("token", loginToken, {
+    httpOnly: true,
+    maxAge: 60 * 60 * 1000,
+  });
+
+  return res.status(200).json({ message: "Logged in successfully!" });
 };
 
 module.exports = {
