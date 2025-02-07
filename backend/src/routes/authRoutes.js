@@ -6,6 +6,7 @@ const {
   registerUserRequest,
   verifyEmail,
   loginUser,
+  checkAuthentication,
 } = require("../controllers/authController");
 
 router.post(
@@ -25,5 +26,7 @@ router.post(
   ],
   loginUser
 );
+
+router.post("/checkAuth", checkAuthentication);
 
 module.exports = router;
