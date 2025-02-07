@@ -9,6 +9,7 @@ const PendingUser = require("../schemas/PendingUser");
 const verifyToken = require("../services/verifyToken");
 const hashPassword = require("../services/hashPassword");
 const argon2 = require("argon2");
+const jwt = require("jsonwebtoken");
 
 const registerUserRequest = async (req, res) => {
   const { name, email, password } = req.body;
@@ -130,8 +131,20 @@ const loginUser = async (req, res) => {
   return res.status(200).json({ message: "Logged in successfully!" });
 };
 
+const checkAuthentication = (req, res) => {
+  const token = req.cookies.token;
+
+  if (!token) return res.sendStatus(401);
+
+  jwt.verify(token, process.env.JWT_SECRET, (err) => {
+    if (err) return res.sendStatus(403);
+    return res.sendStatus(200);
+  });
+};
+
 module.exports = {
   registerUserRequest,
   verifyEmail,
   loginUser,
+  checkAuthentication,
 };
