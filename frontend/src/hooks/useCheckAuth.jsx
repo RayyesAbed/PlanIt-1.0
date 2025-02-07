@@ -1,20 +1,23 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useEffect, useState } from "react";
 import { checkAuth } from "../api/checkAuth";
 
 const useCheckAuth = () => {
-  const navigate = useNavigate();
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
 
   useEffect(() => {
     const result = async () => {
       const response = await checkAuth();
       if (!response.ok) {
-        navigate("/login");
+        setIsAuthenticated(false);
+      } else {
+        setIsAuthenticated(true);
       }
     };
 
     result();
-  }, [navigate]);
+  }, []);
+
+  return isAuthenticated;
 };
 
 export default useCheckAuth;
