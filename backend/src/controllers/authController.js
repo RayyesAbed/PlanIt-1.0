@@ -121,7 +121,7 @@ const loginUser = async (req, res) => {
     return res.status(401).json({ message: "Invalid email or password!" });
   }
 
-  const loginToken = generateToken(email, "login");
+  const loginToken = generateToken(user._id, "login");
 
   res.cookie("token", loginToken, {
     httpOnly: true,
