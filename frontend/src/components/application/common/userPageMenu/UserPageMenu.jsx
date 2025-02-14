@@ -10,14 +10,17 @@ import {
   Settings,
   Logout,
 } from "@mui/icons-material";
+import useFetchUserData from "../../../../hooks/useFetchUserData";
 
 const UserPageMenu = () => {
+  const userData = useFetchUserData();
+
   return (
     <nav className={styles.menuNav}>
       <div className={styles.accountWrapper}>
         <img src={TestImg} alt="Your profile photo" />
         <div className={styles.userNameAndPlanWrapper}>
-          <p>Abdallah Alrayyes</p> {/* only for testing purposes */}
+          <p>{userData.name}</p>
           <p>Free Plan</p> {/* only for testing purposes */}
         </div>
       </div>
