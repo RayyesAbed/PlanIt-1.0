@@ -6,6 +6,7 @@ const express = require("express");
 const cors = require("cors");
 const mongooseConnect = require("./src/configs/mongooseConnect");
 const authRoutes = require("./src/routes/authRoutes");
+const userDataRoutes = require("./src/routes/userDataRoutes");
 const cookieParser = require("cookie-parser");
 
 const app = express();
@@ -17,6 +18,8 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/auth", authRoutes);
+
+app.use("/user_data", userDataRoutes);
 
 mongooseConnect()
   .then(() => {
