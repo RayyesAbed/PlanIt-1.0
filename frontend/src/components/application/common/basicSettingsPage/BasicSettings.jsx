@@ -1,7 +1,9 @@
+import useFetchUserData from "../../../../hooks/useFetchUserData";
 import styles from "./BasicSettings.module.css";
 import DUMMY_IMAGE from "/AbdallahImg.jpg"; // Only for testing purposes
 
 const BasicSettings = () => {
+  const userData = useFetchUserData();
   return (
     <ul className={styles.basicSettingsList}>
       <li>
@@ -15,14 +17,14 @@ const BasicSettings = () => {
       </li>
       <li>
         <h3>Name</h3>
-        <div>DUMMY NAME</div>
+        <div>{userData.name}</div>
         <div>
           <button>Edit</button>
         </div>
       </li>
       <li>
         <h3>Email</h3>
-        <div>DUMMY EMAIL</div>
+        <div>{userData.email}</div>
         <div>
           <button>Edit</button>
         </div>
