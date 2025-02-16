@@ -6,6 +6,7 @@ const express = require("express");
 const cors = require("cors");
 const mongooseConnect = require("./src/configs/mongooseConnect");
 const authRoutes = require("./src/routes/authRoutes");
+const taskRoutes = require("./src/routes/taskRoutes");
 const userDataRoutes = require("./src/routes/userDataRoutes");
 const cookieParser = require("cookie-parser");
 
@@ -18,6 +19,8 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/auth", authRoutes);
+
+app.use("/tasks", taskRoutes);
 
 app.use("/user_data", userDataRoutes);
 
