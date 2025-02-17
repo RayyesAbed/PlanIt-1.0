@@ -2,7 +2,6 @@ const isPasswordValid = require("../utils/isPasswordValid");
 const isThereSpecialCharacters = require("../utils/isThereSpecialCharacters");
 const isValidEmail = require("../utils/isValidEmail");
 const { validationResult } = require("express-validator");
-const generateToken = require("../services/generateToken");
 const sendEmail = require("../services/sendEmail");
 const User = require("../schemas/User");
 const PendingUser = require("../schemas/PendingUser");
@@ -52,7 +51,10 @@ const registerUserRequest = async (req, res) => {
     password: hashedPassword,
   });
 
-  const emailToken = generateToken(email, "emailVerification");
+  const emailToken = jwt.sign({ email: email }, process.env.JWT_SECRET, {
+    expiresIn: "1h",
+  });
+
   const validationURL = `${process.env.VITE_FRONTEND_URL}/verify-email?token=${emailToken}`;
 
   await sendEmail(
@@ -121,7 +123,9 @@ const loginUser = async (req, res) => {
     return res.status(401).json({ message: "Invalid email or password!" });
   }
 
-  const loginToken = generateToken(user._id, "login");
+  const loginToken = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+    expiresIn: "1h",
+  });
 
   res.cookie("token", loginToken, {
     httpOnly: true,
