@@ -4,6 +4,7 @@ const isValidEmail = require("../utils/isValidEmail");
 const { validationResult } = require("express-validator");
 const sendEmail = require("../services/sendEmail");
 const User = require("../schemas/User");
+const Task = require("../schemas/Task");
 const PendingUser = require("../schemas/PendingUser");
 const verifyToken = require("../services/verifyToken");
 const hashPassword = require("../services/hashPassword");
@@ -86,11 +87,13 @@ const verifyEmail = async (req, res) => {
     const { email } = verifyToken(token);
     const pendingUser = await PendingUser.findOne({ email: email });
 
-    User.create({
+    const user = await User.create({
       name: pendingUser.name,
       email: pendingUser.email,
       password: pendingUser.password,
     });
+
+    Task.create({ userID: user._id, list: [] });
 
     await PendingUser.deleteOne({ email: email });
 
