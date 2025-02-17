@@ -1,7 +1,10 @@
 export const getTasks = async () => {
   try {
     const response = await fetch(
-      `${import.meta.env.VITE_BACKEND_URL}/tasks/list`
+      `${import.meta.env.VITE_BACKEND_URL}/tasks/list`,
+      {
+        credentials: "include",
+      }
     );
 
     if (!response.ok) {
