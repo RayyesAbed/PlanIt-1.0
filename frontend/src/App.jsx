@@ -1,14 +1,29 @@
-import Introduction from "./components/introduction/introductionPage/Introduction";
+import { lazy } from "react";
+const Introduction = lazy(() =>
+  import("./components/introduction/introductionPage/Introduction")
+);
 import { BrowserRouter, Routes, Route, Navigate } from "react-router";
-import Register from "./components/authentication/register/Register";
-import Login from "./components/authentication/login/Login";
-import UserPage from "./components/application/userPage/userPage";
-import CalendarComponent from "./components/application/calendar/CalendarComponent";
-import Performance from "./components/application/performance/Performance";
-import Tasks from "./components/application/tasks/Tasks";
+const Register = lazy(() =>
+  import("./components/authentication/register/Register")
+);
+const Login = lazy(() => import("./components/authentication/login/Login"));
+const UserPage = lazy(() =>
+  import("./components/application/userPage/userPage")
+);
+const CalendarComponent = lazy(() =>
+  import("./components/application/calendar/CalendarComponent")
+);
+const Performance = lazy(() =>
+  import("./components/application/performance/Performance")
+);
+const Tasks = lazy(() => import("./components/application/tasks/Tasks"));
 import "./App.css";
-import Settings from "./components/application/settings/Settings";
-import EmailVerify from "./components/authentication/verify/EmailVerify";
+const Settings = lazy(() =>
+  import("./components/application/settings/Settings")
+);
+const EmailVerify = lazy(() =>
+  import("./components/authentication/verify/EmailVerify")
+);
 import ProtectedRoute from "./components/authentication/protected/ProtectedRoute";
 import useCheckAuth from "./hooks/useCheckAuth";
 
