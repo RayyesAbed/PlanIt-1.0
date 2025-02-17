@@ -44,17 +44,18 @@ const Tasks = () => {
           </Tooltip>
         </div>
         <div>
-          {state.map((taskItem) => (
-            <TaskItem
-              key={taskItem.id}
-              taskName={taskItem.taskName}
-              taskDueDate={taskItem.taskDueDate}
-              taskPriority={taskItem.taskPriority}
-              taskDescription={taskItem.taskDescription}
-              onTaskDelete={() => handleDeleteTask(taskItem.id)}
-              onTaskEdit={() => handleEditTask(taskItem)}
-            />
-          ))}
+          {state.length > 0 &&
+            state.map((taskItem) => (
+              <TaskItem
+                key={taskItem.id}
+                taskName={taskItem.taskName}
+                taskDueDate={taskItem.taskDueDate}
+                taskPriority={taskItem.taskPriority}
+                taskDescription={taskItem.taskDescription}
+                onTaskDelete={() => handleDeleteTask(taskItem.id)}
+                onTaskEdit={() => handleEditTask(taskItem)}
+              />
+            ))}
         </div>
       </div>
       <AddTaskDialog
