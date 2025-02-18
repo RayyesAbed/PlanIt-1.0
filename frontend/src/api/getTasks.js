@@ -8,7 +8,9 @@ export const getTasks = async () => {
     );
 
     if (!response.ok) {
-      throw new Error("Failed to fetch tasks!");
+      const errorMessage = `Error: ${response.status} ${response.statusText}`;
+      const errorDetails = await response.text();
+      throw new Error(`${errorMessage} - ${errorDetails}`);
     }
 
     return await response.json();
