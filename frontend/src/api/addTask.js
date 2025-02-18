@@ -1,9 +1,14 @@
-export const getTasks = async () => {
+export const addTask = async (task) => {
   try {
     const response = await fetch(
-      `${import.meta.env.VITE_BACKEND_URL}/tasks/list`,
+      `${import.meta.env.VITE_BACKEND_URL}/tasks/add_task`,
       {
         credentials: "include",
+        method: "POST",
+        body: JSON.stringify(task),
+        headers: {
+          "Content-Type": "application/json",
+        },
       }
     );
 
@@ -15,7 +20,6 @@ export const getTasks = async () => {
 
     return await response.json();
   } catch (error) {
-    console.error("Server Error: ", error.message);
-    return;
+    console.error(error);
   }
 };
