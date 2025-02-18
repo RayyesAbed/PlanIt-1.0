@@ -3,6 +3,7 @@ import * as motion from "motion/react-client";
 import { AnimatePresence } from "motion/react";
 import styles from "../TaskDialog.module.css";
 import { TaskContext } from "../../../../../contexts/TaskContext";
+import { addTask } from "../../../../../api/addTask";
 
 const AddTaskDialog = ({ openModal, closeModal }) => {
   const ref = useRef(); // modal ref
@@ -28,10 +29,11 @@ const AddTaskDialog = ({ openModal, closeModal }) => {
   const setTaskPriority = (event) =>
     setTask({ ...task, taskPriority: event.target.value });
 
-  const addTaskHandler = (event) => {
+  const addTaskHandler = async (event) => {
     event.preventDefault();
     const newTask = { ...task, id: Date.now() };
     dispatch({ type: "ADD", payload: newTask });
+    await addTask(newTask);
     closeModal();
     setTask({
       taskName: "",
