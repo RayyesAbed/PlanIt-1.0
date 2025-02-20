@@ -3,6 +3,7 @@ import Checkbox from "@mui/material/Checkbox";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Tooltip } from "@mui/material";
+import { formatDate } from "../../../../utils/formatDate";
 
 const TaskItem = ({
   taskName,
@@ -12,12 +13,14 @@ const TaskItem = ({
   onTaskEdit,
   onTaskDelete,
 }) => {
+  const formattedTaskDueDate = formatDate(taskDueDate);
+
   return (
     <div className={styles.taskItem}>
       <div>
         <Checkbox className={styles.tasksItemChecbox} />
         <h2>{taskName}</h2>
-        <h2>{taskDueDate}</h2>
+        <h2>{formattedTaskDueDate}</h2>
         <h2 className={styles[taskPriority]}>{taskPriority}</h2>
         <h2>+35</h2>
         <Tooltip title="Edit Task" onClick={onTaskEdit}>
