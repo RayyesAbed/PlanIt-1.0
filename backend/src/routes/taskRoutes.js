@@ -3,6 +3,7 @@ const {
   getTasks,
   addTask,
   editTask,
+  deleteTask,
 } = require("../controllers/taskController");
 
 const router = express.Router();
@@ -12,5 +13,7 @@ router.get("/list", getTasks);
 router.post("/add_task", addTask);
 
 router.put("/edit_task", editTask);
+
+router.delete("/delete_task", deleteTask);
 
 module.exports = router;

@@ -8,6 +8,7 @@ import { useContext, useState } from "react";
 import { TaskContext } from "../../../contexts/TaskContext";
 import TaskItem from "../common/taskItem/TaskItem";
 import EditTaskDialog from "../common/dialogs/editTask/EditTaskDialog";
+import { deleteTask } from "../../../api/deleteTask";
 
 const Tasks = () => {
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
@@ -23,8 +24,9 @@ const Tasks = () => {
 
   const handleCloseEditDialog = () => setIsEditDialogOpen(false);
 
-  const handleDeleteTask = (taskId) => {
+  const handleDeleteTask = async (taskId) => {
     dispatch({ type: "DELETE", payload: taskId });
+    await deleteTask(taskId);
   };
 
   const handleEditTask = (task) => {
