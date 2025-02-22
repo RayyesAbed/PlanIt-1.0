@@ -13,6 +13,8 @@ const AddTaskDialog = ({ openModal, closeModal }) => {
     taskDueDate: "",
     taskDescription: "",
     taskPriority: "Someday",
+    bonusPoints: 0,
+    completed: false,
   });
 
   const { dispatch } = useContext(TaskContext);
@@ -31,7 +33,16 @@ const AddTaskDialog = ({ openModal, closeModal }) => {
 
   const addTaskHandler = async (event) => {
     event.preventDefault();
-    const newTask = { ...task, id: Date.now() };
+    const newTask = {
+      ...task,
+      id: Date.now(),
+      bonusPoints:
+        task.taskPriority === "ASAP"
+          ? 35
+          : task.taskPriority === "Focus"
+          ? 20
+          : 10,
+    };
     dispatch({ type: "ADD", payload: newTask });
     await addTask(newTask);
     closeModal();

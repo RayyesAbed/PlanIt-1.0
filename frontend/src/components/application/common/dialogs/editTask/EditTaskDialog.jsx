@@ -16,6 +16,8 @@ const EditTaskDialog = ({ openModal, closeModal, filteredTask }) => {
     taskDueDate: "",
     taskDescription: "",
     taskPriority: "Someday",
+    bonusPoints: 0,
+    completed: false,
   });
 
   // useEffect to set the task state with the filteredTask
@@ -40,7 +42,16 @@ const EditTaskDialog = ({ openModal, closeModal, filteredTask }) => {
 
   const editTaskHandler = async (event) => {
     event.preventDefault();
-    dispatch({ type: "EDIT", payload: task });
+    const editedTask = {
+      ...task,
+      bonusPoints:
+        task.taskPriority === "ASAP"
+          ? 35
+          : task.taskPriority === "Focus"
+          ? 20
+          : 10,
+    };
+    dispatch({ type: "EDIT", payload: editedTask });
     await editTask(task);
     closeModal();
   };

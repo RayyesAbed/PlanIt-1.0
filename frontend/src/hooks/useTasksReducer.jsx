@@ -12,6 +12,12 @@ const reducer = (state, action) => {
         action.payload,
         ...state.filter((task) => task.id !== action.payload.id),
       ]; // return the payload and the rest of the tasks
+    case "COMPLETE":
+      return [
+        ...state.map((task) =>
+          task.id === action.payload ? { ...task, completed: true } : task
+        ),
+      ]; // map through the tasks and if the task id matches the payload, return the task with the completed property set to true
     default:
       return state;
   }

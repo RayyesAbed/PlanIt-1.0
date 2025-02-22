@@ -9,6 +9,7 @@ import { TaskContext } from "../../../contexts/TaskContext";
 import TaskItem from "../common/taskItem/TaskItem";
 import EditTaskDialog from "../common/dialogs/editTask/EditTaskDialog";
 import { deleteTask } from "../../../api/deleteTask";
+import { completeTask } from "../../../api/completeTask";
 
 const Tasks = () => {
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
@@ -34,6 +35,11 @@ const Tasks = () => {
     setFilteredTask(task);
   };
 
+  const handleCompleteTask = async (taskId) => {
+    dispatch({ type: "COMPLETE", payload: taskId });
+    await completeTask(taskId);
+  };
+
   return (
     <div className={styles.wrapper}>
       <UserPageMenu />
@@ -54,6 +60,9 @@ const Tasks = () => {
                 taskDueDate={taskItem.taskDueDate}
                 taskPriority={taskItem.taskPriority}
                 taskDescription={taskItem.taskDescription}
+                bonusPoints={taskItem.bonusPoints}
+                completed={taskItem.completed}
+                onTaskComplete={() => handleCompleteTask(taskItem.id)}
                 onTaskDelete={() => handleDeleteTask(taskItem.id)}
                 onTaskEdit={() => handleEditTask(taskItem)}
               />
