@@ -128,9 +128,46 @@ const deleteTask = async (req, res) => {
   return res.status(200).json({ message: "Task deleted successfully" });
 };
 
+const completeTask = async (req, res) => {
+  const token = req.cookies.token;
+
+  if (!token) return res.sendStatus(401);
+
+  let decoded;
+
+  try {
+    decoded = jwt.verify(token, process.env.JWT_SECRET);
+  } catch (error) {
+    return res.sendStatus(403);
+  }
+
+  const taskId = req.body.id;
+
+  if (!taskId) return res.status(400).json({ message: "Task ID not provided" });
+
+  const userTasks = await Task.findOne({ userID: decoded.userId });
+
+  const taskIndex = userTasks.list.findIndex((task) => task.id === taskId);
+
+  if (taskIndex === -1)
+    return res.status(404).json({ message: "Task not found" });
+
+  userTasks.list[taskIndex].completed = true;
+
+  await userTasks.save();
+
+  return res
+    .status(200)
+    .json({
+      message: "Task completed successfully",
+      bonusAdded: userTasks.list[taskIndex].bonusPoints,
+    });
+};
+
 module.exports = {
   getTasks,
   addTask,
   editTask,
   deleteTask,
+  completeTask,
 };
