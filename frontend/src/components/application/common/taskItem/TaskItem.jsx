@@ -14,13 +14,18 @@ const TaskItem = ({
   completed,
   onTaskEdit,
   onTaskDelete,
+  onTaskComplete,
 }) => {
   const formattedTaskDueDate = formatDate(taskDueDate);
 
   return (
     <div className={styles.taskItem}>
       <div>
-        <Checkbox className={styles.tasksItemChecbox} checked={completed} />
+        <Checkbox
+          className={styles.tasksItemChecbox}
+          checked={completed}
+          onChange={onTaskComplete}
+        />
         <h2>{taskName}</h2>
         <h2>{formattedTaskDueDate}</h2>
         <h2 className={styles[taskPriority]}>{taskPriority}</h2>
