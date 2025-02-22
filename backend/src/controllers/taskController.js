@@ -35,6 +35,13 @@ const addTask = async (req, res) => {
 
     const taskData = req.body;
 
+    taskData.bonusPoints =
+      taskData.taskPriority === "ASAP"
+        ? 35
+        : taskData.taskPriority === "Focus"
+        ? 20
+        : 10;
+
     const userTasks = await Task.findOne({ userID: decoded.userId });
 
     userTasks.list.push(taskData);
@@ -72,6 +79,13 @@ const editTask = async (req, res) => {
 
     if (taskIndex === -1)
       return res.status(404).json({ message: "Task not found" });
+
+    updatedTaskData.bonusPoints =
+      updatedTaskData.taskPriority === "ASAP"
+        ? 35
+        : updatedTaskData.taskPriority === "Focus"
+        ? 20
+        : 10;
 
     userTasks.list[taskIndex] = updatedTaskData;
 
