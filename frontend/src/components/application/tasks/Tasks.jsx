@@ -54,6 +54,8 @@ const Tasks = () => {
                 taskDueDate={taskItem.taskDueDate}
                 taskPriority={taskItem.taskPriority}
                 taskDescription={taskItem.taskDescription}
+                bonusPoints={taskItem.bonusPoints}
+                completed={taskItem.completed}
                 onTaskDelete={() => handleDeleteTask(taskItem.id)}
                 onTaskEdit={() => handleEditTask(taskItem)}
               />

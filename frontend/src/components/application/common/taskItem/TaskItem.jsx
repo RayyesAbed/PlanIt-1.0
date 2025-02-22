@@ -10,6 +10,8 @@ const TaskItem = ({
   taskDueDate,
   taskPriority,
   taskDescription,
+  bonusPoints,
+  completed,
   onTaskEdit,
   onTaskDelete,
 }) => {
@@ -18,11 +20,11 @@ const TaskItem = ({
   return (
     <div className={styles.taskItem}>
       <div>
-        <Checkbox className={styles.tasksItemChecbox} />
+        <Checkbox className={styles.tasksItemChecbox} checked={completed} />
         <h2>{taskName}</h2>
         <h2>{formattedTaskDueDate}</h2>
         <h2 className={styles[taskPriority]}>{taskPriority}</h2>
-        <h2>+35</h2>
+        <h2>+{bonusPoints}</h2>
         <Tooltip title="Edit Task" onClick={onTaskEdit}>
           <EditIcon className={styles.taskEditIcon} />
         </Tooltip>
