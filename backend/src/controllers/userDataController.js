@@ -27,6 +27,7 @@ const getUserData = async (req, res, next) => {
     return res.status(200).json({
       name: user.name,
       email: user.email,
+      points: user.points,
     });
   } catch (error) {
     console.error("Error while getting user data", error);
