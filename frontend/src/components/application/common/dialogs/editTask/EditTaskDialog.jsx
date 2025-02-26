@@ -4,7 +4,7 @@ import * as motion from "motion/react-client";
 import { AnimatePresence } from "motion/react";
 import { TaskContext } from "../../../../../contexts/TaskContext";
 import { editTask } from "../../../../../api/editTask";
-import { formatDate } from "../../../../../utils/formatDate";
+import { getLocalISODateTime } from "../../../../../utils/getLocalISODateTime";
 
 const EditTaskDialog = ({ openModal, closeModal, filteredTask }) => {
   const ref = useRef(); // modal ref
@@ -20,11 +20,13 @@ const EditTaskDialog = ({ openModal, closeModal, filteredTask }) => {
     completed: false,
   });
 
+  const currentTime = getLocalISODateTime();
+
   // useEffect to set the task state with the filteredTask
   useEffect(() => {
     setTask({
       ...filteredTask,
-      taskDueDate: formatDate(filteredTask.taskDueDate),
+      taskDueDate: getLocalISODateTime(filteredTask.taskDueDate),
     });
   }, [filteredTask]);
 
@@ -92,6 +94,7 @@ const EditTaskDialog = ({ openModal, closeModal, filteredTask }) => {
                 type="datetime-local"
                 value={task.taskDueDate}
                 onChange={setTaskDueDate}
+                min={currentTime}
                 required
               />
             </div>

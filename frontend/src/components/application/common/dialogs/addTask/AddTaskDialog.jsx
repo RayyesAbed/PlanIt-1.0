@@ -4,6 +4,7 @@ import { AnimatePresence } from "motion/react";
 import styles from "../TaskDialog.module.css";
 import { TaskContext } from "../../../../../contexts/TaskContext";
 import { addTask } from "../../../../../api/addTask";
+import { getLocalISODateTime } from "../../../../../utils/getLocalISODateTime";
 
 const AddTaskDialog = ({ openModal, closeModal }) => {
   const ref = useRef(); // modal ref
@@ -18,6 +19,8 @@ const AddTaskDialog = ({ openModal, closeModal }) => {
   });
 
   const { dispatch } = useContext(TaskContext);
+
+  const currentTime = getLocalISODateTime();
 
   const setTaskName = (event) =>
     setTask({ ...task, taskName: event.target.value });
@@ -90,6 +93,7 @@ const AddTaskDialog = ({ openModal, closeModal }) => {
                 type="datetime-local"
                 value={task.taskDueDate}
                 onChange={setTaskDueDate}
+                min={currentTime}
                 required
               />
             </div>
