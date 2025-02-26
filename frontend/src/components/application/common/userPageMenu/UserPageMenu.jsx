@@ -21,7 +21,7 @@ const UserPageMenu = () => {
         <img src={TestImg} alt="Your profile photo" />
         <div className={styles.userNameAndPlanWrapper}>
           <p>{userData.name}</p>
-          <p>Free Plan</p> {/* only for testing purposes */}
+          <p>{userData.points} XP</p>
         </div>
       </div>
       <UserPageMenuItem to="/home" iconImg={<Home />} menuItemText="Home" />
