@@ -3,7 +3,7 @@ import Checkbox from "@mui/material/Checkbox";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Tooltip } from "@mui/material";
-import { formatDate } from "../../../../utils/formatDate";
+import { getLocalISODateTime } from "../../../../utils/getLocalISODateTime";
 
 const TaskItem = ({
   taskName,
@@ -16,7 +16,10 @@ const TaskItem = ({
   onTaskDelete,
   onTaskComplete,
 }) => {
-  const formattedTaskDueDate = formatDate(taskDueDate);
+  const formattedTaskDueDate = getLocalISODateTime(taskDueDate).replace(
+    "T",
+    " "
+  );
 
   return (
     <div className={styles.taskItem}>
@@ -29,7 +32,7 @@ const TaskItem = ({
         <h2>{taskName}</h2>
         <h2>{formattedTaskDueDate}</h2>
         <h2 className={styles[taskPriority]}>{taskPriority}</h2>
-        <h2>+{bonusPoints}</h2>
+        <h2>+{bonusPoints} XP</h2>
         <Tooltip title="Edit Task" onClick={onTaskEdit}>
           <EditIcon className={styles.taskEditIcon} />
         </Tooltip>
