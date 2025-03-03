@@ -7,6 +7,8 @@ const {
   verifyEmail,
   loginUser,
   checkAuthentication,
+  resetPasswordRequest,
+  resetPassword,
 } = require("../controllers/authController");
 
 router.post(
@@ -28,5 +30,9 @@ router.post(
 );
 
 router.post("/checkAuth", checkAuthentication);
+
+router.post("/reset_password_request", resetPasswordRequest);
+
+router.patch("/reset_password", resetPassword);
 
 module.exports = router;
