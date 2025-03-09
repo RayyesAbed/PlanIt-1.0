@@ -12,6 +12,7 @@ const TaskItem = ({
   taskDescription,
   bonusPoints,
   completed,
+  due,
   onTaskEdit,
   onTaskDelete,
   onTaskComplete,
@@ -27,12 +28,16 @@ const TaskItem = ({
         <Checkbox
           className={styles.tasksItemChecbox}
           checked={completed}
+          disabled={due}
           onChange={onTaskComplete}
         />
         <h2>{taskName}</h2>
         <h2>{formattedTaskDueDate}</h2>
         <h2 className={styles[taskPriority]}>{taskPriority}</h2>
-        <h2>+{bonusPoints} XP</h2>
+        <h2>
+          {due ? "-" : "+"}
+          {bonusPoints} XP
+        </h2>
         <Tooltip title="Edit Task" onClick={onTaskEdit}>
           <EditIcon className={styles.taskEditIcon} />
         </Tooltip>
