@@ -11,6 +11,7 @@ const UserTaskSchema = new mongoose.Schema({
       taskDescription: String,
       bonusPoints: Number,
       completed: Boolean,
+      due: Boolean,
     },
   ],
 });
