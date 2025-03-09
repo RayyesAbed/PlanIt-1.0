@@ -1,7 +1,10 @@
 const jwt = require("jsonwebtoken");
+const User = require("../schemas/User");
 const Task = require("../schemas/Task");
 
 const getTasks = async (req, res) => {
+  const currentDate = new Date();
+
   try {
     const token = req.cookies.token;
 
@@ -13,7 +16,17 @@ const getTasks = async (req, res) => {
 
     const userTasks = await Task.findOne({ userID: decoded.userId });
 
-    return res.status(200).json({ list: userTasks.list });
+    const user = await User.findById(decoded.userId);
+
+    const validUserTasks = userTasks.list.map((listItem) => {
+      if (listItem.taskDueDate < currentDate) {
+        listItem.due = true;
+      }
+
+      return listItem;
+    });
+
+    return res.status(200).json({ list: validUserTasks });
   } catch (err) {
     return res.status(500).json({ message: "Server error" });
   }
@@ -41,6 +54,8 @@ const addTask = async (req, res) => {
         : taskData.taskPriority === "Focus"
         ? 20
         : 10;
+
+    taskData.due = false;
 
     const userTasks = await Task.findOne({ userID: decoded.userId });
 
@@ -86,6 +101,8 @@ const editTask = async (req, res) => {
         : updatedTaskData.taskPriority === "Focus"
         ? 20
         : 10;
+
+    updatedTaskData.due = false;
 
     userTasks.list[taskIndex] = updatedTaskData;
 
@@ -154,14 +171,18 @@ const completeTask = async (req, res) => {
 
   userTasks.list[taskIndex].completed = true;
 
+  const user = await User.findById(decoded.userId);
+
+  user.points += userTasks.list[taskIndex].bonusPoints;
+
   await userTasks.save();
 
-  return res
-    .status(200)
-    .json({
-      message: "Task completed successfully",
-      bonusAdded: userTasks.list[taskIndex].bonusPoints,
-    });
+  await user.save();
+
+  return res.status(200).json({
+    message: "Task completed successfully",
+    bonusAdded: userTasks.list[taskIndex].bonusPoints,
+  });
 };
 
 module.exports = {
