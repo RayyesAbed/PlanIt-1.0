@@ -24,7 +24,6 @@ const UserPageMenu = () => {
           <p>{userData.points} XP</p>
         </div>
       </div>
-      <UserPageMenuItem to="/home" iconImg={<Home />} menuItemText="Home" />
       <UserPageMenuItem
         to="/tasks"
         iconImg={<FormatListBulleted />}
@@ -35,6 +34,8 @@ const UserPageMenu = () => {
         iconImg={<AutoStories />}
         menuItemText="My Story"
       />
+      <UserPageMenuItem to="/store" iconImg={<Home />} menuItemText="Store" />
+
       <UserPageMenuItem
         to="/performance"
         iconImg={<Timeline />}
