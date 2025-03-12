@@ -7,9 +7,7 @@ const Register = lazy(() =>
   import("./components/authentication/register/Register")
 );
 const Login = lazy(() => import("./components/authentication/login/Login"));
-const UserPage = lazy(() =>
-  import("./components/application/userPage/userPage")
-);
+const Store = lazy(() => import("./components/application/store/Store"));
 const CalendarComponent = lazy(() =>
   import("./components/application/calendar/CalendarComponent")
 );
@@ -38,11 +36,11 @@ function App() {
         <Route path="/verify-email" element={<EmailVerify />} />
         <Route
           path="/login"
-          element={isAuthenticated ? <Navigate to="/home" /> : <Login />}
+          element={isAuthenticated ? <Navigate to="/tasks" /> : <Login />}
         />
 
         <Route element={<ProtectedRoute />}>
-          <Route path="/home" element={<UserPage />} />
+          <Route path="/store" element={<Store />} />
           <Route path="/calendar" element={<CalendarComponent />} />
           <Route path="/performance" element={<Performance />} />
           <Route path="/tasks" element={<Tasks />} />
