@@ -19,12 +19,21 @@ const getTasks = async (req, res) => {
     const user = await User.findById(decoded.userId);
 
     const validUserTasks = userTasks.list.map((listItem) => {
-      if (listItem.taskDueDate < currentDate) {
+      if (
+        listItem.taskDueDate < currentDate &&
+        listItem.completed === false &&
+        listItem.due === false
+      ) {
         listItem.due = true;
+        user.points -= listItem.bonusPoints;
       }
 
       return listItem;
     });
+
+    await userTasks.save();
+
+    await user.save();
 
     return res.status(200).json({ list: validUserTasks });
   } catch (err) {
@@ -56,6 +65,7 @@ const addTask = async (req, res) => {
         : 10;
 
     taskData.due = false;
+    taskData.completed = false;
 
     const userTasks = await Task.findOne({ userID: decoded.userId });
 
