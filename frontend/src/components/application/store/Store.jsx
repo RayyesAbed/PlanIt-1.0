@@ -1,7 +1,7 @@
 import UserPageMenu from "../common/userPageMenu/UserPageMenu";
-import styles from "./UserPage.module.css";
+import styles from "./Store.module.css";
 
-const UserPage = () => {
+const Store = () => {
   return (
     <div className={styles.userPageWrapper}>
       <UserPageMenu />
@@ -9,4 +9,4 @@ const UserPage = () => {
   );
 };
 
-export default UserPage;
+export default Store;
