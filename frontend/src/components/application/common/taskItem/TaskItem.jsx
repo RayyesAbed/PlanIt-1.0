@@ -38,12 +38,16 @@ const TaskItem = ({
           {due ? "-" : "+"}
           {bonusPoints} XP
         </h2>
-        <Tooltip title="Edit Task" onClick={onTaskEdit}>
-          <EditIcon className={styles.taskEditIcon} />
-        </Tooltip>
-        <Tooltip title="Delete Task" onClick={onTaskDelete}>
-          <DeleteIcon className={styles.taskDeleteIcon} />
-        </Tooltip>
+        {!(due || completed) && (
+          <>
+            <Tooltip title="Edit Task" onClick={onTaskEdit}>
+              <EditIcon className={styles.taskEditIcon} />
+            </Tooltip>
+            <Tooltip title="Delete Task" onClick={onTaskDelete}>
+              <DeleteIcon className={styles.taskDeleteIcon} />
+            </Tooltip>
+          </>
+        )}
       </div>
       {taskDescription && <p>{taskDescription}</p>}
     </div>
