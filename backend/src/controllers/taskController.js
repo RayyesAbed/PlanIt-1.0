@@ -114,6 +114,8 @@ const editTask = async (req, res) => {
 
     updatedTaskData.due = false;
 
+    updatedTaskData.completed = false;
+
     userTasks.list[taskIndex] = updatedTaskData;
 
     await userTasks.save();
