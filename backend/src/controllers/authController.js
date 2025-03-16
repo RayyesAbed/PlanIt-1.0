@@ -149,9 +149,90 @@ const checkAuthentication = (req, res) => {
   });
 };
 
+const resetPasswordRequest = async (req, res) => {
+  const { email } = req.body;
+
+  const user = await User.findOne({ email: email });
+
+  if (user) {
+    const emailToken = jwt.sign({ email: email }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+
+    const validationURL = `${process.env.VITE_FRONTEND_URL}/reset_password?token=${emailToken}`;
+
+    await sendEmail(
+      email,
+      "PlanIt Password Reset",
+      `
+    <p> Hi ${user.name}, </p>
+
+    <p> It looks like you forgot your password. No worries. You can definitely reset your password by clicking on the link: ${validationURL}</p>
+
+    <p>This link expires in an hour. </p>
+
+    <p>Not you. Then please feel free to ignore this email. </p>
+
+    <p>Thanks</p>
+    <p>PlanIt</p>
+    `
+    );
+  }
+
+  return res.status(200).json({
+    message: "If the email exists, a password reset email was sent!",
+  });
+};
+
+const resetPassword = async (req, res) => {
+  const { token } = req.query;
+  const { password } = req.body;
+
+  try {
+    const { email } = verifyToken(token);
+
+    // check if password is at least 8 characters long and is secure enough
+    if (!isPasswordValid(password)) {
+      return res
+        .status(400)
+        .json({ message: "Password is not secure enough!" });
+    }
+
+    const hashedPassword = await hashPassword(password);
+
+    await User.findOneAndUpdate(
+      { email: email },
+      { password: hashedPassword },
+      { new: true }
+    );
+
+    return res
+      .status(200)
+      .json({ message: "Password was reset successfully!" });
+  } catch (error) {
+    return res.status(400).json({ message: "Invalid or expired token!" });
+  }
+};
+
+const logoutUser = (req, res) => {
+  const token = req.cookies.token;
+  if (!token) return res.status(401).json({ message: "Already logged out" });
+
+  jwt.verify(token, process.env.JWT_SECRET, (err) => {
+    if (err) return res.sendStatus(403);
+  });
+
+  res.clearCookie("token", { httpOnly: true });
+
+  return res.status(200).json({ message: "Logged out successfully" });
+};
+
 module.exports = {
   registerUserRequest,
   verifyEmail,
   loginUser,
   checkAuthentication,
+  resetPasswordRequest,
+  resetPassword,
+  logoutUser,
 };

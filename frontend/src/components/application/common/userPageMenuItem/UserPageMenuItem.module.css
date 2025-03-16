@@ -26,3 +26,8 @@
   background-color: white;
   color: black;
 }
+
+#logoutItem:hover {
+  background-color: rgb(159, 18, 18);
+  color: white;
+}
