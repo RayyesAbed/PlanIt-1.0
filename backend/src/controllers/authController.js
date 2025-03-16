@@ -214,6 +214,19 @@ const resetPassword = async (req, res) => {
   }
 };
 
+const logoutUser = (req, res) => {
+  const token = req.cookies.token;
+  if (!token) return res.status(401).json({ message: "Already logged out" });
+
+  jwt.verify(token, process.env.JWT_SECRET, (err) => {
+    if (err) return res.sendStatus(403);
+  });
+
+  res.clearCookie("token", { httpOnly: true });
+
+  return res.status(200).json({ message: "Logged out successfully" });
+};
+
 module.exports = {
   registerUserRequest,
   verifyEmail,
@@ -221,4 +234,5 @@ module.exports = {
   checkAuthentication,
   resetPasswordRequest,
   resetPassword,
+  logoutUser,
 };
