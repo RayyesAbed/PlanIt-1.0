@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router";
 import UserPageMenuItem from "../userPageMenuItem/UserPageMenuItem";
 import styles from "./userPageMenu.module.css";
 import TestImg from "/AbdallahImg.jpg"; // only for testing purposes
@@ -10,9 +11,21 @@ import {
   Settings,
   Logout,
 } from "@mui/icons-material";
+import { logoutUser } from "../../../../api/logoutUser";
 import useFetchUserData from "../../../../hooks/useFetchUserData";
 
 const UserPageMenu = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    const response = await logoutUser();
+
+    if (response.message === "Logged out successfully") {
+      alert(response.message);
+      navigate("/login");
+    }
+  };
+
   const userData = useFetchUserData();
 
   return (
@@ -52,9 +65,9 @@ const UserPageMenu = () => {
         menuItemText="Settings"
       />
       <UserPageMenuItem
-        to="/logout"
         iconImg={<Logout />}
         menuItemText="Logout"
+        onClick={handleLogout}
       />
     </nav>
   );
