@@ -14,6 +14,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { loginUser } from "../../../api/loginUser";
+import { resetPasswordRequest } from "../../../api/resetPasswordRequest";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -37,8 +38,15 @@ const Login = () => {
     if (!result) {
       alert("Invalid email, password or both!");
     } else {
-      navigate("/home");
+      navigate("/tasks");
     }
+  };
+
+  const resetUserRequestHandler = async () => {
+    await resetPasswordRequest(userCredentials.email);
+    alert(
+      "If the email you provided is registered, you will receive an email with instructions to reset your password."
+    );
   };
 
   return (
@@ -89,7 +97,10 @@ const Login = () => {
               required
             />
           </FormControl>
-          <Link className={styles.forgotPasswordLink}>
+          <Link
+            className={styles.forgotPasswordLink}
+            onClick={resetUserRequestHandler}
+          >
             Forgot your Password?
           </Link>
           <button className={styles.loginButton}>Login</button>
