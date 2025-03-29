@@ -24,6 +24,7 @@ const EmailVerify = lazy(() =>
 );
 import ProtectedRoute from "./components/authentication/protected/ProtectedRoute";
 import useCheckAuth from "./hooks/useCheckAuth";
+import ResetPassword from "./components/authentication/resetPassword/ResetPassword";
 
 function App() {
   const isAuthenticated = useCheckAuth();
@@ -38,6 +39,7 @@ function App() {
           path="/login"
           element={isAuthenticated ? <Navigate to="/tasks" /> : <Login />}
         />
+        <Route path="reset_password" element={<ResetPassword />} />
 
         <Route element={<ProtectedRoute />}>
           <Route path="/store" element={<Store />} />
