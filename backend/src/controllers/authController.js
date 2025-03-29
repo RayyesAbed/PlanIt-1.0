@@ -184,6 +184,19 @@ const resetPasswordRequest = async (req, res) => {
   });
 };
 
+const verifyResetPasswordToken = (req, res) => {
+  try {
+    const { token } = req.body;
+    verifyToken(token);
+
+    return res
+      .status(200)
+      .json({ message: "Reset password token verified successfully!" });
+  } catch (error) {
+    return res.status(401).json({ message: error.message });
+  }
+};
+
 const resetPassword = async (req, res) => {
   const { token } = req.query;
   const { password } = req.body;
@@ -233,6 +246,7 @@ module.exports = {
   loginUser,
   checkAuthentication,
   resetPasswordRequest,
+  verifyResetPasswordToken,
   resetPassword,
   logoutUser,
 };

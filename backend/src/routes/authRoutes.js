@@ -10,6 +10,7 @@ const {
   resetPasswordRequest,
   resetPassword,
   logoutUser,
+  verifyResetPasswordToken,
 } = require("../controllers/authController");
 
 router.post(
@@ -35,6 +36,8 @@ router.post("/checkAuth", checkAuthentication);
 router.post("/reset_password_request", resetPasswordRequest);
 
 router.patch("/reset_password", resetPassword);
+
+router.post("/verify_reset_password_token", verifyResetPasswordToken);
 
 router.post("/logout", logoutUser);
 
