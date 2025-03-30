@@ -1,9 +1,10 @@
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import styles from "./ResetPassword.module.css";
 import PlanItLogo from "/PlanItLogo.webp";
 import { useEffect, useState } from "react";
 import { verifyResetPasswordToken } from "../../../api/verifyResetPasswordToken";
 import { TextField } from "@mui/material";
+import { resetPassword } from "../../../api/resetPassword";
 
 const ResetPassword = () => {
   let content;
@@ -12,6 +13,7 @@ const ResetPassword = () => {
   const [isTokenValid, setIsTokenValid] = useState(false);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const navigate = useNavigate();
 
   if (!token) {
     content = <div>You do not have the permission to reset your password</div>;
@@ -29,6 +31,21 @@ const ResetPassword = () => {
 
     verifyToken();
   }, [token]);
+
+  const handleResetPassword = async (event) => {
+    event.preventDefault();
+    if (password !== confirmPassword) {
+      alert("Passwords do not match!");
+    } else {
+      const result = await resetPassword(token, confirmPassword);
+      if (!result) {
+        alert("There was an error resetting your password");
+      } else {
+        alert("Password reset successfully!");
+        navigate("/login");
+      }
+    }
+  };
 
   return (
     <div className={styles.resetPasswordDiv}>
@@ -51,7 +68,7 @@ const ResetPassword = () => {
             value={confirmPassword}
             onChange={(event) => setConfirmPassword(event.target.value)}
           />
-          <button>Reset</button>
+          <button onClick={handleResetPassword}>Reset</button>
         </form>
       ) : (
         <div>You do not have the permission to reset your password</div>
