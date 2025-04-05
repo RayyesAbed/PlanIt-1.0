@@ -42,3 +42,32 @@
   align-self: center;
   cursor: pointer;
 }
+
+.tasksWrapper div:last-child > div.tasksNavigationWrapper {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.noTaskSelected {
+  color: white;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.tasksWrapper div:last-child .unselectedTasksNavigation,
+.selectedTasksNavigation {
+  text-decoration: none;
+  padding: 10px 40px;
+  border-radius: 25px;
+}
+
+.tasksWrapper div:last-child .unselectedTasksNavigation {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+}
+
+.selectedTasksNavigation {
+  background-color: white;
+  color: black;
+}
