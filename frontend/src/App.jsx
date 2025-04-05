@@ -45,7 +45,7 @@ function App() {
           <Route path="/store" element={<Store />} />
           <Route path="/calendar" element={<CalendarComponent />} />
           <Route path="/performance" element={<Performance />} />
-          <Route path="/tasks" element={<Tasks />} />
+          <Route path="/tasks/*" element={<Tasks />} />
           <Route path="/settings/*" element={<Settings />} />
         </Route>
       </Routes>
