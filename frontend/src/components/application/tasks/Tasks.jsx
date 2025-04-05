@@ -1,20 +1,16 @@
 import UserPageMenu from "../common/userPageMenu/UserPageMenu";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import Tooltip from "@mui/material/Tooltip";
-
 import styles from "./Tasks.module.css";
 import AddTaskDialog from "../common/dialogs/addTask/AddTaskDialog";
-import { useContext, useState } from "react";
-import { TaskContext } from "../../../contexts/TaskContext";
-import TaskItem from "../common/taskItem/TaskItem";
+import { useState } from "react";
 import EditTaskDialog from "../common/dialogs/editTask/EditTaskDialog";
-import { deleteTask } from "../../../api/deleteTask";
-import { completeTask } from "../../../api/completeTask";
+import { NavLink, Route, Routes } from "react-router";
+import ConditionalTaskItem from "./common/ConditionalTaskItem";
 
 const Tasks = () => {
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
-  const { state, dispatch } = useContext(TaskContext); // state includes the array of tasks
   const [filteredTask, setFilteredTask] = useState({});
 
   const handleShowAddDialog = () => setIsAddDialogOpen(true);
@@ -24,21 +20,6 @@ const Tasks = () => {
   const handleCloseAddDialog = () => setIsAddDialogOpen(false);
 
   const handleCloseEditDialog = () => setIsEditDialogOpen(false);
-
-  const handleDeleteTask = async (taskId) => {
-    dispatch({ type: "DELETE", payload: taskId });
-    await deleteTask(taskId);
-  };
-
-  const handleEditTask = (task) => {
-    handleShowEditDialog();
-    setFilteredTask(task);
-  };
-
-  const handleCompleteTask = async (taskId) => {
-    dispatch({ type: "COMPLETE", payload: taskId });
-    await completeTask(taskId);
-  };
 
   return (
     <div className={styles.wrapper}>
@@ -52,22 +33,82 @@ const Tasks = () => {
           </Tooltip>
         </div>
         <div>
-          {state.length > 0 &&
-            state.map((taskItem) => (
-              <TaskItem
-                key={taskItem.id}
-                taskName={taskItem.taskName}
-                taskDueDate={taskItem.taskDueDate}
-                taskPriority={taskItem.taskPriority}
-                taskDescription={taskItem.taskDescription}
-                bonusPoints={taskItem.bonusPoints}
-                completed={taskItem.completed}
-                due={taskItem.due}
-                onTaskComplete={() => handleCompleteTask(taskItem.id)}
-                onTaskDelete={() => handleDeleteTask(taskItem.id)}
-                onTaskEdit={() => handleEditTask(taskItem)}
-              />
-            ))}
+          <div className={styles.tasksNavigationWrapper}>
+            <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? styles.selectedTasksNavigation
+                  : styles.unselectedTasksNavigation
+              }
+              to="/tasks/todos"
+            >
+              To Dos
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? styles.selectedTasksNavigation
+                  : styles.unselectedTasksNavigation
+              }
+              to="/tasks/completed"
+            >
+              Completed
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? styles.selectedTasksNavigation
+                  : styles.unselectedTasksNavigation
+              }
+              to="/tasks/uncompleted"
+            >
+              Uncompleted
+            </NavLink>
+          </div>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <div className={styles.noTaskSelected}>
+                  Please click on one of the navigation items in order to view
+                  your tasks depending on their completion and due date
+                </div>
+              }
+            />
+            <Route
+              path="todos"
+              element={
+                <ConditionalTaskItem
+                  due={false}
+                  completed={false}
+                  setFilteredTask={setFilteredTask}
+                  handleShowEditDialog={handleShowEditDialog}
+                />
+              }
+            />
+            <Route
+              path="completed"
+              element={
+                <ConditionalTaskItem
+                  due={false}
+                  completed={true}
+                  setFilteredTask={setFilteredTask}
+                  handleShowEditDialog={handleShowEditDialog}
+                />
+              }
+            />
+            <Route
+              path="uncompleted"
+              element={
+                <ConditionalTaskItem
+                  due={true}
+                  completed={false}
+                  setFilteredTask={setFilteredTask}
+                  handleShowEditDialog={handleShowEditDialog}
+                />
+              }
+            />
+          </Routes>
         </div>
       </div>
       <AddTaskDialog
