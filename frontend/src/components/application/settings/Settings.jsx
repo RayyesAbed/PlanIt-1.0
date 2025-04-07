@@ -43,6 +43,14 @@ const Settings = () => {
             </NavLink>
           </ul>
           <Routes>
+            <Route
+              path="/"
+              element={
+                <p className={styles.noSettingsSelected}>
+                  Please select one of the settings fields
+                </p>
+              }
+            />
             <Route path="basic" element={<BasicSettings />} />
             {/* <Route path="security" element={<SecuritySettings />} />
             <Route path="billing" element={<BillingSettings />} /> */}

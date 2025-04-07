@@ -32,3 +32,9 @@
 .settingsMenu ul .activeSettingsMenuListItem {
   background-color: rgba(0, 0, 0, 0.7);
 }
+
+.noSettingsSelected {
+  color: white;
+  margin-top: 40px;
+  margin-left: 40px;
+}
