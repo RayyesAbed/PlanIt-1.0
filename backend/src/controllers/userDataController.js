@@ -28,6 +28,7 @@ const getUserData = async (req, res, next) => {
       name: user.name,
       email: user.email,
       points: user.points,
+      id: user._id,
     });
   } catch (error) {
     console.error("Error while getting user data", error);
