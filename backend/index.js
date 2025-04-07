@@ -9,26 +9,40 @@ const authRoutes = require("./src/routes/authRoutes");
 const taskRoutes = require("./src/routes/taskRoutes");
 const userDataRoutes = require("./src/routes/userDataRoutes");
 const cookieParser = require("cookie-parser");
+const { ApolloServer } = require("@apollo/server");
+const { expressMiddleware } = require("@apollo/server/express4");
+const typeDefs = require("./src/schemas/typeDefs");
+const resolvers = require("./src/resolvers/resolvers");
 
-const app = express();
+async function startServer() {
+  const server = new ApolloServer({ typeDefs: typeDefs, resolvers: resolvers });
 
-app.use(cors({ origin: process.env.VITE_FRONTEND_URL, credentials: true }));
+  await server.start();
 
-app.use(express.json());
+  const app = express();
 
-app.use(cookieParser());
+  app.use(cors({ origin: process.env.VITE_FRONTEND_URL, credentials: true }));
 
-app.use("/auth", authRoutes);
+  app.use(express.json());
 
-app.use("/tasks", taskRoutes);
+  app.use(cookieParser());
 
-app.use("/user_data", userDataRoutes);
+  app.use("/auth", authRoutes);
 
-mongooseConnect()
-  .then(() => {
-    console.log("CONNECTED");
-    app.listen(3000);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+  app.use("/tasks", taskRoutes);
+
+  app.use("/user_data", userDataRoutes);
+
+  app.use("/graphql", expressMiddleware(server));
+
+  mongooseConnect()
+    .then(() => {
+      console.log("CONNECTED");
+      app.listen(3000);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+startServer();
