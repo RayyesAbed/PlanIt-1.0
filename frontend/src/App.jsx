@@ -1,3 +1,5 @@
+import "@mantine/dates/styles.css";
+import "@mantine/core/styles/global.css";
 import { lazy } from "react";
 const Introduction = lazy(() =>
   import("./components/introduction/introductionPage/Introduction")
@@ -25,8 +27,6 @@ const EmailVerify = lazy(() =>
 import ProtectedRoute from "./components/authentication/protected/ProtectedRoute";
 import useCheckAuth from "./hooks/useCheckAuth";
 import ResetPassword from "./components/authentication/resetPassword/ResetPassword";
-import "@mantine/dates/styles.css";
-import "@mantine/core/styles/global.css";
 
 function App() {
   const isAuthenticated = useCheckAuth();
