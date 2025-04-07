@@ -45,3 +45,8 @@
 .addTaskDialog .addTaskButton:hover {
   background-color: black;
 }
+
+#closeModalDiv {
+  float: right;
+  cursor: pointer;
+}
