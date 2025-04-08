@@ -40,9 +40,19 @@ const Tasks = () => {
                   ? styles.selectedTasksNavigation
                   : styles.unselectedTasksNavigation
               }
-              to="/tasks/todos"
+              to="/tasks/today"
             >
-              To Dos
+              Today
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? styles.selectedTasksNavigation
+                  : styles.unselectedTasksNavigation
+              }
+              to="/tasks/upcoming"
+            >
+              Upcoming
             </NavLink>
             <NavLink
               className={({ isActive }) =>
@@ -60,9 +70,9 @@ const Tasks = () => {
                   ? styles.selectedTasksNavigation
                   : styles.unselectedTasksNavigation
               }
-              to="/tasks/uncompleted"
+              to="/tasks/overdue"
             >
-              Uncompleted
+              Overdue
             </NavLink>
           </div>
           <Routes>
@@ -76,13 +86,26 @@ const Tasks = () => {
               }
             />
             <Route
-              path="todos"
+              path="today"
               element={
                 <ConditionalTaskItem
                   due={false}
                   completed={false}
                   setFilteredTask={setFilteredTask}
                   handleShowEditDialog={handleShowEditDialog}
+                  day="today"
+                />
+              }
+            />
+            <Route
+              path="upcoming"
+              element={
+                <ConditionalTaskItem
+                  due={false}
+                  completed={false}
+                  setFilteredTask={setFilteredTask}
+                  handleShowEditDialog={handleShowEditDialog}
+                  day="upcoming"
                 />
               }
             />
@@ -98,7 +121,7 @@ const Tasks = () => {
               }
             />
             <Route
-              path="uncompleted"
+              path="overdue"
               element={
                 <ConditionalTaskItem
                   due={true}
