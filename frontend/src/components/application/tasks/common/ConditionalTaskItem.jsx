@@ -3,12 +3,15 @@ import { TaskContext } from "../../../../contexts/TaskContext";
 import TaskItem from "../../common/taskItem/TaskItem";
 import { deleteTask } from "../../../../api/deleteTask";
 import { completeTask } from "../../../../api/completeTask";
+import isToday from "../../../../utils/isToday";
+import isUpcoming from "../../../../utils/isUpcoming";
 
 const ConditionalTaskItem = ({
   completed,
   due,
   handleShowEditDialog,
   setFilteredTask,
+  day,
 }) => {
   const { state, dispatch } = useContext(TaskContext); // state includes the array of tasks
 
@@ -29,10 +32,19 @@ const ConditionalTaskItem = ({
   return (
     <>
       {state.length > 0 &&
-        state.map(
-          (taskItem) =>
-            taskItem.completed === completed &&
-            taskItem.due === due && (
+        state.map((taskItem) => {
+          const matchCompletion = taskItem.completed === completed;
+          const matchDay =
+            day === "today"
+              ? isToday(taskItem.taskDueDate)
+              : day === "upcoming"
+              ? isUpcoming(taskItem.taskDueDate)
+              : true;
+
+          return (
+            taskItem.due === due &&
+            matchCompletion &&
+            matchDay && (
               <TaskItem
                 key={taskItem.id}
                 taskName={taskItem.taskName}
@@ -47,7 +59,8 @@ const ConditionalTaskItem = ({
                 onTaskEdit={() => handleEditTask(taskItem)}
               />
             )
-        )}
+          );
+        })}
     </>
   );
 };
