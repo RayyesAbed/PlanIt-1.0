@@ -1,5 +1,4 @@
 .wrapper {
-  height: 100vh;
   background-image: linear-gradient(45deg, #a99b81, #3d4957);
   display: flex;
 }
@@ -9,7 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70%;
+  height: 90vh;
   width: 70%;
   background-color: black;
   border-radius: 45px;
@@ -47,4 +46,11 @@
 .calendarHeaderLevel:hover,
 .calendarHeaderControl:hover {
   color: black;
+}
+
+.styledDay {
+  min-width: 80px;
+  padding-top: 30.5px;
+  padding-bottom: 30.5px;
+  border-radius: 5px;
 }
