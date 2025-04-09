@@ -2,12 +2,14 @@ import UserPageMenu from "../common/userPageMenu/UserPageMenu";
 import styles from "./Performance.module.css";
 import { Chart } from "react-google-charts";
 import dayjs from "dayjs";
-import { useContext, useMemo } from "react";
+import { useContext, useMemo, useState } from "react";
 import { TaskContext } from "../../../contexts/TaskContext";
+import { CircularProgress, Stack } from "@mui/material";
 
 const Performance = () => {
   const textStyle = { color: "white" };
   const { state } = useContext(TaskContext);
+  const [chartLoaded, setChartLoaded] = useState(false);
 
   const completedTasksDays = useMemo(() => {
     // initialize a counter
@@ -38,6 +40,21 @@ const Performance = () => {
   return (
     <div className={styles.wrapper}>
       <UserPageMenu />
+      {!chartLoaded && (
+        <>
+          <Stack
+            sx={{
+              color: "gray.50",
+              position: "relative",
+              top: "50%",
+              left: "37.5%",
+            }}
+          >
+            <CircularProgress color="inherit" />
+          </Stack>
+        </>
+      )}
+
       <div className={styles.chartWrapper}>
         <Chart
           data={completedTasksDays}
@@ -65,6 +82,12 @@ const Performance = () => {
               textStyle,
             },
           }}
+          chartEvents={[
+            {
+              eventName: "ready",
+              callback: () => setChartLoaded(true),
+            },
+          ]}
         />
       </div>
     </div>
