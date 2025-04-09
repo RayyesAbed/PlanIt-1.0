@@ -47,3 +47,10 @@
 .calendarHeaderControl:hover {
   color: black;
 }
+
+.styledDay {
+  min-width: 80px;
+  padding-top: 30.5px;
+  padding-bottom: 30.5px;
+  border-radius: 5px;
+}
