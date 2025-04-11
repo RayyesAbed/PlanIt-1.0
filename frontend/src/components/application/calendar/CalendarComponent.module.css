@@ -55,3 +55,28 @@
   padding-bottom: 30.5px;
   border-radius: 5px;
 }
+
+@media screen and (max-width: 1000px) {
+  .wrapper {
+    flex-direction: column;
+    padding-top: 30px;
+  }
+
+  .calendarWrapper {
+    width: 90%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 715px) {
+  .day {
+    padding: 4vw;
+  }
+
+  .styledDay {
+    min-width: 8vw;
+    padding-top: 2.5vw;
+    padding-bottom: 2.5vw;
+  }
+}
