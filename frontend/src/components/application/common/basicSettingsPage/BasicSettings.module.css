@@ -41,3 +41,13 @@
   height: 60px;
   object-fit: cover;
 }
+
+@media screen and (max-width: 1000px) {
+  .basicSettingsList {
+    margin-left: 20px;
+  }
+  .basicSettingsList li div img,
+  .basicSettingsList li div:first-of-type {
+    display: none;
+  }
+}
