@@ -71,3 +71,26 @@
   background-color: white;
   color: black;
 }
+
+@media screen and (max-width: 1000px) {
+  .wrapper {
+    flex-direction: column;
+  }
+
+  .tasksWrapper {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+
+  .tasksWrapper div:first-child input {
+    width: 10%;
+  }
+
+  .tasksWrapper div:last-child > div.tasksNavigationWrapper {
+    font-size: 2.5vw;
+    flex-direction: column;
+    width: 80%;
+    text-align: center;
+    margin: auto;
+  }
+}
