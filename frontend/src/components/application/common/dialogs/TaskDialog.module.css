@@ -1,15 +1,18 @@
-.taskDialog {
+.taskDialog,
+.editUserDataDialog {
   border-radius: 45px;
   width: 50%;
   height: 50%;
 }
 
-.taskDialog h2 {
+.taskDialog h2,
+.editUserDataDialog h2 {
   text-align: center;
 }
 
 /* label + input */
-.taskDialog div {
+.taskDialog div,
+.editUserDataDialog div {
   display: flex;
   justify-content: center;
   margin-top: 10px;
@@ -29,7 +32,7 @@
 .taskDialog div .prioritySelect {
   flex-basis: 50%;
 }
-
+.changeUserDataButton,
 .taskDialog .addTaskButton {
   background-color: rgb(46, 46, 46);
   color: white;
@@ -42,6 +45,7 @@
   cursor: pointer;
 }
 
+.changeUserDataButton:hover,
 .taskDialog.addTaskButton:hover {
   background-color: black;
 }
@@ -52,6 +56,10 @@
 }
 
 @media screen and (max-width: 1000px) {
+  .taskDialog,
+  .editUserDataDialog {
+    width: 80%;
+  }
   .taskDialog div {
     flex-direction: column;
     align-items: center;

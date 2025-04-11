@@ -54,7 +54,7 @@ const EditUserData = ({ openModal, closeModal, editField }) => {
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0 }}
-          className={styles.addTaskDialog}
+          className={styles.editUserDataDialog}
         >
           <div onClick={() => closeModal()} id={styles.closeModalDiv}>
             <CloseIcon />
@@ -80,7 +80,7 @@ const EditUserData = ({ openModal, closeModal, editField }) => {
               />
             </div>
             <button
-              className={styles.addTaskButton}
+              className={styles.changeUserDataButton}
               type="submit"
               disabled={loading}
             >
