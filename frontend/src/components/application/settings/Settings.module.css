@@ -38,3 +38,14 @@
   margin-top: 40px;
   margin-left: 40px;
 }
+
+@media screen and (max-width: 1000px) {
+  .wrapper {
+    flex-direction: column;
+  }
+
+  .settingsWrapper {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+}
