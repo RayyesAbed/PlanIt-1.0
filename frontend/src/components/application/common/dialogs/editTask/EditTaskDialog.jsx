@@ -75,7 +75,7 @@ const EditTaskDialog = ({ openModal, closeModal, filteredTask }) => {
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0 }}
-          className={styles.addTaskDialog}
+          className={styles.taskDialog}
         >
           <h2>Edit Task</h2>
           <form method="dialog" onSubmit={editTaskHandler}>
