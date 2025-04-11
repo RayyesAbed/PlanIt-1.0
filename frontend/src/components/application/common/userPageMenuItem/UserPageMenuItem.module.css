@@ -31,3 +31,31 @@
   background-color: rgb(159, 18, 18);
   color: white;
 }
+
+@media screen and (max-width: 1000px) {
+  .userPageMenuItem {
+    height: 9vw;
+    width: 9vw;
+  }
+
+  /* The font size of the menu svg icons */
+  .userPageMenuItem div svg {
+    font-size: 3vw;
+  }
+
+  .userPageMenuItem div {
+    margin: auto;
+  }
+
+  /* the menu items' texts */
+  .userPageMenuItem h4 {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  /* The font size of the menu svg icons */
+  .userPageMenuItem div svg {
+    font-size: 5vw;
+  }
+}
