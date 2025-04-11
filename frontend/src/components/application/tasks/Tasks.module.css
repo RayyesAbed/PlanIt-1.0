@@ -75,11 +75,13 @@
 @media screen and (max-width: 1000px) {
   .wrapper {
     flex-direction: column;
+    padding-top: 30px;
   }
 
   .tasksWrapper {
     width: 90%;
     margin-bottom: 20px;
+    margin-top: 20px;
   }
 
   .tasksWrapper div:first-child input {
