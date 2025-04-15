@@ -4,6 +4,7 @@ import styles from "./Settings.module.css";
 import { NavLink, Route, Routes } from "react-router";
 
 const Settings = () => {
+  document.title = "Settings";
   return (
     <div className={styles.wrapper}>
       <UserPageMenu />

@@ -7,6 +7,7 @@ import { TaskContext } from "../../../contexts/TaskContext";
 import { CircularProgress, Stack } from "@mui/material";
 
 const Performance = () => {
+  document.title = "User's Performance";
   const textStyle = { color: "white" };
   const { state } = useContext(TaskContext);
   const [chartLoaded, setChartLoaded] = useState(false);

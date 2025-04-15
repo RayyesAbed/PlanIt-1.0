@@ -9,6 +9,7 @@ import { NavLink, Route, Routes } from "react-router";
 import ConditionalTaskItem from "./common/ConditionalTaskItem";
 
 const Tasks = () => {
+  document.title = "Tasks";
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [filteredTask, setFilteredTask] = useState({});

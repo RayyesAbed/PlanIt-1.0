@@ -7,6 +7,7 @@ import { useContext } from "react";
 import { TaskContext } from "../../../contexts/TaskContext";
 
 const CalendarComponent = () => {
+  document.title = "Calendar";
   // disable dates that are older than 3 months
   const minSelectableDate = dayjs()
     .subtract(3, "month")
