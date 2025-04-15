@@ -1,4 +1,4 @@
-// require all modules here
+// first load the environment variables
 const dotenv = require("dotenv");
 dotenv.config({ path: "../frontend/.env.development" });
 
@@ -9,8 +9,8 @@ const authRoutes = require("./src/routes/authRoutes");
 const taskRoutes = require("./src/routes/taskRoutes");
 const userDataRoutes = require("./src/routes/userDataRoutes");
 const cookieParser = require("cookie-parser");
-const { ApolloServer } = require("@apollo/server");
-const { expressMiddleware } = require("@apollo/server/express4");
+const { ApolloServer } = require("@apollo/server"); // GraphQL server
+const { expressMiddleware } = require("@apollo/server/express4"); // Enables to attach Apollo server to Express server
 const typeDefs = require("./src/schemas/typeDefs");
 const resolvers = require("./src/resolvers/resolvers");
 
