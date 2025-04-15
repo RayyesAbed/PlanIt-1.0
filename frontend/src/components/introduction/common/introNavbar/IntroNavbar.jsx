@@ -35,10 +35,10 @@ const IntroNavbar = () => {
       id={styles.navbar}
       style={isScrolledEnough ? { backgroundColor: "black" } : {}}
     >
-      <HashLink to="#welcome">
+      <HashLink to="#welcome" id={styles.welcomeHashLink}>
         <img src={PlanItLogo} alt="PlanIt Logo" />
       </HashLink>
-      <div className={styles.navbarMenu} onClick={toggleMenuHandler}>
+      <div id={styles.navbarMenuIcon} onClick={toggleMenuHandler}>
         {isMenuOpen ? (
           <CloseIcon fontSize="large" />
         ) : (
