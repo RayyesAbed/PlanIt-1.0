@@ -4,7 +4,6 @@ import Features from "../common/features/Features";
 import Footer from "../common/footer/Footer";
 import IntroNavbar from "../common/introNavbar/IntroNavbar";
 import Welcome from "../common/welcomeSection/Welcome";
-import styles from "./Introduction.module.css";
 import { motion } from "motion/react";
 
 const Introduction = () => {
