@@ -34,7 +34,7 @@ const Register = () => {
   const handleChangePassword = (event) =>
     setUserCredentials({ ...userCredentials, password: event.target.value });
 
-  document.title = "PlanIt Register";
+  document.title = "Register";
 
   const handleRegister = async (event) => {
     event.preventDefault();
