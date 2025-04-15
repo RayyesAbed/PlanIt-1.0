@@ -2,12 +2,25 @@ import { Navigate, Outlet } from "react-router-dom";
 import { lazy } from "react";
 const TaskProvider = lazy(() => import("../../../providers/TaskProvider"));
 import useCheckAuth from "../../../hooks/useCheckAuth";
+import { CircularProgress } from "@mui/material";
 
 const ProtectedRoute = () => {
   const isAuthenticated = useCheckAuth();
 
   if (isAuthenticated === null) {
-    return <p>Loading...</p>; // to be changed later
+    return (
+      <div
+        style={{
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <CircularProgress style={{ marginRight: "20px" }} />
+        Loading...
+      </div>
+    );
   }
 
   return isAuthenticated ? (
