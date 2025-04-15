@@ -7,17 +7,13 @@ import { TextField } from "@mui/material";
 import { resetPassword } from "../../../api/resetPassword";
 
 const ResetPassword = () => {
-  let content;
+  document.title = "Reset Password";
   const query = new URLSearchParams(useLocation().search);
   const token = query.get("token");
   const [isTokenValid, setIsTokenValid] = useState(false);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
-
-  if (!token) {
-    content = <div>You do not have the permission to reset your password</div>;
-  }
 
   useEffect(() => {
     const verifyToken = async () => {
@@ -51,7 +47,6 @@ const ResetPassword = () => {
     <div className={styles.resetPasswordDiv}>
       <img src={PlanItLogo} alt="PlanIt logo" />
       <h1>Reset Password</h1>
-      {content}
       {isTokenValid ? (
         <form id={styles.resetPasswordForm}>
           <TextField
