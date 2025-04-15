@@ -17,6 +17,7 @@ import { loginUser } from "../../../api/loginUser";
 import { resetPasswordRequest } from "../../../api/resetPasswordRequest";
 
 const Login = () => {
+  document.title = "Login";
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const [userCredentials, setUserCredentials] = useState({
