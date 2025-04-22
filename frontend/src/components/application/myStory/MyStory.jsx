@@ -4,10 +4,12 @@ import UserPageMenu from "../common/userPageMenu/UserPageMenu";
 import styles from "./MyStory.module.css";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import CreateStoryDialog from "../common/dialogs/createStory/CreateStoryDialog";
 
 const MyStory = () => {
   document.title = "My Story";
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const MESSAGES = [
     "Welcome to the future you!",
@@ -25,6 +27,10 @@ const MyStory = () => {
       return () => clearTimeout(interval);
     }
   });
+
+  const handleShowModal = () => setIsModalOpen(true);
+
+  const handleCloseModal = () => setIsModalOpen(false);
 
   return (
     <div className={styles.wrapper}>
@@ -50,11 +56,15 @@ const MyStory = () => {
             </motion.p>
           </AnimatePresence>
 
-          <Tooltip title="Create a Story">
+          <Tooltip title="Create a Story" onClick={handleShowModal}>
             <AddCircleIcon className={styles.createStoryIcon} />
           </Tooltip>
         </div>
       </div>
+      <CreateStoryDialog
+        openModal={isModalOpen}
+        closeModal={handleCloseModal}
+      />
     </div>
   );
 };
