@@ -21,7 +21,9 @@ const Footer = () => {
       </div>
       <p className={styles.copyrightText}>
         PlanIt AppInnov {year}, all rights reserved. App Store® is a trademark
-        of Apple Inc., registered in the U.S. and other countries.
+        of Apple Inc., registered in the U.S. and other countries. PlanIt Story
+        generation is powered by Gemini™ AI from Google. Gemini is a trademark
+        of Google LLC.
       </p>
     </footer>
   );
