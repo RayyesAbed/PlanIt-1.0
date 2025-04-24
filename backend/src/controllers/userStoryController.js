@@ -36,6 +36,10 @@ const createStory = async (req, res) => {
 
   try {
     parsed = JSON.parse(cleanedOutput);
+
+    if (parsed.error) {
+      return res.status(400).json({ error: parsed.error });
+    }
   } catch (error) {
     console.error("Error parsing JSON:", error);
     return res.status(500).json({ message: "Failed to parse AI response." });

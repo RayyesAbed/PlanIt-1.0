@@ -24,6 +24,12 @@ const storyPromptTemplate = (userName, storyPrompt) => {
           "due": false
         }]
         }
+
+        Only respond if the user's goal is meaningful, achievable, and respectful. 
+        If the goal is silly, offensive, or not serious, reply with:
+        {
+          "error": "This prompt does not appear to be a serious or constructive goal."
+        }
         
         `;
 
