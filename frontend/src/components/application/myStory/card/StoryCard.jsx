@@ -1,9 +1,9 @@
 import styles from "./StoryCard.module.css";
 
-const StoryCard = ({ story, storyNumber }) => {
+const StoryCard = ({ story }) => {
   return (
     <div className={styles.storyCard}>
-      <h3>Story {storyNumber}</h3>
+      <h3>{story.storyTitle}</h3>
     </div>
   );
 };
