@@ -5,10 +5,13 @@ import styles from "./MyStory.module.css";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import CreateStoryDialog from "../common/dialogs/createStory/CreateStoryDialog";
+import { getStories } from "../../../api/story/getStories";
+import StoryCard from "./card/StoryCard";
 
 const MyStory = () => {
   document.title = "My Story";
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [stories, setStories] = useState([]); // Used to fetch the stories from the backend
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const MESSAGES = [
@@ -28,6 +31,15 @@ const MyStory = () => {
     }
   });
 
+  useEffect(() => {
+    const fetchStories = async () => {
+      const response = await getStories();
+      setStories(response.userStories);
+    };
+
+    fetchStories();
+  }, []);
+
   const handleShowModal = () => setIsModalOpen(true);
 
   const handleCloseModal = () => setIsModalOpen(false);
@@ -38,23 +50,33 @@ const MyStory = () => {
       <div className={styles.myStoryWrapper}>
         <div className={styles.topTitleParagraphWrapper}>
           <h1>My Story</h1>
-          <p>
-            Number of Stories: 0{/* Will be changed later with a real number */}
-          </p>
+          <p>Number of Stories: {stories.length}</p>
         </div>
         <div className={styles.myStoryContent}>
-          <AnimatePresence mode="wait">
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ delay: 0.5, duration: 1 }}
-              key={currentTextIndex}
-              className={styles.welcomeText}
-            >
-              {MESSAGES[currentTextIndex]}
-            </motion.p>
-          </AnimatePresence>
+          {stories.length > 0 ? (
+            <>
+              {stories.map((story, storyNumber) => (
+                <StoryCard
+                  key={story._id}
+                  story={story}
+                  storyNumber={storyNumber + 1}
+                />
+              ))}
+            </>
+          ) : (
+            <AnimatePresence mode="wait">
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ delay: 0.5, duration: 1 }}
+                key={currentTextIndex}
+                className={styles.welcomeText}
+              >
+                {MESSAGES[currentTextIndex]}
+              </motion.p>
+            </AnimatePresence>
+          )}
 
           <Tooltip title="Create a Story" onClick={handleShowModal}>
             <AddCircleIcon className={styles.createStoryIcon} />
