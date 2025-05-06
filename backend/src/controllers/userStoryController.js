@@ -52,7 +52,8 @@ const createStory = async (req, res) => {
   }
 
   userStory.stories.push({
-    story: parsed.story,
+    storyTitle: parsed.storyTitle,
+    storyText: parsed.storyText,
     tasks: parsed.tasks,
   });
 
