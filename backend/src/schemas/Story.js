@@ -4,7 +4,8 @@ const Story = mongoose.Schema({
   userID: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   stories: [
     {
-      story: String,
+      storyTitle: String,
+      storyText: String,
       tasks: [
         {
           id: Number,
