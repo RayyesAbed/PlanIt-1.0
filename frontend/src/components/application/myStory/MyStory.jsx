@@ -54,15 +54,17 @@ const MyStory = () => {
         </div>
         <div className={styles.myStoryContent}>
           {stories.length > 0 ? (
-            <>
-              {stories.map((story, storyNumber) => (
-                <StoryCard
-                  key={story._id}
-                  story={story}
-                  storyNumber={storyNumber + 1}
-                />
+            <div
+              style={{
+                display: "flex",
+                textAlign: "center",
+                justifyContent: "center",
+              }}
+            >
+              {stories.map((story) => (
+                <StoryCard key={story._id} story={story} />
               ))}
-            </>
+            </div>
           ) : (
             <AnimatePresence mode="wait">
               <motion.p
