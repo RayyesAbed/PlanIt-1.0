@@ -64,6 +64,28 @@ const createStory = async (req, res) => {
   });
 };
 
+const getStories = async (req, res) => {
+  const token = req.cookies.token;
+
+  if (!token) return res.sendStatus(401);
+
+  const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+  if (!decoded || !decoded.userId) return res.sendStatus(403);
+
+  const userStories = await Story.findOne({ userID: decoded.userId });
+
+  if (!userStories) {
+    return res.status(404).json({ message: "No stories found" });
+  }
+
+  return res.status(200).json({
+    message: "Fetched stories successfully",
+    userStories: userStories.stories,
+  });
+};
+
 module.exports = {
   createStory,
+  getStories,
 };
