@@ -13,6 +13,7 @@ const MyStory = () => {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [stories, setStories] = useState([]); // Used to fetch the stories from the backend
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [flippedId, setFlippedId] = useState(null);
 
   const MESSAGES = [
     "Welcome to the future you!",
@@ -44,6 +45,10 @@ const MyStory = () => {
 
   const handleCloseModal = () => setIsModalOpen(false);
 
+  const handleCardClick = (id) => {
+    setFlippedId((prev) => (prev === id ? null : id)); // toggle flip
+  };
+
   return (
     <div className={styles.wrapper}>
       <UserPageMenu />
@@ -61,9 +66,20 @@ const MyStory = () => {
                 justifyContent: "center",
               }}
             >
-              {stories.map((story) => (
-                <StoryCard key={story._id} story={story} />
-              ))}
+              {stories.map((story) => {
+                // Show all if none flipped OR show only flipped card
+                if (flippedId === null || flippedId === story._id) {
+                  return (
+                    <StoryCard
+                      key={story._id}
+                      story={story}
+                      flipped={flippedId === story._id}
+                      onClick={() => handleCardClick(story._id)}
+                    />
+                  );
+                }
+                return null;
+              })}
             </div>
           ) : (
             <AnimatePresence mode="wait">
@@ -80,9 +96,11 @@ const MyStory = () => {
             </AnimatePresence>
           )}
 
-          <Tooltip title="Create a Story" onClick={handleShowModal}>
-            <AddCircleIcon className={styles.createStoryIcon} />
-          </Tooltip>
+          {!flippedId && (
+            <Tooltip title="Create a Story" onClick={handleShowModal}>
+              <AddCircleIcon className={styles.createStoryIcon} />
+            </Tooltip>
+          )}
         </div>
       </div>
       <CreateStoryDialog
