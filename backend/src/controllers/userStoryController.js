@@ -2,6 +2,7 @@ const googleGemini = require("../configs/googleGeminiConnect");
 const storyPromptTemplate = require("../aiPrompts/storyPromptTemplate");
 const Story = require("../schemas/Story");
 const User = require("../schemas/User");
+const Task = require("../schemas/Task");
 const jwt = require("jsonwebtoken");
 
 const createStory = async (req, res) => {
@@ -57,7 +58,16 @@ const createStory = async (req, res) => {
     tasks: parsed.tasks,
   });
 
+  // find the user tasks and store the story tasks in it
+  let userTasks = await Task.findOne({ userID: decoded.userId });
+
+  for (let story of userStory.stories) {
+    userTasks.list.push(...story.tasks);
+  }
+
   await userStory.save();
+
+  await userTasks.save();
 
   return res.status(201).json({
     message: "Generated a story successfully",
