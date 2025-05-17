@@ -21,8 +21,8 @@ const resolvers = {
       if (args.name) {
         user.name = args.name;
       }
-      if (args.email) {
-        user.email = args.email;
+      if (args.toBeConfirmedEmail) {
+        user.toBeConfirmedEmail = args.toBeConfirmedEmail;
       }
       if (args.password) {
         if (!isPasswordValid(args.password)) {
