@@ -3,11 +3,12 @@ const typeDefs = `#graphql
         id: ID!
         name: String!
         confirmedEmail: String!
+        toBeConfirmedEmail: String
         password: String!
     }
 
     type Query {
-        getUser(email: String!): User
+        getUser(confirmedEmail: String!): User
     }
 
     type Mutation {
