@@ -2,16 +2,17 @@ const typeDefs = `#graphql
     type User {
         id: ID!
         name: String!
-        email: String!
+        confirmedEmail: String!
+        toBeConfirmedEmail: String
         password: String!
     }
 
     type Query {
-        getUser(email: String!): User
+        getUser(confirmedEmail: String!): User
     }
 
     type Mutation {
-        updateUser(name: String, email: String, password: String, id: ID!): User
+        updateUser(name: String, toBeConfirmedEmail: String, password: String, id: ID!): User
     }
 `;
 

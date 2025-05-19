@@ -26,7 +26,8 @@ const getUserData = async (req, res, next) => {
 
     return res.status(200).json({
       name: user.name,
-      email: user.email,
+      toBeConfirmedEmail: user.toBeConfirmedEmail,
+      confirmedEmail: user.confirmedEmail,
       points: user.points,
       id: user._id,
     });

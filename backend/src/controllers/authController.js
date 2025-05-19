@@ -5,7 +5,6 @@ const { validationResult } = require("express-validator");
 const sendEmail = require("../services/sendEmail");
 const User = require("../schemas/User");
 const Task = require("../schemas/Task");
-const PendingUser = require("../schemas/PendingUser");
 const verifyToken = require("../services/verifyToken");
 const hashPassword = require("../services/hashPassword");
 const argon2 = require("argon2");
@@ -36,7 +35,7 @@ const registerUserRequest = async (req, res) => {
     return res.status(400).json({ message: "Password is not secure enough!" });
   }
 
-  let user = await User.findOne({ email: email });
+  let user = await User.findOne({ confirmedEmail: email });
   if (user) {
     return res
       .status(400)
@@ -45,10 +44,9 @@ const registerUserRequest = async (req, res) => {
 
   const hashedPassword = await hashPassword(password);
 
-  // Only for passing user's data to verify email function
-  await PendingUser.create({
+  await User.create({
     name: name,
-    email: email,
+    toBeConfirmedEmail: email,
     password: hashedPassword,
   });
 
@@ -85,17 +83,15 @@ const verifyEmail = async (req, res) => {
 
   try {
     const { email } = verifyToken(token);
-    const pendingUser = await PendingUser.findOne({ email: email });
+    const user = await User.findOne({ toBeConfirmedEmail: email });
 
-    const user = await User.create({
-      name: pendingUser.name,
-      email: pendingUser.email,
-      password: pendingUser.password,
-    });
+    user.confirmedEmail = email;
+
+    user.toBeConfirmedEmail = "";
 
     Task.create({ userID: user._id, list: [] });
 
-    await PendingUser.deleteOne({ email: email });
+    await user.save();
 
     return res
       .status(200)
@@ -114,7 +110,7 @@ const loginUser = async (req, res) => {
 
   const { email, password } = req.body;
 
-  const user = await User.findOne({ email: email });
+  const user = await User.findOne({ confirmedEmail: email });
 
   if (!user) {
     return res.status(401).json({ message: "Invalid email or password!" });
@@ -152,7 +148,7 @@ const checkAuthentication = (req, res) => {
 const resetPasswordRequest = async (req, res) => {
   const { email } = req.body;
 
-  const user = await User.findOne({ email: email });
+  const user = await User.findOne({ confirmedEmail: email });
 
   if (user) {
     const emailToken = jwt.sign({ email: email }, process.env.JWT_SECRET, {
@@ -214,7 +210,7 @@ const resetPassword = async (req, res) => {
     const hashedPassword = await hashPassword(password);
 
     await User.findOneAndUpdate(
-      { email: email },
+      { confirmedEmail: email },
       { password: hashedPassword },
       { new: true }
     );

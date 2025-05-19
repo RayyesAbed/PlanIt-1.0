@@ -33,7 +33,11 @@ router.post(
 
 router.post("/checkAuth", checkAuthentication);
 
-router.post("/reset_password_request", resetPasswordRequest);
+router.post(
+  "/reset_password_request",
+  check("email").normalizeEmail({ all_lowercase: true }),
+  resetPasswordRequest
+);
 
 router.patch("/reset_password", resetPassword);
 
