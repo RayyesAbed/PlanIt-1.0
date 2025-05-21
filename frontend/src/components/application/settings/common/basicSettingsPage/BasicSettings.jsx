@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useFetchUserData from "../../../../hooks/useFetchUserData";
+import useFetchUserData from "../../../../../hooks/useFetchUserData";
 import EditUserData from "../dialogs/editUserData/EditUserData";
 import styles from "./BasicSettings.module.css";
 import DUMMY_IMAGE from "/AbdallahImg.jpg"; // Only for testing purposes
