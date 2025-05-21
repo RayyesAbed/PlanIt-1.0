@@ -1,18 +1,25 @@
-import styles from "../TaskDialog.module.css";
+import styles from "../SettingsDialog.module.css";
 import { useEffect, useRef } from "react";
 import * as motion from "motion/react-client";
 import { AnimatePresence } from "motion/react";
-import useFetchUserData from "../../../../../hooks/useFetchUserData";
+import useFetchUserData from "../../../../../../hooks/useFetchUserData";
 import { useMutation } from "@apollo/client";
 import CloseIcon from "@mui/icons-material/Close";
-import updateUser from "../../../../../graphql/updateUser";
+import updateUser from "../../../../../../graphql/updateUser";
+import getEditFieldConfig from "../../../../../../utils/getEditFieldConfig";
+import GetSpecificDialogComponent from "../components/GetSpecificDialogComponent.jsx";
 
 const EditUserData = ({ openModal, closeModal, editField }) => {
   const ref = useRef(); // modal ref
 
   const userData = useFetchUserData();
 
-  let lowerCasedEditField = editField ? editField.toLowerCase() : "";
+  const { label, name, type, defaultValue } = getEditFieldConfig(
+    editField,
+    userData
+  );
+
+  let content = GetSpecificDialogComponent({ type, name, defaultValue });
 
   let [mutateField, { loading, error }] = useMutation(updateUser);
 
@@ -65,20 +72,8 @@ const EditUserData = ({ openModal, closeModal, editField }) => {
             style={{ display: "flex", flexDirection: "column", gap: "40px" }}
             onSubmit={handleSubmit}
           >
-            <h2>Change {editField}</h2>
-            <div className={styles.dialogDiv}>
-              <input
-                type={
-                  editField === "Email"
-                    ? "email"
-                    : editField === "Password"
-                    ? "password"
-                    : "text"
-                }
-                defaultValue={userData[lowerCasedEditField]}
-                name={editField}
-              />
-            </div>
+            <h2>{label}</h2>
+            <div className={styles.dialogDiv}>{content}</div>
             <button
               className={styles.changeUserDataButton}
               type="submit"
