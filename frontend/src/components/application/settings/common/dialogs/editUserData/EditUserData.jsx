@@ -42,13 +42,20 @@ const EditUserData = ({ openModal, closeModal, editField }) => {
       variables: {
         id: userData.id,
         name: editField === "Name" ? formData.get("Name") : userData.name,
-        email: editField === "Email" ? formData.get("Email") : userData.email,
+        toBeConfirmedEmail:
+          editField === "Email"
+            ? formData.get("Email")
+            : userData.toBeConfirmedEmail,
         password: editField === "Password" ? formData.get("Password") : "",
       },
     });
 
     if (!error) {
-      alert("User data updated successfully");
+      if (editField === "Email") {
+        alert("Verification Email sent. Please check your inbox");
+      } else {
+        alert("User data updated successfully");
+      }
       window.location.reload();
     }
   };
