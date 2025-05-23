@@ -42,6 +42,11 @@
   object-fit: cover;
 }
 
+.unverifiedEmail {
+  display: flex;
+  gap: 5px;
+}
+
 @media screen and (max-width: 1000px) {
   .basicSettingsList {
     margin-left: 20px;

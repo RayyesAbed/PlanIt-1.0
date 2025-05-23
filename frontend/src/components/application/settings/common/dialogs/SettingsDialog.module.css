@@ -1,0 +1,44 @@
+.editUserDataDialog {
+  border-radius: 45px;
+  width: 50%;
+  height: 50%;
+}
+
+.editUserDataDialog h2 {
+  text-align: center;
+}
+
+/* label + input */
+
+.editUserDataDialog div {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.changeUserDataButton {
+  background-color: rgb(46, 46, 46);
+  color: white;
+  padding: 7px 55px;
+  font-weight: 600;
+  border: 0;
+  border-radius: 45px;
+  display: block;
+  margin: 20px auto;
+  cursor: pointer;
+}
+
+.changeUserDataButton:hover {
+  background-color: black;
+}
+
+#closeModalDiv {
+  float: right;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1000px) {
+  .editUserDataDialog {
+    width: 80%;
+  }
+}

@@ -1,6 +1,7 @@
 import { useState } from "react";
-import useFetchUserData from "../../../../hooks/useFetchUserData";
+import useFetchUserData from "../../../../../hooks/useFetchUserData";
 import EditUserData from "../dialogs/editUserData/EditUserData";
+import WarningIcon from "@mui/icons-material/Warning";
 import styles from "./BasicSettings.module.css";
 import DUMMY_IMAGE from "/AbdallahImg.jpg"; // Only for testing purposes
 
@@ -30,7 +31,16 @@ const BasicSettings = () => {
         </li>
         <li>
           <h3>Email</h3>
-          <div>{userData.email}</div>
+          <div>
+            {userData.toBeConfirmedEmail ? (
+              <div className={styles.unverifiedEmail}>
+                <WarningIcon titleAccess="Please verify this email" />
+                {userData.toBeConfirmedEmail}
+              </div>
+            ) : (
+              userData.confirmedEmail
+            )}
+          </div>
           <div>
             <button onClick={() => setEditField("Email")}>Edit</button>
           </div>
