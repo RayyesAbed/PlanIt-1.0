@@ -18,7 +18,7 @@ const EmailVerify = () => {
     const verify = async () => {
       try {
         await verifyNewUser(token);
-        setMessage("Account created successfully!");
+        setMessage("Email verified successfully!");
       } catch (error) {
         setMessage("Verification went wrong!");
         console.error("Verification Error:", error);
