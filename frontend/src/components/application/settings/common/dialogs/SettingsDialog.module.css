@@ -42,3 +42,16 @@
     width: 80%;
   }
 }
+
+/* Password change div */
+
+.changePasswordDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.changePasswordDiv input {
+  width: 130%;
+}
