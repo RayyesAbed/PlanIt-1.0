@@ -12,7 +12,8 @@ const typeDefs = `#graphql
     }
 
     type Mutation {
-        updateUser(name: String, toBeConfirmedEmail: String, password: String, id: ID!): User
+        updateUser(name: String, toBeConfirmedEmail: String ,id: ID!): User
+        updatePassword(oldPassword: String, newPassword: String, id: ID!): User
     }
 `;
 
