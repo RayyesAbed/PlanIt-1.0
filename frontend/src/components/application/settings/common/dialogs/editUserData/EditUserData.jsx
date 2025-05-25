@@ -8,6 +8,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import updateUser from "../../../../../../graphql/updateUser";
 import getEditFieldConfig from "../../../../../../utils/getEditFieldConfig";
 import GetSpecificDialogComponent from "../components/GetSpecificDialogComponent.jsx";
+import updatePassword from "../../../../../../graphql/updatePassword.js";
 
 const EditUserData = ({ openModal, closeModal, editField }) => {
   const ref = useRef(); // modal ref
@@ -21,7 +22,9 @@ const EditUserData = ({ openModal, closeModal, editField }) => {
 
   let content = GetSpecificDialogComponent({ type, name, defaultValue });
 
-  let [mutateField, { loading, error }] = useMutation(updateUser);
+  let updateOtherUserFields = useMutation(updateUser);
+
+  let updateUserPassword = useMutation(updatePassword);
 
   useEffect(() => {
     if (openModal) {
@@ -34,11 +37,12 @@ const EditUserData = ({ openModal, closeModal, editField }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    error = null;
+    updateOtherUserFields[1].error = null;
+    updateUserPassword[1].error = null;
 
     const formData = new FormData(event.target);
 
-    await mutateField({
+    await updateOtherUserFields[0]({
       variables: {
         id: userData.id,
         name: editField === "Name" ? formData.get("Name") : userData.name,
@@ -46,11 +50,20 @@ const EditUserData = ({ openModal, closeModal, editField }) => {
           editField === "Email"
             ? formData.get("Email")
             : userData.toBeConfirmedEmail,
-        password: editField === "Password" ? formData.get("Password") : "",
       },
     });
 
-    if (!error) {
+    if (editField === "Password") {
+      await updateUserPassword[0]({
+        variables: {
+          id: userData.id,
+          oldPassword: formData.get("oldPassword"),
+          newPassword: formData.get("newPassword"),
+        },
+      });
+    }
+
+    if (!updateOtherUserFields[1].error || !updateUserPassword[1].error) {
       if (editField === "Email") {
         alert("Verification Email sent. Please check your inbox");
       } else {
@@ -84,14 +97,23 @@ const EditUserData = ({ openModal, closeModal, editField }) => {
             <button
               className={styles.changeUserDataButton}
               type="submit"
-              disabled={loading}
+              disabled={
+                editField === "Password"
+                  ? updateUserPassword[1].loading
+                  : updateOtherUserFields[1].loading
+              }
             >
               Change
             </button>
           </form>
-          {error && (
+          {updateOtherUserFields[1].error && (
             <p style={{ color: "red", textAlign: "center" }}>
               Error, please check your input field again and then submit
+            </p>
+          )}
+          {updateUserPassword[1].error && (
+            <p style={{ color: "red", textAlign: "center" }}>
+              {updateUserPassword[1].error.message}
             </p>
           )}
         </motion.dialog>

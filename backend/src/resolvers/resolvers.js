@@ -3,6 +3,7 @@ const hashPassword = require("../services/hashPassword");
 const sendEmail = require("../services/sendEmail");
 const isPasswordValid = require("../utils/isPasswordValid");
 const jwt = require("jsonwebtoken");
+const argon2 = require("argon2");
 
 const resolvers = {
   Query: {
@@ -17,12 +18,15 @@ const resolvers = {
   Mutation: {
     async updateUser(parent, args) {
       const user = await User.findById(args.id);
+
       if (!user) {
         throw new Error("User not found");
       }
+
       if (args.name) {
         user.name = args.name;
       }
+
       if (args.toBeConfirmedEmail) {
         user.toBeConfirmedEmail = args.toBeConfirmedEmail;
 
@@ -54,13 +58,39 @@ const resolvers = {
         );
       }
 
-      if (args.password) {
-        if (!isPasswordValid(args.password)) {
-          throw new Error("Password does not meet the requirements");
-        } else {
-          user.password = await hashPassword(args.password);
-        }
+      await user.save();
+      return user;
+    },
+    async updatePassword(parent, args) {
+      const user = await User.findById(args.id);
+      if (!user) {
+        throw new Error("User not found");
       }
+      if (!args.oldPassword || !args.newPassword) {
+        throw new Error(
+          "Both old and new passwords are required to change the password."
+        );
+      }
+
+      const passwordsMatch = await argon2.verify(
+        user.password,
+        args.oldPassword
+      );
+
+      if (!passwordsMatch) {
+        throw new Error("Incorrect old password");
+      }
+
+      if (!isPasswordValid(args.newPassword)) {
+        throw new Error("The new password is not secure enough");
+      }
+
+      if (args.oldPassword === args.newPassword) {
+        throw new Error("Old and new passwords are the same");
+      }
+
+      let hashedNewPassword = await hashPassword(args.newPassword);
+      user.password = hashedNewPassword;
       await user.save();
       return user;
     },
