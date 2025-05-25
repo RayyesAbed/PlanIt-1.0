@@ -55,3 +55,59 @@
 .changePasswordDiv input {
   width: 130%;
 }
+
+/* User Avatar */
+
+.avatarBox {
+  width: 150px;
+  height: 150px;
+  position: relative;
+}
+
+.userAvatar {
+  width: 150px;
+  height: 150px;
+}
+
+.addAvatarButton,
+.editAvatarButton,
+.deleteAvatarButton {
+  position: absolute;
+}
+
+.addAvatarButton,
+.editAvatarButton {
+  background-color: rgb(56, 56, 56);
+  color: white;
+}
+
+.addAvatarButton:hover,
+.editAvatarButton:hover {
+  background-color: rgb(239, 239, 239);
+  color: rgb(56, 56, 56);
+}
+
+.deleteAvatarButton {
+  background-color: rgb(109, 6, 6);
+  color: white;
+}
+
+.deleteAvatarButton:hover {
+  background-color: rgb(239, 239, 239);
+  color: rgb(109, 6, 6);
+}
+
+.addAvatarButton {
+  bottom: 0;
+  left: 0;
+}
+
+.editAvatarButton {
+  bottom: 0;
+  right: 0;
+}
+
+.deleteAvatarButton {
+  top: 0;
+  right: 0;
+}
