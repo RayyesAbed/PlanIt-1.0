@@ -57,7 +57,7 @@ const GetSpecificDialogComponent = ({ type, name, defaultValue }) => {
         {userAvatar || avatarUrl ? (
           <Avatar
             alt="Your avatar"
-            src={userAvatar ? userAvatar : avatarUrl}
+            src={avatarUrl ? avatarUrl : userAvatar ? userAvatar : ""}
             className={styles.userAvatar}
           />
         ) : (
