@@ -9,6 +9,8 @@ import updateUser from "../../../../../../graphql/updateUser";
 import getEditFieldConfig from "../../../../../../utils/getEditFieldConfig";
 import GetSpecificDialogComponent from "../components/GetSpecificDialogComponent.jsx";
 import updatePassword from "../../../../../../graphql/updatePassword.js";
+import { uploadAvatar } from "../../../../../../api/uploadAvatar.js";
+import { useState } from "react";
 
 const EditUserData = ({ openModal, closeModal, editField }) => {
   const ref = useRef(); // modal ref
@@ -25,6 +27,8 @@ const EditUserData = ({ openModal, closeModal, editField }) => {
   let updateOtherUserFields = useMutation(updateUser);
 
   let updateUserPassword = useMutation(updatePassword);
+
+  const [isAvatarUploadError, setIsAvatarUploadError] = useState();
 
   useEffect(() => {
     if (openModal) {
@@ -63,6 +67,11 @@ const EditUserData = ({ openModal, closeModal, editField }) => {
       });
     }
 
+    if (editField === "Photo") {
+      const response = await uploadAvatar(formData);
+      setIsAvatarUploadError(response);
+    }
+
     if (!updateOtherUserFields[1].error || !updateUserPassword[1].error) {
       if (editField === "Email") {
         alert("Verification Email sent. Please check your inbox");
@@ -91,6 +100,7 @@ const EditUserData = ({ openModal, closeModal, editField }) => {
             method="dialog"
             style={{ display: "flex", flexDirection: "column", gap: "40px" }}
             onSubmit={handleSubmit}
+            encType="multipart/form-data"
           >
             <h2>{label}</h2>
             <div className={styles.dialogDiv}>{content}</div>
@@ -114,6 +124,11 @@ const EditUserData = ({ openModal, closeModal, editField }) => {
           {updateUserPassword[1].error && (
             <p style={{ color: "red", textAlign: "center" }}>
               {updateUserPassword[1].error.message}
+            </p>
+          )}
+          {isAvatarUploadError && (
+            <p style={{ color: "red", textAlign: "center" }}>
+              {isAvatarUploadError.message}
             </p>
           )}
         </motion.dialog>
