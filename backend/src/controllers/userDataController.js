@@ -48,7 +48,7 @@ const getUserData = async (req, res, next) => {
   }
 };
 
-const uploadUserAvatar = async (req, res) => {
+const modifyUserAvatar = async (req, res) => {
   if (!req.headers.cookie) {
     return res.sendStatus(401);
   }
@@ -121,7 +121,7 @@ const getUserAvatar = async (req, res) => {
 };
 
 module.exports = {
-  uploadUserAvatar,
+  modifyUserAvatar,
   getUserData,
   getUserAvatar,
 };
