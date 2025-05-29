@@ -8,6 +8,7 @@ const {
   PutObjectCommand,
   GetObjectCommand,
   HeadObjectCommand,
+  DeleteObjectCommand,
 } = require("@aws-sdk/client-s3");
 const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
 
@@ -61,23 +62,32 @@ const uploadUserAvatar = async (req, res) => {
 
   const { userId } = verifyToken(token);
 
-  const fileBuffer = req.file.buffer;
-  const type = await fileType.fromBuffer(fileBuffer);
+  let command;
 
-  if (!type || !type.mime.startsWith("image/")) {
-    return res.status(400).json({ message: "Only image types are allowed" });
+  if (!req.file) {
+    command = new DeleteObjectCommand({
+      Bucket: process.env.AWS_S3_BUCKET,
+      Key: `avatars/${userId}`,
+    });
+  } else {
+    const fileBuffer = req.file.buffer;
+    const type = await fileType.fromBuffer(fileBuffer);
+
+    if (!type || !type.mime.startsWith("image/")) {
+      return res.status(400).json({ message: "Only image types are allowed" });
+    }
+
+    command = new PutObjectCommand({
+      Bucket: process.env.AWS_S3_BUCKET,
+      Key: `avatars/${userId}`,
+      Body: fileBuffer,
+      ContentType: type.mime,
+    });
   }
-
-  const command = new PutObjectCommand({
-    Bucket: process.env.AWS_S3_BUCKET,
-    Key: `avatars/${userId}`,
-    Body: fileBuffer,
-    ContentType: type.mime,
-  });
 
   await s3.send(command);
 
-  return res.status(201).json({ message: "Uploaded successfully!" });
+  return res.status(200).json({ message: "Modified successfully!" });
 };
 
 const getUserAvatar = async (req, res) => {
