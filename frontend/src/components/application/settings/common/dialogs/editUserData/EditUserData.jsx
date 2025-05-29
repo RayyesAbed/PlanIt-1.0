@@ -9,7 +9,7 @@ import updateUser from "../../../../../../graphql/updateUser";
 import getEditFieldConfig from "../../../../../../utils/getEditFieldConfig";
 import GetSpecificDialogComponent from "../components/GetSpecificDialogComponent.jsx";
 import updatePassword from "../../../../../../graphql/updatePassword.js";
-import { uploadAvatar } from "../../../../../../api/uploadAvatar.js";
+import { modifyAvatar } from "../../../../../../api/modifyAvatar.js";
 import { useState } from "react";
 
 const EditUserData = ({ openModal, closeModal, editField }) => {
@@ -68,7 +68,7 @@ const EditUserData = ({ openModal, closeModal, editField }) => {
     }
 
     if (editField === "Photo") {
-      const response = await uploadAvatar(formData);
+      const response = await modifyAvatar(formData);
       setIsAvatarUploadError(response);
     }
 

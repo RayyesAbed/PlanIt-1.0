@@ -1,4 +1,4 @@
-export const uploadAvatar = async (formData) => {
+export const modifyAvatar = async (formData) => {
   try {
     const response = await fetch(
       `${import.meta.env.VITE_BACKEND_URL}/user_data/upload_avatar`,
