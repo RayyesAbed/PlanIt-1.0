@@ -10,6 +10,8 @@ const GetSpecificDialogComponent = ({ type, name, defaultValue }) => {
   let content;
 
   const [avatarUrl, setAvatarUrl] = useState();
+  const [deletedAvatar, setDeletedAvatar] = useState(false);
+
   const fileInputRef = useRef(null);
 
   const userAvatar = useFetchUserAvatar();
@@ -26,6 +28,11 @@ const GetSpecificDialogComponent = ({ type, name, defaultValue }) => {
     if (fileInputRef.current) {
       fileInputRef.current.click();
     }
+  };
+
+  const triggerFileDelete = () => {
+    setAvatarUrl(null);
+    setDeletedAvatar(true);
   };
 
   if (name === "Email" || name === "Name") {
@@ -57,7 +64,7 @@ const GetSpecificDialogComponent = ({ type, name, defaultValue }) => {
         {userAvatar || avatarUrl ? (
           <Avatar
             alt="Your avatar"
-            src={avatarUrl ? avatarUrl : userAvatar ? userAvatar : ""}
+            src={!deletedAvatar ? avatarUrl || userAvatar || "" : ""}
             className={styles.userAvatar}
           />
         ) : (
@@ -90,7 +97,11 @@ const GetSpecificDialogComponent = ({ type, name, defaultValue }) => {
           </IconButton>
         )}
         {userAvatar && (
-          <IconButton size="small" className={styles.deleteAvatarButton}>
+          <IconButton
+            size="small"
+            className={styles.deleteAvatarButton}
+            onClick={triggerFileDelete}
+          >
             <DeleteIcon fontSize="small" />
           </IconButton>
         )}
