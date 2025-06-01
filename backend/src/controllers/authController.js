@@ -89,7 +89,11 @@ const verifyEmail = async (req, res) => {
 
     user.toBeConfirmedEmail = "";
 
-    Task.create({ userID: user._id, list: [] });
+    await Task.updateOne(
+      { userID: user._id },
+      { $setOnInsert: { list: [] } },
+      { upsert: true }
+    );
 
     await user.save();
 
