@@ -12,6 +12,7 @@ const ConditionalTaskItem = ({
   handleShowEditDialog,
   setFilteredTask,
   day,
+  searchedTask,
 }) => {
   const { state, dispatch } = useContext(TaskContext); // state includes the array of tasks
 
@@ -33,32 +34,39 @@ const ConditionalTaskItem = ({
     <>
       {state.length > 0 &&
         state.map((taskItem) => {
-          const matchCompletion = taskItem.completed === completed;
-          const matchDay =
-            day === "today"
+          const matchesSearch =
+            taskItem.taskName
+              .toLowerCase()
+              .includes(searchedTask.toLowerCase()) ||
+            taskItem.taskPriority
+              .toLowerCase()
+              .includes(searchedTask.toLowerCase());
+
+          const matchesFilters =
+            taskItem.due === due &&
+            taskItem.completed === completed &&
+            (day === "today"
               ? isToday(taskItem.taskDueDate)
               : day === "upcoming"
               ? isUpcoming(taskItem.taskDueDate)
-              : true;
+              : true);
+
+          if (!matchesSearch || !matchesFilters) return null;
 
           return (
-            taskItem.due === due &&
-            matchCompletion &&
-            matchDay && (
-              <TaskItem
-                key={taskItem.id}
-                taskName={taskItem.taskName}
-                taskDueDate={taskItem.taskDueDate}
-                taskPriority={taskItem.taskPriority}
-                taskDescription={taskItem.taskDescription}
-                bonusPoints={taskItem.bonusPoints}
-                completed={taskItem.completed}
-                due={taskItem.due}
-                onTaskComplete={() => handleCompleteTask(taskItem.id)}
-                onTaskDelete={() => handleDeleteTask(taskItem.id)}
-                onTaskEdit={() => handleEditTask(taskItem)}
-              />
-            )
+            <TaskItem
+              key={taskItem.id}
+              taskName={taskItem.taskName}
+              taskDueDate={taskItem.taskDueDate}
+              taskPriority={taskItem.taskPriority}
+              taskDescription={taskItem.taskDescription}
+              bonusPoints={taskItem.bonusPoints}
+              completed={taskItem.completed}
+              due={taskItem.due}
+              onTaskComplete={() => handleCompleteTask(taskItem.id)}
+              onTaskDelete={() => handleDeleteTask(taskItem.id)}
+              onTaskEdit={() => handleEditTask(taskItem)}
+            />
           );
         })}
     </>
