@@ -13,6 +13,7 @@ const Tasks = () => {
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [filteredTask, setFilteredTask] = useState({});
+  const [searchedTask, setSearchedTask] = useState("");
 
   const handleShowAddDialog = () => setIsAddDialogOpen(true);
 
@@ -28,7 +29,13 @@ const Tasks = () => {
       <div className={styles.tasksWrapper}>
         <div>
           <h1>Tasks</h1>
-          <input type="text" name="taskSearch" placeholder="Search Tasks..." />
+          <input
+            type="text"
+            name="taskSearch"
+            placeholder="Search Tasks..."
+            value={searchedTask}
+            onChange={(event) => setSearchedTask(event.target.value)}
+          />
           <Tooltip title="Add Task" onClick={handleShowAddDialog}>
             <AddCircleIcon className={styles.addTaskDialogIcon} />
           </Tooltip>
@@ -94,6 +101,7 @@ const Tasks = () => {
                   completed={false}
                   setFilteredTask={setFilteredTask}
                   handleShowEditDialog={handleShowEditDialog}
+                  searchedTask={searchedTask}
                   day="today"
                 />
               }
@@ -106,6 +114,7 @@ const Tasks = () => {
                   completed={false}
                   setFilteredTask={setFilteredTask}
                   handleShowEditDialog={handleShowEditDialog}
+                  searchedTask={searchedTask}
                   day="upcoming"
                 />
               }
@@ -118,6 +127,7 @@ const Tasks = () => {
                   completed={true}
                   setFilteredTask={setFilteredTask}
                   handleShowEditDialog={handleShowEditDialog}
+                  searchedTask={searchedTask}
                 />
               }
             />
@@ -129,6 +139,7 @@ const Tasks = () => {
                   completed={false}
                   setFilteredTask={setFilteredTask}
                   handleShowEditDialog={handleShowEditDialog}
+                  searchedTask={searchedTask}
                 />
               }
             />
