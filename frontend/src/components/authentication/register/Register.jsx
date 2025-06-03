@@ -10,6 +10,7 @@ import {
   InputAdornment,
   InputLabel,
   OutlinedInput,
+  Tooltip,
 } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
@@ -77,36 +78,43 @@ const Register = () => {
                 className={styles.registerInput}
                 required
               />
-              <FormControl variant="outlined">
-                <InputLabel htmlFor="outlined-adornment-password">
-                  Enter your Password
-                </InputLabel>
-                <OutlinedInput
-                  className={styles.registerInput}
-                  sx={{ backgroundColor: "rgb(244,244,244)" }}
-                  id="outlined-adornment-password"
-                  value={userCredentials.password}
-                  onChange={handleChangePassword}
-                  type={showPassword ? "text" : "password"}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label={
-                          showPassword
-                            ? "hide the password"
-                            : "display the password"
-                        }
-                        onClick={handleClickToggleShowPassword}
-                        edge="end"
-                      >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                  label="Enter your Password"
-                  required
-                />
-              </FormControl>
+              <Tooltip
+                title="Password must be at least 8 characters and include: uppercase, lowercase, number, and a special character (e.g. !@#)."
+                placement="right"
+                arrow
+              >
+                <FormControl variant="outlined">
+                  <InputLabel htmlFor="outlined-adornment-password">
+                    Enter your Password
+                  </InputLabel>
+                  <OutlinedInput
+                    className={styles.registerInput}
+                    sx={{ backgroundColor: "rgb(244,244,244)" }}
+                    id="outlined-adornment-password"
+                    value={userCredentials.password}
+                    onChange={handleChangePassword}
+                    type={showPassword ? "text" : "password"}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label={
+                            showPassword
+                              ? "hide the password"
+                              : "display the password"
+                          }
+                          onClick={handleClickToggleShowPassword}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    label="Enter your Password"
+                    required
+                  />
+                </FormControl>
+              </Tooltip>
+
               <button className={styles.registerButton}>Register</button>
               <Link to="/login" className={styles.existingAccountLink}>
                 Already have an account? Then sign in
