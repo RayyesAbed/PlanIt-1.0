@@ -10,7 +10,7 @@ import {
   Settings,
   Logout,
 } from "@mui/icons-material";
-import { logoutUser } from "../../../../api/logoutUser";
+import { logoutUser } from "../../../../api/auth/logoutUser";
 import useFetchUserData from "../../../../hooks/useFetchUserData";
 import useFetchUserAvatar from "../../../../hooks/useFetchUserAvatar";
 import { Avatar } from "@mui/material";

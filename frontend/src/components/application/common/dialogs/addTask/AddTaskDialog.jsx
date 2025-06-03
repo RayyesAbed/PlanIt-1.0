@@ -3,7 +3,7 @@ import * as motion from "motion/react-client";
 import { AnimatePresence } from "motion/react";
 import styles from "../TaskDialog.module.css";
 import { TaskContext } from "../../../../../contexts/TaskContext";
-import { addTask } from "../../../../../api/addTask";
+import { addTask } from "../../../../../api/task/addTask";
 import { getLocalISODateTime } from "../../../../../utils/getLocalISODateTime";
 
 const AddTaskDialog = ({ openModal, closeModal }) => {

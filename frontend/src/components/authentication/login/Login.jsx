@@ -13,8 +13,8 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
-import { loginUser } from "../../../api/loginUser";
-import { resetPasswordRequest } from "../../../api/resetPasswordRequest";
+import { loginUser } from "../../../api/auth/loginUser";
+import { resetPasswordRequest } from "../../../api/auth/resetPasswordRequest";
 
 const Login = () => {
   document.title = "Login";

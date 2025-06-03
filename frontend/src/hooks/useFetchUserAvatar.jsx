@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { getAvatar } from "../api/getAvatar";
+import { getAvatar } from "../api/user/getAvatar";
 
 const useFetchUserAvatar = () => {
   const [userAvatar, setUserAvatar] = useState(null);

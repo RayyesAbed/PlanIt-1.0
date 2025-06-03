@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { checkAuth } from "../api/checkAuth";
+import { checkAuth } from "../api/auth/checkAuth";
 
 const useCheckAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);

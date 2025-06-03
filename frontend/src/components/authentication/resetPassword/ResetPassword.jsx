@@ -2,9 +2,9 @@ import { useLocation, useNavigate } from "react-router";
 import styles from "./ResetPassword.module.css";
 import PlanItLogo from "/PlanItLogo.webp";
 import { useEffect, useState } from "react";
-import { verifyResetPasswordToken } from "../../../api/verifyResetPasswordToken";
+import { verifyResetPasswordToken } from "../../../api/auth/verifyResetPasswordToken";
 import { TextField } from "@mui/material";
-import { resetPassword } from "../../../api/resetPassword";
+import { resetPassword } from "../../../api/auth/resetPassword";
 
 const ResetPassword = () => {
   document.title = "Reset Password";

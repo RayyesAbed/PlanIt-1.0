@@ -9,7 +9,7 @@ import updateUser from "../../../../../../graphql/updateUser";
 import getEditFieldConfig from "../../../../../../utils/getEditFieldConfig";
 import GetSpecificDialogComponent from "../components/GetSpecificDialogComponent.jsx";
 import updatePassword from "../../../../../../graphql/updatePassword.js";
-import { modifyAvatar } from "../../../../../../api/modifyAvatar.js";
+import { modifyAvatar } from "../../../../../../api/user/modifyAvatar.js";
 import { useState } from "react";
 
 const EditUserData = ({ openModal, closeModal, editField }) => {

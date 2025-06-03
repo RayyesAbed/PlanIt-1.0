@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { TaskContext } from "../../../../contexts/TaskContext";
 import TaskItem from "../../common/taskItem/TaskItem";
-import { deleteTask } from "../../../../api/deleteTask";
-import { completeTask } from "../../../../api/completeTask";
+import { deleteTask } from "../../../../api/task/deleteTask";
+import { completeTask } from "../../../../api/task/completeTask";
 import isToday from "../../../../utils/isToday";
 import isUpcoming from "../../../../utils/isUpcoming";
 

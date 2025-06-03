@@ -3,7 +3,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import * as motion from "motion/react-client";
 import { AnimatePresence } from "motion/react";
 import { TaskContext } from "../../../../../contexts/TaskContext";
-import { editTask } from "../../../../../api/editTask";
+import { editTask } from "../../../../../api/task/editTask";
 import { getLocalISODateTime } from "../../../../../utils/getLocalISODateTime";
 
 const EditTaskDialog = ({ openModal, closeModal, filteredTask }) => {

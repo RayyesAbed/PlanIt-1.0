@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import styles from "./EmailVerify.module.css";
 import PlanItLogo from "/PlanItLogo.webp";
-import { verifyNewUser } from "../../../api/verifyNewUser";
+import { verifyNewUser } from "../../../api/auth/verifyNewUser";
 
 const EmailVerify = () => {
   const [message, setMessage] = useState("");

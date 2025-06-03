@@ -13,7 +13,7 @@ import {
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { Link } from "react-router";
-import { registerUser } from "../../../api/registerUser";
+import { registerUser } from "../../../api/auth/registerUser";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
