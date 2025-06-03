@@ -54,15 +54,15 @@ const registerUserRequest = async (req, res) => {
     expiresIn: "1h",
   });
 
-  const validationURL = `${process.env.VITE_FRONTEND_URL}/verify-email?token=${emailToken}`;
+  const verificationURL = `${process.env.VITE_FRONTEND_URL}/verify-email?token=${emailToken}`;
 
   await sendEmail(
     email,
-    "PlanIt Email Validation",
+    "PlanIt Email verification",
     `
     <p> Hi ${name}, </p>
 
-    <p> Are you ready to start your journey with PlanIt? then please click on the verification link: ${validationURL}</p>
+    <p> Are you ready to start your journey with PlanIt? then please click on the verification link: <a href='${verificationURL}'>Verify PlanIt Email</a> </p>
 
     <p>This link expires in an hour. </p>
 
@@ -75,7 +75,7 @@ const registerUserRequest = async (req, res) => {
 
   return res
     .status(200)
-    .json({ message: "A validation email was sent successfully" });
+    .json({ message: "A verification email was sent successfully" });
 };
 
 const verifyEmail = async (req, res) => {
@@ -159,7 +159,7 @@ const resetPasswordRequest = async (req, res) => {
       expiresIn: "1h",
     });
 
-    const validationURL = `${process.env.VITE_FRONTEND_URL}/reset_password?token=${emailToken}`;
+    const verificationURL = `${process.env.VITE_FRONTEND_URL}/reset_password?token=${emailToken}`;
 
     await sendEmail(
       email,
@@ -167,7 +167,7 @@ const resetPasswordRequest = async (req, res) => {
       `
     <p> Hi ${user.name}, </p>
 
-    <p> It looks like you forgot your password. No worries. You can definitely reset your password by clicking on the link: ${validationURL}</p>
+    <p> It looks like you forgot your password. No worries. You can definitely reset your password by clicking on the link: <a href='${verificationURL}'>PlanIt Password Reset</a></p>
 
     <p>This link expires in an hour. </p>
 
