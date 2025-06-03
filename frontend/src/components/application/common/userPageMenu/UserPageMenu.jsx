@@ -12,7 +12,7 @@ import {
 } from "@mui/icons-material";
 import { logoutUser } from "../../../../api/auth/logoutUser";
 import { Avatar } from "@mui/material";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserDataContext } from "../../../../contexts/UserDataContext";
 
 const UserPageMenu = () => {
@@ -27,7 +27,13 @@ const UserPageMenu = () => {
     }
   };
 
-  const { userData } = useContext(UserDataContext);
+  const { userData, loadUserData } = useContext(UserDataContext);
+
+  useEffect(() => {
+    if (!userData.data) {
+      loadUserData();
+    }
+  }, [loadUserData, userData.data]);
 
   return (
     <nav className={styles.menuNav}>
@@ -38,8 +44,8 @@ const UserPageMenu = () => {
           <Avatar>Me</Avatar>
         )}
         <div className={styles.userNameAndPlanWrapper}>
-          <p>{userData.data.name}</p>
-          <p>{userData.data.points} XP</p>
+          <p>{userData.data?.name}</p>
+          <p>{userData.data?.points} XP</p>
         </div>
       </div>
       <UserPageMenuItem
