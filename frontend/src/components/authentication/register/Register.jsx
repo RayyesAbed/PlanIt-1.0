@@ -4,6 +4,7 @@ import Logo from "/PlanItLogo.webp";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import {
+  CircularProgress,
   FormControl,
   IconButton,
   InputAdornment,
@@ -22,6 +23,7 @@ const Register = () => {
     email: "",
     password: "",
   });
+  const [isRegisterPending, setIsRegisterPending] = useState(false);
 
   const handleClickToggleShowPassword = () => setShowPassword(!showPassword);
 
@@ -38,7 +40,9 @@ const Register = () => {
 
   const handleRegister = async (event) => {
     event.preventDefault();
+    setIsRegisterPending(true);
     await registerUser(userCredentials);
+    setIsRegisterPending(false);
   };
 
   return (
@@ -46,59 +50,69 @@ const Register = () => {
       <section>
         <form onSubmit={handleRegister}>
           <img src={Logo} alt="PlanIt logo" />
-          <h1>Create a new account</h1>
-          <TextField
-            type="text"
-            label="Enter your Name"
-            value={userCredentials.name}
-            onChange={handleChangeName}
-            sx={{ backgroundColor: "rgb(244, 244, 244)" }}
-            className={styles.registerInput}
-            required
-          />
-          <TextField
-            type="email"
-            label="Enter your Email"
-            value={userCredentials.email}
-            onChange={handleChangeEmail}
-            sx={{ backgroundColor: "rgb(244,244,244)" }}
-            className={styles.registerInput}
-            required
-          />
-          <FormControl variant="outlined">
-            <InputLabel htmlFor="outlined-adornment-password">
-              Enter your Password
-            </InputLabel>
-            <OutlinedInput
-              className={styles.registerInput}
-              sx={{ backgroundColor: "rgb(244,244,244)" }}
-              id="outlined-adornment-password"
-              value={userCredentials.password}
-              onChange={handleChangePassword}
-              type={showPassword ? "text" : "password"}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label={
-                      showPassword
-                        ? "hide the password"
-                        : "display the password"
-                    }
-                    onClick={handleClickToggleShowPassword}
-                    edge="end"
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
-              label="Enter your Password"
-              required
-            />
-          </FormControl>
-          <button className={styles.registerButton}>Register</button>
-          <Link to="/login" className={styles.existingAccountLink}>
-            Already have an account? Then sign in
-          </Link>
+
+          {isRegisterPending ? (
+            <>
+              <h1>Creating an account...</h1>
+              <CircularProgress />
+            </>
+          ) : (
+            <>
+              <h1>Create a new account</h1>
+              <TextField
+                type="text"
+                label="Enter your Name"
+                value={userCredentials.name}
+                onChange={handleChangeName}
+                sx={{ backgroundColor: "rgb(244, 244, 244)" }}
+                className={styles.registerInput}
+                required
+              />
+              <TextField
+                type="email"
+                label="Enter your Email"
+                value={userCredentials.email}
+                onChange={handleChangeEmail}
+                sx={{ backgroundColor: "rgb(244,244,244)" }}
+                className={styles.registerInput}
+                required
+              />
+              <FormControl variant="outlined">
+                <InputLabel htmlFor="outlined-adornment-password">
+                  Enter your Password
+                </InputLabel>
+                <OutlinedInput
+                  className={styles.registerInput}
+                  sx={{ backgroundColor: "rgb(244,244,244)" }}
+                  id="outlined-adornment-password"
+                  value={userCredentials.password}
+                  onChange={handleChangePassword}
+                  type={showPassword ? "text" : "password"}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label={
+                          showPassword
+                            ? "hide the password"
+                            : "display the password"
+                        }
+                        onClick={handleClickToggleShowPassword}
+                        edge="end"
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                  label="Enter your Password"
+                  required
+                />
+              </FormControl>
+              <button className={styles.registerButton}>Register</button>
+              <Link to="/login" className={styles.existingAccountLink}>
+                Already have an account? Then sign in
+              </Link>
+            </>
+          )}
         </form>
       </section>
       <section>
