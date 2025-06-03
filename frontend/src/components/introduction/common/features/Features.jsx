@@ -36,7 +36,7 @@ const Features = () => {
             That’s how you would feel about yourself when you’ve achieved your
             dreams. With PlanIt, you can customize your journey towards success!
             It’s simple, register now in our website or log in if you have an
-            account, tell our powerful, yet efficient AI Journey Planner where
+            account, tell Google's powerful, yet efficient Gemini™ AI where
             you’re now and what you want to achieve, no matter if it’s
             establishing your dream company, running in a marathon, or as simple
             as becoming a reader. We’ve got you!

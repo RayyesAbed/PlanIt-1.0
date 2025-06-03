@@ -27,6 +27,7 @@ const EmailVerify = lazy(() =>
 import ProtectedRoute from "./components/authentication/protected/ProtectedRoute";
 import useCheckAuth from "./hooks/useCheckAuth";
 import ResetPassword from "./components/authentication/resetPassword/ResetPassword";
+import MyStory from "./components/application/myStory/MyStory";
 
 function App() {
   const isAuthenticated = useCheckAuth();
@@ -44,6 +45,7 @@ function App() {
         <Route path="reset_password" element={<ResetPassword />} />
 
         <Route element={<ProtectedRoute />}>
+          <Route path="/mystory" element={<MyStory />} />
           <Route path="/store" element={<Store />} />
           <Route path="/calendar" element={<CalendarComponent />} />
           <Route path="/performance" element={<Performance />} />

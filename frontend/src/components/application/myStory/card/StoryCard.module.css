@@ -1,0 +1,15 @@
+.storyCard {
+  height: 250px;
+  background-color: #968970;
+  margin: 25px;
+  border-radius: 30px;
+  width: 200px;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 20px;
+}
+
+.storyCard:hover {
+  color: #968970;
+  background-color: white;
+}

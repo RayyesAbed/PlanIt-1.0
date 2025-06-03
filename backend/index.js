@@ -8,6 +8,7 @@ const mongooseConnect = require("./src/configs/mongooseConnect");
 const authRoutes = require("./src/routes/authRoutes");
 const taskRoutes = require("./src/routes/taskRoutes");
 const userDataRoutes = require("./src/routes/userDataRoutes");
+const userStoryRoutes = require("./src/routes/userStoryRoutes");
 const cookieParser = require("cookie-parser");
 const { ApolloServer } = require("@apollo/server"); // GraphQL server
 const { expressMiddleware } = require("@apollo/server/express4"); // Enables to attach Apollo server to Express server
@@ -32,6 +33,8 @@ async function startServer() {
   app.use("/tasks", taskRoutes);
 
   app.use("/user_data", userDataRoutes);
+
+  app.use("/ai", userStoryRoutes);
 
   app.use("/graphql", expressMiddleware(server));
 
