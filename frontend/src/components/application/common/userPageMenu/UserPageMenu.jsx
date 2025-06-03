@@ -11,9 +11,9 @@ import {
   Logout,
 } from "@mui/icons-material";
 import { logoutUser } from "../../../../api/auth/logoutUser";
-import useFetchUserData from "../../../../hooks/useFetchUserData";
-import useFetchUserAvatar from "../../../../hooks/useFetchUserAvatar";
 import { Avatar } from "@mui/material";
+import { useContext } from "react";
+import { UserDataContext } from "../../../../contexts/UserDataContext";
 
 const UserPageMenu = () => {
   const navigate = useNavigate();
@@ -27,21 +27,19 @@ const UserPageMenu = () => {
     }
   };
 
-  const userData = useFetchUserData();
-
-  const userAvatar = useFetchUserAvatar();
+  const { userData } = useContext(UserDataContext);
 
   return (
     <nav className={styles.menuNav}>
       <div className={styles.accountWrapper}>
-        {userAvatar ? (
-          <Avatar alt="Your avatar" src={userAvatar} />
+        {userData.image.url ? (
+          <Avatar alt="Your avatar" src={userData.image.url} />
         ) : (
           <Avatar>Me</Avatar>
         )}
         <div className={styles.userNameAndPlanWrapper}>
-          <p>{userData.name}</p>
-          <p>{userData.points} XP</p>
+          <p>{userData.data.name}</p>
+          <p>{userData.data.points} XP</p>
         </div>
       </div>
       <UserPageMenuItem
