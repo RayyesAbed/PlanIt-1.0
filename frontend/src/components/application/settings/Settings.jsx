@@ -1,4 +1,4 @@
-import BasicSettings from "../common/basicSettingsPage/BasicSettings";
+import BasicSettings from "./common/basicSettingsPage/BasicSettings";
 import UserPageMenu from "../common/userPageMenu/UserPageMenu";
 import styles from "./Settings.module.css";
 import { NavLink, Route, Routes } from "react-router";

@@ -1,6 +1,6 @@
 import UserPageMenu from "../common/userPageMenu/UserPageMenu";
 import { Calendar } from "@mantine/dates";
-import { Box } from "@mantine/core";
+import { Box, Tooltip } from "@mantine/core";
 import styles from "./CalendarComponent.module.css";
 import dayjs from "dayjs";
 import { useContext } from "react";
@@ -56,6 +56,14 @@ const CalendarComponent = () => {
             const dateStr = dayjs(date).format("YYYY-MM-DD");
             const ratio = dateToRatioFinal[dateStr];
 
+            // create a stats and assign it to the day's tasks, otherwise initialize an object with properties equal to 0
+            const stats = dateToRatio[dateStr] || {
+              completed: 0,
+              uncompleted: 0,
+            };
+
+            const total = stats.completed + stats.uncompleted; // add completed and uncompleted tasks to total
+
             let bg = "transparent";
             if (ratio != null) {
               if (ratio > 0.5) bg = "#7a1616"; // red
@@ -63,15 +71,37 @@ const CalendarComponent = () => {
               else bg = "#26ba18"; // green
             }
 
+            // if total is greater than 0 for the hovered day, return the div with the respective tasks, otherwise return 'no tasks'
+            const tooltipLabel =
+              total > 0 ? (
+                <div>
+                  <div>Completed Tasks: {stats.completed}</div>
+                  <div>Uncompleted Tasks: {stats.uncompleted}</div>
+                  <div>Total Tasks: {total}</div>
+                </div>
+              ) : (
+                "No tasks"
+              );
+
             return (
-              <Box
-                className={styles.styledDay}
+              <Tooltip
+                label={tooltipLabel}
                 style={{
-                  backgroundColor: bg,
+                  position: "absolute",
+                  backgroundColor: "rgb(65, 65, 65)",
+                  padding: "5px 10px",
+                  borderRadius: "20px",
                 }}
               >
-                {date.getDate()}
-              </Box>
+                <Box
+                  className={styles.styledDay}
+                  style={{
+                    backgroundColor: bg,
+                  }}
+                >
+                  {date.getDate()}
+                </Box>
+              </Tooltip>
             );
           }}
         />

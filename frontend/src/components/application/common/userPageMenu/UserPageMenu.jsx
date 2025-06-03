@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router";
 import UserPageMenuItem from "../userPageMenuItem/UserPageMenuItem";
 import styles from "./userPageMenu.module.css";
-import TestImg from "/AbdallahImg.jpg"; // only for testing purposes
 import {
   Home,
   FormatListBulleted,
@@ -13,6 +12,8 @@ import {
 } from "@mui/icons-material";
 import { logoutUser } from "../../../../api/logoutUser";
 import useFetchUserData from "../../../../hooks/useFetchUserData";
+import useFetchUserAvatar from "../../../../hooks/useFetchUserAvatar";
+import { Avatar } from "@mui/material";
 
 const UserPageMenu = () => {
   const navigate = useNavigate();
@@ -28,10 +29,16 @@ const UserPageMenu = () => {
 
   const userData = useFetchUserData();
 
+  const userAvatar = useFetchUserAvatar();
+
   return (
     <nav className={styles.menuNav}>
       <div className={styles.accountWrapper}>
-        <img src={TestImg} alt="Your profile photo" />
+        {userAvatar ? (
+          <Avatar alt="Your avatar" src={userAvatar} />
+        ) : (
+          <Avatar>Me</Avatar>
+        )}
         <div className={styles.userNameAndPlanWrapper}>
           <p>{userData.name}</p>
           <p>{userData.points} XP</p>

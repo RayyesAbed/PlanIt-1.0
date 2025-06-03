@@ -1,0 +1,113 @@
+.editUserDataDialog {
+  border-radius: 45px;
+  width: 50%;
+  height: 50%;
+}
+
+.editUserDataDialog h2 {
+  text-align: center;
+}
+
+/* label + input */
+
+.editUserDataDialog div {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.changeUserDataButton {
+  background-color: rgb(46, 46, 46);
+  color: white;
+  padding: 7px 55px;
+  font-weight: 600;
+  border: 0;
+  border-radius: 45px;
+  display: block;
+  margin: 20px auto;
+  cursor: pointer;
+}
+
+.changeUserDataButton:hover {
+  background-color: black;
+}
+
+#closeModalDiv {
+  float: right;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1000px) {
+  .editUserDataDialog {
+    width: 80%;
+  }
+}
+
+/* Password change div */
+
+.changePasswordDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.changePasswordDiv input {
+  width: 130%;
+}
+
+/* User Avatar */
+
+.avatarBox {
+  width: 150px;
+  height: 150px;
+  position: relative;
+}
+
+.userAvatar {
+  width: 150px;
+  height: 150px;
+}
+
+.addAvatarButton,
+.editAvatarButton,
+.deleteAvatarButton {
+  position: absolute;
+}
+
+.addAvatarButton,
+.editAvatarButton {
+  background-color: rgb(56, 56, 56);
+  color: white;
+}
+
+.addAvatarButton:hover,
+.editAvatarButton:hover {
+  background-color: rgb(239, 239, 239);
+  color: rgb(56, 56, 56);
+}
+
+.deleteAvatarButton {
+  background-color: rgb(109, 6, 6);
+  color: white;
+}
+
+.deleteAvatarButton:hover {
+  background-color: rgb(239, 239, 239);
+  color: rgb(109, 6, 6);
+}
+
+.addAvatarButton {
+  bottom: 0;
+  left: 0;
+}
+
+.editAvatarButton {
+  bottom: 0;
+  right: 0;
+}
+
+.deleteAvatarButton {
+  top: 0;
+  right: 0;
+}

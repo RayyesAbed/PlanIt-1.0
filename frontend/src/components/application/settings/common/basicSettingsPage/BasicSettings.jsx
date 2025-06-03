@@ -1,13 +1,17 @@
 import { useState } from "react";
-import useFetchUserData from "../../../../hooks/useFetchUserData";
+import useFetchUserData from "../../../../../hooks/useFetchUserData";
 import EditUserData from "../dialogs/editUserData/EditUserData";
+import WarningIcon from "@mui/icons-material/Warning";
 import styles from "./BasicSettings.module.css";
-import DUMMY_IMAGE from "/AbdallahImg.jpg"; // Only for testing purposes
+import useFetchUserAvatar from "../../../../../hooks/useFetchUserAvatar";
+import { Avatar } from "@mui/material";
 
 const BasicSettings = () => {
   const [editField, setEditField] = useState(null);
 
   const userData = useFetchUserData();
+
+  const userAvatar = useFetchUserAvatar();
 
   return (
     <>
@@ -15,10 +19,14 @@ const BasicSettings = () => {
         <li>
           <h3>Photo</h3>
           <div>
-            <img src={DUMMY_IMAGE} alt="Your image" />
+            {userAvatar ? (
+              <Avatar alt="Your avatar" src={userAvatar} />
+            ) : (
+              <Avatar>Me</Avatar>
+            )}
           </div>
           <div>
-            <button>Edit</button>
+            <button onClick={() => setEditField("Photo")}>Edit</button>
           </div>
         </li>
         <li>
@@ -30,7 +38,16 @@ const BasicSettings = () => {
         </li>
         <li>
           <h3>Email</h3>
-          <div>{userData.email}</div>
+          <div>
+            {userData.toBeConfirmedEmail ? (
+              <div className={styles.unverifiedEmail}>
+                <WarningIcon titleAccess="Please verify this email" />
+                {userData.toBeConfirmedEmail}
+              </div>
+            ) : (
+              userData.confirmedEmail
+            )}
+          </div>
           <div>
             <button onClick={() => setEditField("Email")}>Edit</button>
           </div>
