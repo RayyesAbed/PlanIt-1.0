@@ -32,7 +32,7 @@ const UserPageMenu = () => {
   return (
     <nav className={styles.menuNav}>
       <div className={styles.accountWrapper}>
-        {userData.image.url ? (
+        {userData.image ? (
           <Avatar alt="Your avatar" src={userData.image.url} />
         ) : (
           <Avatar>Me</Avatar>
