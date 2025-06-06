@@ -39,7 +39,7 @@ const MyStory = () => {
     };
 
     fetchStories();
-  }, []);
+  }, [isModalOpen]);
 
   const handleShowModal = () => setIsModalOpen(true);
 
