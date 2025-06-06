@@ -3,6 +3,8 @@ import { tasks } from "../contexts/TaskContext";
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case "INIT":
+      return action.payload;
     case "ADD":
       return [...state, action.payload]; // Grab the existing dispatch and modify the state which includes tasks array
     case "DELETE":
