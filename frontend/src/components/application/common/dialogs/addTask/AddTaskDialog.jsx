@@ -5,6 +5,7 @@ import styles from "../TaskDialog.module.css";
 import { TaskContext } from "../../../../../contexts/TaskContext";
 import { addTask } from "../../../../../api/task/addTask";
 import { getLocalISODateTime } from "../../../../../utils/getLocalISODateTime";
+import { getTasks } from "../../../../../api/task/getTasks";
 
 const AddTaskDialog = ({ openModal, closeModal }) => {
   const ref = useRef(); // modal ref
@@ -48,6 +49,8 @@ const AddTaskDialog = ({ openModal, closeModal }) => {
     };
     dispatch({ type: "ADD", payload: newTask });
     await addTask(newTask);
+    const updatedTasks = await getTasks();
+    dispatch({ type: "INIT", payload: updatedTasks.list });
     closeModal();
     setTask({
       taskName: "",
