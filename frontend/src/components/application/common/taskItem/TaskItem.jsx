@@ -2,8 +2,11 @@ import styles from "./TaskItem.module.css";
 import Checkbox from "@mui/material/Checkbox";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Tooltip } from "@mui/material";
 import { getLocalISODateTime } from "../../../../utils/getLocalISODateTime";
+import { useState } from "react";
 
 const TaskItem = ({
   taskName,
@@ -21,6 +24,8 @@ const TaskItem = ({
     "T",
     " "
   );
+
+  const [showTaskDescription, setShowTaskDescription] = useState(false);
 
   return (
     <div className={styles.taskItem}>
@@ -48,8 +53,24 @@ const TaskItem = ({
         <Tooltip title="Delete Task" onClick={onTaskDelete}>
           <DeleteIcon className={styles.taskDeleteIcon} />
         </Tooltip>
+        <Tooltip
+          title={!showTaskDescription ? "View description" : "Hide description"}
+        >
+          {taskDescription &&
+            (!showTaskDescription ? (
+              <KeyboardArrowDownIcon
+                className={styles.toggleTaskDescriptionArrow}
+                onClick={() => setShowTaskDescription(true)}
+              />
+            ) : (
+              <KeyboardArrowUpIcon
+                className={styles.toggleTaskDescriptionArrow}
+                onClick={() => setShowTaskDescription(false)}
+              />
+            ))}
+        </Tooltip>
       </div>
-      {taskDescription && <p>{taskDescription}</p>}
+      {taskDescription && showTaskDescription && <p>{taskDescription}</p>}
     </div>
   );
 };
