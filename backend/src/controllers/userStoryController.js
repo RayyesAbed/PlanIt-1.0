@@ -61,8 +61,8 @@ const createStory = async (req, res) => {
   // find the user tasks and store the story tasks in it
   let userTasks = await Task.findOne({ userID: decoded.userId });
 
-  for (let story of userStory.stories) {
-    userTasks.list.push(...story.tasks);
+  for (let task of parsed.tasks) {
+    userTasks.list.push(task);
   }
 
   await userStory.save();
