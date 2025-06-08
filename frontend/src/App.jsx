@@ -4,7 +4,7 @@ import { lazy } from "react";
 const Introduction = lazy(() =>
   import("./components/introduction/introductionPage/Introduction")
 );
-import { BrowserRouter, Routes, Route, Navigate } from "react-router";
+import { BrowserRouter, Routes, Route } from "react-router";
 const Register = lazy(() =>
   import("./components/authentication/register/Register")
 );
@@ -25,24 +25,22 @@ const EmailVerify = lazy(() =>
   import("./components/authentication/verify/EmailVerify")
 );
 import ProtectedRoute from "./components/authentication/protected/ProtectedRoute";
-import useCheckAuth from "./hooks/useCheckAuth";
+import PublicRoute from "./components/authentication/public/PublicRoute";
 import ResetPassword from "./components/authentication/resetPassword/ResetPassword";
 import MyStory from "./components/application/myStory/MyStory";
 
 function App() {
-  const isAuthenticated = useCheckAuth();
-
   return (
     <BrowserRouter>
       <Routes>
         <Route index path="/" element={<Introduction />} />
         <Route path="/register" element={<Register />} />
         <Route path="/verify-email" element={<EmailVerify />} />
-        <Route
-          path="/login"
-          element={isAuthenticated ? <Navigate to="/tasks" /> : <Login />}
-        />
         <Route path="reset_password" element={<ResetPassword />} />
+
+        <Route element={<PublicRoute />}>
+          <Route path="/login" element={<Login />} />
+        </Route>
 
         <Route element={<ProtectedRoute />}>
           <Route path="/mystory" element={<MyStory />} />
