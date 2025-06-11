@@ -138,17 +138,6 @@ const loginUser = async (req, res) => {
   return res.status(200).json({ message: "Logged in successfully!" });
 };
 
-const checkAuthentication = (req, res) => {
-  const token = req.cookies.token;
-
-  if (!token) return res.sendStatus(401);
-
-  jwt.verify(token, process.env.JWT_SECRET, (err) => {
-    if (err) return res.sendStatus(403);
-    return res.sendStatus(200);
-  });
-};
-
 const resetPasswordRequest = async (req, res) => {
   const { email } = req.body;
 
@@ -244,7 +233,6 @@ module.exports = {
   registerUserRequest,
   verifyEmail,
   loginUser,
-  checkAuthentication,
   resetPasswordRequest,
   verifyResetPasswordToken,
   resetPassword,
