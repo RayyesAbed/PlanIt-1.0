@@ -6,12 +6,12 @@ const {
   registerUserRequest,
   verifyEmail,
   loginUser,
-  checkAuthentication,
   resetPasswordRequest,
   resetPassword,
   logoutUser,
   verifyResetPasswordToken,
 } = require("../controllers/authController");
+const checkAuthentication = require("../middlewares/checkAuthentication");
 
 router.post(
   "/register_request",
@@ -31,7 +31,9 @@ router.post(
   loginUser
 );
 
-router.post("/checkAuth", checkAuthentication);
+router.post("/checkAuth", checkAuthentication, (req, res) => {
+  return res.sendStatus(200);
+});
 
 router.post(
   "/reset_password_request",
