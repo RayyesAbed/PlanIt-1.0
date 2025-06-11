@@ -1,8 +1,5 @@
-const verifyToken = require("../services/verifyToken");
 const User = require("../schemas/User");
-const fs = require("fs");
 const fileType = require("file-type");
-const path = require("path");
 const s3 = require("../configs/s3Connect");
 const {
   PutObjectCommand,
@@ -14,19 +11,9 @@ const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
 
 const getUserData = async (req, res, next) => {
   try {
-    // if no cookie is set
-    if (!req.headers.cookie) {
-      return res.sendStatus(401);
-    }
+    const decoded = req.user;
 
-    const token = req.headers.cookie.split("=")[1];
-
-    // if there is no token
-    if (!token) {
-      return res.sendStatus(401);
-    }
-
-    const { userId } = verifyToken(token);
+    const { userId } = decoded;
 
     const user = await User.findById(userId);
 
@@ -49,18 +36,9 @@ const getUserData = async (req, res, next) => {
 };
 
 const modifyUserAvatar = async (req, res) => {
-  if (!req.headers.cookie) {
-    return res.sendStatus(401);
-  }
+  const decoded = req.user;
 
-  const token = req.headers.cookie.split("=")[1];
-
-  // if there is no token
-  if (!token) {
-    return res.sendStatus(401);
-  }
-
-  const { userId } = verifyToken(token);
+  const { userId } = decoded;
 
   let command;
 
@@ -91,18 +69,9 @@ const modifyUserAvatar = async (req, res) => {
 };
 
 const getUserAvatar = async (req, res) => {
-  if (!req.headers.cookie) {
-    return res.sendStatus(401);
-  }
+  const decoded = req.user;
 
-  const token = req.headers.cookie.split("=")[1];
-
-  // if there is no token
-  if (!token) {
-    return res.sendStatus(401);
-  }
-
-  const { userId } = verifyToken(token);
+  const { userId } = decoded;
 
   const headParams = {
     Bucket: process.env.AWS_S3_BUCKET,
