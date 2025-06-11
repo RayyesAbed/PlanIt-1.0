@@ -1,4 +1,3 @@
-const jwt = require("jsonwebtoken");
 const User = require("../schemas/User");
 const Task = require("../schemas/Task");
 
@@ -6,13 +5,7 @@ const getTasks = async (req, res) => {
   const currentDate = new Date();
 
   try {
-    const token = req.cookies.token;
-
-    if (!token) return res.sendStatus(401);
-
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-    if (!decoded || !decoded.userId) return res.sendStatus(403);
+    const decoded = req.user;
 
     const userTasks = await Task.findOne({ userID: decoded.userId });
 
@@ -43,17 +36,7 @@ const getTasks = async (req, res) => {
 
 const addTask = async (req, res) => {
   try {
-    const token = req.cookies.token;
-
-    if (!token) return res.sendStatus(401);
-
-    let decoded;
-
-    try {
-      decoded = jwt.verify(token, process.env.JWT_SECRET);
-    } catch (error) {
-      return res.sendStatus(403);
-    }
+    const decoded = req.user;
 
     const taskData = req.body;
 
@@ -82,17 +65,7 @@ const addTask = async (req, res) => {
 
 const editTask = async (req, res) => {
   try {
-    const token = req.cookies.token;
-
-    if (!token) return res.sendStatus(401);
-
-    let decoded;
-
-    try {
-      decoded = jwt.verify(token, process.env.JWT_SECRET);
-    } catch (error) {
-      return res.sendStatus(403);
-    }
+    const decoded = req.user;
 
     const updatedTaskData = req.body;
 
@@ -128,18 +101,8 @@ const editTask = async (req, res) => {
 };
 
 const deleteTask = async (req, res) => {
-  const token = req.cookies.token;
+  const decoded = req.user;
   const taskId = req.body.id;
-
-  if (!token) return res.sendStatus(401);
-
-  let decoded;
-
-  try {
-    decoded = jwt.verify(token, process.env.JWT_SECRET);
-  } catch (error) {
-    return res.sendStatus(403);
-  }
 
   if (!taskId) return res.status(400).json({ message: "Task ID not provided" });
 
@@ -158,17 +121,7 @@ const deleteTask = async (req, res) => {
 };
 
 const completeTask = async (req, res) => {
-  const token = req.cookies.token;
-
-  if (!token) return res.sendStatus(401);
-
-  let decoded;
-
-  try {
-    decoded = jwt.verify(token, process.env.JWT_SECRET);
-  } catch (error) {
-    return res.sendStatus(403);
-  }
+  const decoded = req.user;
 
   const taskId = req.body.id;
 
