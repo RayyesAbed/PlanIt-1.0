@@ -3,16 +3,9 @@ const storyPromptTemplate = require("../aiPrompts/storyPromptTemplate");
 const Story = require("../schemas/Story");
 const User = require("../schemas/User");
 const Task = require("../schemas/Task");
-const jwt = require("jsonwebtoken");
 
 const createStory = async (req, res) => {
-  const token = req.cookies.token;
-
-  if (!token) return res.sendStatus(401);
-
-  const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-  if (!decoded || !decoded.userId) return res.sendStatus(403);
+  const decoded = req.user;
 
   const user = await User.findById(decoded.userId);
 
@@ -76,13 +69,7 @@ const createStory = async (req, res) => {
 };
 
 const getStories = async (req, res) => {
-  const token = req.cookies.token;
-
-  if (!token) return res.sendStatus(401);
-
-  const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-  if (!decoded || !decoded.userId) return res.sendStatus(403);
+  const decoded = req.user;
 
   const userStories = await Story.findOne({ userID: decoded.userId });
 

@@ -3,11 +3,12 @@ const {
   createStory,
   getStories,
 } = require("../controllers/userStoryController");
+const checkAuthentication = require("../middlewares/checkAuthentication");
 
 const router = express.Router();
 
-router.post("/createStory", createStory);
+router.post("/createStory", checkAuthentication, createStory);
 
-router.get("/getStories", getStories);
+router.get("/getStories", checkAuthentication, getStories);
 
 module.exports = router;
