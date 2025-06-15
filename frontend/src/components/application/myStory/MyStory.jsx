@@ -45,8 +45,12 @@ const MyStory = () => {
 
   const handleCloseModal = () => setIsModalOpen(false);
 
-  const handleCardClick = (id) => {
-    setFlippedId((prev) => (prev === id ? null : id)); // toggle flip
+  const handleCardShow = (id) => {
+    setFlippedId(id);
+  };
+
+  const handleCardClose = () => {
+    setFlippedId(null);
   };
 
   return (
@@ -74,7 +78,8 @@ const MyStory = () => {
                       key={story._id}
                       story={story}
                       flipped={flippedId === story._id}
-                      onClick={() => handleCardClick(story._id)}
+                      onClick={() => handleCardShow(story._id)}
+                      onClose={handleCardClose}
                     />
                   );
                 }
