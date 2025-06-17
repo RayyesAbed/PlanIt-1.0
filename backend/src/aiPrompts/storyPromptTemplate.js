@@ -4,7 +4,7 @@ const storyPromptTemplate = (userName, storyPrompt) => {
 
         Generate:
         1. A short motivational story.
-        2. A JSON array of 30 achievable, goal-oriented tasks.
+        2. A JSON array of 50 achievable, goal-oriented tasks in 5 chapters.
         3. Please keep in mind that today is ${date}, make the dueDate the future in the format: yyyy-MM-ddTHH:mm:ss
         4. Also for bonusPoints keep in mind that: (Someday=10, Focus=20, ASAP=35)
         5. Make the id = timestamp since 1.1.1970
@@ -15,15 +15,18 @@ const storyPromptTemplate = (userName, storyPrompt) => {
         {
         "storyTitle": "string",
         "storyText": "string",
-        "tasks": [{
-          "id": "number",
-          "taskName": "string",
-          "taskDueDate": "string",
-          "taskDescription": "string",
-          "taskPriority": "string (Someday, Focus, ASAP)",
-          "bonusPoints": "number",
-          "completed": false,
-          "due": false
+        "chapters": [{
+          "chapterName": "string"
+          "tasks": [{
+            "id": "number",
+            "taskName": "string",
+            "taskDueDate": "string",
+            "taskDescription": "string",
+            "taskPriority": "string (Someday, Focus, ASAP)",
+            "bonusPoints": "number",
+            "completed": false,
+            "due": false
+          }]
         }]
         }
 

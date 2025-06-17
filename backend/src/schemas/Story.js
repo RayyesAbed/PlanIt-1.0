@@ -6,16 +6,21 @@ const Story = mongoose.Schema({
     {
       storyTitle: String,
       storyText: String,
-      tasks: [
+      chapters: [
         {
-          id: Number,
-          taskName: String,
-          taskDueDate: Date,
-          taskPriority: String,
-          taskDescription: String,
-          bonusPoints: Number,
-          completed: Boolean,
-          due: Boolean,
+          chapterName: String,
+          tasks: [
+            {
+              id: Number,
+              taskName: String,
+              taskDueDate: Date,
+              taskPriority: String,
+              taskDescription: String,
+              bonusPoints: Number,
+              completed: Boolean,
+              due: Boolean,
+            },
+          ],
         },
       ],
     },
