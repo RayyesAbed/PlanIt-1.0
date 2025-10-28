@@ -1,8 +1,37 @@
-# React + Vite
+# PlanIt Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+PlanIt 1.0 is a revolutionary application designed for future heroes, leveraging the power of AI to transform personal and professional development. This application significantly enhances user productivity and growth through intelligent planning and AI-assisted guidance.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies Used
+
+- **React**: Modern frontend framework for building user interfaces
+- **React Context API**: State management solution for efficient data flow
+- **Vite**: Next-generation frontend tooling for faster development
+- **CSS Modules**: Scoped styling solution for components
+- **Apollo GraphQL**: Efficient data querying (where applicable)
+
+## Project Structure
+
+```
+frontend/
+├── src/
+│   ├── api/          # API integration layers
+│   ├── components/   # React components
+│   ├── contexts/     # React Context definitions
+│   ├── hooks/        # Custom React hooks
+│   ├── providers/    # Context providers
+│   ├── utils/        # Utility functions
+│   └── graphql/      # GraphQL queries
+```
+
+## Key Features
+
+- User authentication and authorization
+- Task management system
+- Calendar integration
+- Story generation with AI
+- Performance tracking
+- User settings and profile management
+- Avatar customization
