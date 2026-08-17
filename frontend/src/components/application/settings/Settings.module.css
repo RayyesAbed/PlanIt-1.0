@@ -32,3 +32,29 @@
 .settingsMenu ul .activeSettingsMenuListItem {
   background-color: rgba(0, 0, 0, 0.7);
 }
+
+.noSettingsSelected {
+  color: white;
+  margin-top: 40px;
+  margin-left: 40px;
+}
+
+@media screen and (max-width: 1000px) {
+  .wrapper {
+    flex-direction: column;
+    padding-top: 30px;
+  }
+
+  .settingsWrapper {
+    width: 90%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+
+  .settingsMenu ul {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding-left: 0;
+  }
+}

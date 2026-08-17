@@ -1,26 +1,94 @@
 import UserPageMenu from "../common/userPageMenu/UserPageMenu";
 import styles from "./Performance.module.css";
 import { Chart } from "react-google-charts";
-
-// some dummy data, to be replaced later by the backend fetches
-const data = [
-  ["x", "dogs"],
-  [0, 0],
-  [1, 10],
-  [2, 23],
-];
+import dayjs from "dayjs";
+import { useContext, useMemo, useState } from "react";
+import { TaskContext } from "../../../contexts/TaskContext";
+import { CircularProgress, Stack } from "@mui/material";
 
 const Performance = () => {
+  document.title = "User's Performance";
+  const textStyle = { color: "white" };
+  const { state } = useContext(TaskContext);
+  const [chartLoaded, setChartLoaded] = useState(false);
+
+  const completedTasksDays = useMemo(() => {
+    // initialize a counter
+    let counter = 0;
+
+    // create a days array and initialize the completed tasks to zeros
+    const days = Array(7)
+      .fill()
+      .map((_, day) => [dayjs().subtract(day, "day").format("MM-DD"), 0]);
+
+    // modify the completed tasks on days array based on number of completed tasks by looping through days and state (fetched tasks)
+    days.forEach((tasksDayItem) => {
+      state.forEach((task) => {
+        if (
+          task.completed && // check first if task is completed
+          dayjs(task.taskDueDate).format("MM-DD") === tasksDayItem[0] // then check if task due date is equal to the day item
+        ) {
+          counter++;
+        }
+      });
+      tasksDayItem[1] = counter; // Save the counter value in completed tasks in days
+      counter = 0; // reset the counter
+    });
+
+    return [["Day", "Tasks Completed"], ...days];
+  }, [state]);
+
   return (
     <div className={styles.wrapper}>
       <UserPageMenu />
+      {!chartLoaded && (
+        <>
+          <Stack
+            sx={{
+              color: "gray.50",
+              position: "relative",
+              top: "50%",
+              left: "37.5%",
+            }}
+          >
+            <CircularProgress color="inherit" />
+          </Stack>
+        </>
+      )}
+
       <div className={styles.chartWrapper}>
         <Chart
-          data={data}
+          data={completedTasksDays}
           chartType="LineChart"
           height="600px"
           width="100%"
-          options={{ title: "My Performance", curveType: "function" }}
+          options={{
+            title: "My Performance",
+            titleTextStyle: {
+              ...textStyle,
+            },
+            backgroundColor: "black",
+            vAxis: {
+              title: "Number of Tasks completed",
+              titleTextStyle: textStyle,
+              textStyle,
+            },
+            hAxis: {
+              title: "Date",
+              format: "MM-DD",
+              titleTextStyle: textStyle,
+              textStyle,
+            },
+            legend: {
+              textStyle,
+            },
+          }}
+          chartEvents={[
+            {
+              eventName: "ready",
+              callback: () => setChartLoaded(true),
+            },
+          ]}
         />
       </div>
     </div>

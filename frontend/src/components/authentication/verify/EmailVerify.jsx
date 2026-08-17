@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import styles from "./EmailVerify.module.css";
 import PlanItLogo from "/PlanItLogo.webp";
-import { verifyNewUser } from "../../../api/verifyNewUser";
+import { verifyNewUser } from "../../../api/auth/verifyNewUser";
 
 const EmailVerify = () => {
   const [message, setMessage] = useState("");
@@ -18,7 +18,7 @@ const EmailVerify = () => {
     const verify = async () => {
       try {
         await verifyNewUser(token);
-        setMessage("Account created successfully!");
+        setMessage("Email verified successfully!");
       } catch (error) {
         setMessage("Verification went wrong!");
         console.error("Verification Error:", error);

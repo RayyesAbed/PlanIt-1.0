@@ -1,9 +1,10 @@
-import BasicSettings from "../common/basicSettingsPage/BasicSettings";
+import BasicSettings from "./common/basicSettingsPage/BasicSettings";
 import UserPageMenu from "../common/userPageMenu/UserPageMenu";
 import styles from "./Settings.module.css";
 import { NavLink, Route, Routes } from "react-router";
 
 const Settings = () => {
+  document.title = "Settings";
   return (
     <div className={styles.wrapper}>
       <UserPageMenu />
@@ -43,6 +44,14 @@ const Settings = () => {
             </NavLink>
           </ul>
           <Routes>
+            <Route
+              path="/"
+              element={
+                <p className={styles.noSettingsSelected}>
+                  Please select one of the settings fields
+                </p>
+              }
+            />
             <Route path="basic" element={<BasicSettings />} />
             {/* <Route path="security" element={<SecuritySettings />} />
             <Route path="billing" element={<BillingSettings />} /> */}

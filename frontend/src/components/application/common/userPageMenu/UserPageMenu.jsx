@@ -1,6 +1,6 @@
+import { useNavigate } from "react-router";
 import UserPageMenuItem from "../userPageMenuItem/UserPageMenuItem";
 import styles from "./userPageMenu.module.css";
-import TestImg from "/AbdallahImg.jpg"; // only for testing purposes
 import {
   Home,
   FormatListBulleted,
@@ -10,18 +10,44 @@ import {
   Settings,
   Logout,
 } from "@mui/icons-material";
+import { logoutUser } from "../../../../api/auth/logoutUser";
+import { Avatar } from "@mui/material";
+import { useContext, useEffect } from "react";
+import { UserDataContext } from "../../../../contexts/UserDataContext";
 
 const UserPageMenu = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    const response = await logoutUser();
+
+    if (response.message === "Logged out successfully") {
+      alert(response.message);
+      navigate("/login");
+    }
+  };
+
+  const { userData, loadUserData } = useContext(UserDataContext);
+
+  useEffect(() => {
+    if (!userData.data) {
+      loadUserData();
+    }
+  }, [loadUserData, userData.data]);
+
   return (
     <nav className={styles.menuNav}>
       <div className={styles.accountWrapper}>
-        <img src={TestImg} alt="Your profile photo" />
+        {userData.image ? (
+          <Avatar alt="Your avatar" src={userData.image.url} />
+        ) : (
+          <Avatar>Me</Avatar>
+        )}
         <div className={styles.userNameAndPlanWrapper}>
-          <p>Abdallah Alrayyes</p> {/* only for testing purposes */}
-          <p>Free Plan</p> {/* only for testing purposes */}
+          <p>{userData.data?.name}</p>
+          <p>{userData.data?.points} XP</p>
         </div>
       </div>
-      <UserPageMenuItem to="/home" iconImg={<Home />} menuItemText="Home" />
       <UserPageMenuItem
         to="/tasks"
         iconImg={<FormatListBulleted />}
@@ -32,6 +58,8 @@ const UserPageMenu = () => {
         iconImg={<AutoStories />}
         menuItemText="My Story"
       />
+      <UserPageMenuItem to="/store" iconImg={<Home />} menuItemText="Store" />
+
       <UserPageMenuItem
         to="/performance"
         iconImg={<Timeline />}
@@ -48,9 +76,9 @@ const UserPageMenu = () => {
         menuItemText="Settings"
       />
       <UserPageMenuItem
-        to="/logout"
         iconImg={<Logout />}
         menuItemText="Logout"
+        onClick={handleLogout}
       />
     </nav>
   );

@@ -1,36 +1,39 @@
-.addTaskDialog {
+.taskDialog,
+.editUserDataDialog {
   border-radius: 45px;
   width: 50%;
   height: 50%;
 }
 
-.addTaskDialog h2 {
+.taskDialog h2,
+.editUserDataDialog h2 {
   text-align: center;
 }
 
 /* label + input */
-.addTaskDialog div {
+.taskDialog div,
+.editUserDataDialog div {
   display: flex;
   justify-content: center;
   margin-top: 10px;
 }
 
-.addTaskDialog div label {
+.taskDialog div label {
   flex-basis: 30%;
   font-weight: 600;
 }
 
-.addTaskDialog div input,
-.addTaskDialog div textarea {
+.taskDialog div input,
+.taskDialog div textarea {
   flex-basis: 50%;
   background-color: rgb(225, 225, 225);
 }
 
-.addTaskDialog div .prioritySelect {
+.taskDialog div .prioritySelect {
   flex-basis: 50%;
 }
-
-.addTaskDialog .addTaskButton {
+.changeUserDataButton,
+.taskDialog .addTaskButton {
   background-color: rgb(46, 46, 46);
   color: white;
   padding: 7px 55px;
@@ -42,6 +45,28 @@
   cursor: pointer;
 }
 
-.addTaskDialog .addTaskButton:hover {
+.changeUserDataButton:hover,
+.taskDialog.addTaskButton:hover {
   background-color: black;
+}
+
+#closeModalDiv {
+  float: right;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1000px) {
+  .taskDialog,
+  .editUserDataDialog {
+    width: 80%;
+  }
+  .taskDialog div {
+    flex-direction: column;
+    align-items: center;
+  }
+  .taskDialog div input,
+  .taskDialog div textarea,
+  .taskDialog div .prioritySelect {
+    width: 70%;
+  }
 }

@@ -9,6 +9,16 @@
 .loginDiv section:first-child img {
   width: 100%;
   height: 100vh;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 670px) {
+  .loginDiv {
+    display: block;
+  }
+  .loginDiv section:first-child img {
+    display: none;
+  }
 }
 
 .loginDiv section:last-child img {
@@ -21,7 +31,7 @@
   flex-direction: column;
   gap: 30px;
   align-items: center;
-  margin-top: 70px;
+  margin-top: 7vh;
 }
 
 .loginDiv section:last-child form h1 {

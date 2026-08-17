@@ -38,8 +38,9 @@
 }
 
 .taskEditIcon,
-.taskDeleteIcon {
-  align-self: center;
+.taskDeleteIcon,
+.toggleTaskDescriptionArrow {
+  margin-top: 15px;
   flex-basis: 5%;
   cursor: pointer;
 }

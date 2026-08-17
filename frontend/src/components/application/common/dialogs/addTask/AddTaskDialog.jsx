@@ -3,6 +3,9 @@ import * as motion from "motion/react-client";
 import { AnimatePresence } from "motion/react";
 import styles from "../TaskDialog.module.css";
 import { TaskContext } from "../../../../../contexts/TaskContext";
+import { addTask } from "../../../../../api/task/addTask";
+import { getLocalISODateTime } from "../../../../../utils/getLocalISODateTime";
+import { getTasks } from "../../../../../api/task/getTasks";
 
 const AddTaskDialog = ({ openModal, closeModal }) => {
   const ref = useRef(); // modal ref
@@ -12,9 +15,13 @@ const AddTaskDialog = ({ openModal, closeModal }) => {
     taskDueDate: "",
     taskDescription: "",
     taskPriority: "Someday",
+    bonusPoints: 0,
+    completed: false,
   });
 
   const { dispatch } = useContext(TaskContext);
+
+  const currentTime = getLocalISODateTime();
 
   const setTaskName = (event) =>
     setTask({ ...task, taskName: event.target.value });
@@ -28,10 +35,22 @@ const AddTaskDialog = ({ openModal, closeModal }) => {
   const setTaskPriority = (event) =>
     setTask({ ...task, taskPriority: event.target.value });
 
-  const addTaskHandler = (event) => {
+  const addTaskHandler = async (event) => {
     event.preventDefault();
-    const newTask = { ...task, id: Date.now() };
+    const newTask = {
+      ...task,
+      id: Date.now(),
+      bonusPoints:
+        task.taskPriority === "ASAP"
+          ? 35
+          : task.taskPriority === "Focus"
+          ? 20
+          : 10,
+    };
     dispatch({ type: "ADD", payload: newTask });
+    await addTask(newTask);
+    const updatedTasks = await getTasks();
+    dispatch({ type: "INIT", payload: updatedTasks.list });
     closeModal();
     setTask({
       taskName: "",
@@ -58,7 +77,7 @@ const AddTaskDialog = ({ openModal, closeModal }) => {
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0 }}
-          className={styles.addTaskDialog}
+          className={styles.taskDialog}
         >
           <h2>Add Task</h2>
           <form method="dialog" onSubmit={addTaskHandler}>
@@ -77,6 +96,7 @@ const AddTaskDialog = ({ openModal, closeModal }) => {
                 type="datetime-local"
                 value={task.taskDueDate}
                 onChange={setTaskDueDate}
+                min={currentTime}
                 required
               />
             </div>

@@ -15,7 +15,7 @@ const Welcome = () => {
   useEffect(() => {
     if (currentTextIndex < MESSAGES.length - 1) {
       const interval = setTimeout(() => {
-        setCurrentTextIndex((prevIndex) => (prevIndex + 1) % MESSAGES.length);
+        setCurrentTextIndex((prevIndex) => prevIndex + 1);
       }, 3000);
 
       return () => clearTimeout(interval);

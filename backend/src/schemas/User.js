@@ -5,13 +5,19 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  email: {
+  toBeConfirmedEmail: {
     type: String,
-    required: true,
+  },
+  confirmedEmail: {
+    type: String,
   },
   password: {
     type: String,
     required: true,
+  },
+  points: {
+    type: Number,
+    default: 0,
   },
 });
 

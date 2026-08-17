@@ -7,7 +7,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 
 const IntroNavbar = () => {
-  const [scrolled, setScrolled] = useState(false);
+  const [isScrolledEnough, setIsScrolledEnough] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
@@ -17,10 +17,11 @@ const IntroNavbar = () => {
 
   useEffect(() => {
     function handleScrollY() {
+      // If the user scrolled enough to invert the boolean value and as a result change the navbar background color
       if (window.scrollY > 50) {
-        setScrolled(true);
+        setIsScrolledEnough(true);
       } else {
-        setScrolled(false);
+        setIsScrolledEnough(false);
       }
     }
 
@@ -32,12 +33,12 @@ const IntroNavbar = () => {
   return (
     <nav
       id={styles.navbar}
-      style={scrolled ? { backgroundColor: "black" } : {}}
+      style={isScrolledEnough ? { backgroundColor: "black" } : {}}
     >
-      <HashLink to="#welcome">
+      <HashLink to="#welcome" id={styles.welcomeHashLink}>
         <img src={PlanItLogo} alt="PlanIt Logo" />
       </HashLink>
-      <div className={styles.navbarMenu} onClick={toggleMenuHandler}>
+      <div id={styles.navbarMenuIcon} onClick={toggleMenuHandler}>
         {isMenuOpen ? (
           <CloseIcon fontSize="large" />
         ) : (

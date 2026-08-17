@@ -3,12 +3,16 @@
   height: 100vh;
 }
 
-.regsisterDiv section:first-child form {
+.regsisterDiv section:first-child,
+.regsisterDiv section:last-child {
   flex-basis: 50%;
+}
+
+.regsisterDiv section:first-child form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 70px;
+  margin-top: 4vh;
   gap: 30px;
 }
 
@@ -51,4 +55,14 @@
 .regsisterDiv section:last-child img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 670px) {
+  .regsisterDiv {
+    display: block;
+  }
+  .regsisterDiv section:last-child img {
+    display: none;
+  }
 }

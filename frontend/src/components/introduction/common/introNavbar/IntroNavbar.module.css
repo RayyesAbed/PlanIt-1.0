@@ -9,16 +9,16 @@
   z-index: 10;
 }
 
-#navbar a {
+#welcomeHashLink {
   flex-basis: 33%;
 }
 
-#navbar a img {
+#welcomeHashLink img {
   width: 100px;
   border-radius: 20px;
 }
 
-.navbarMenu {
+#navbarMenuIcon {
   display: none;
   color: #fff;
   cursor: pointer;
@@ -33,6 +33,7 @@
   right: 10px;
 }
 
+/* For all navigation links in the ul */
 #navbar ul li {
   padding: 20px;
   color: #fff;
@@ -86,7 +87,7 @@
 
 /* Devices up to tablet */
 @media screen and (max-width: 768px) {
-  .navbarMenu {
+  #navbarMenuIcon {
     display: block;
   }
 

@@ -35,3 +35,15 @@
 .userNameAndPlanWrapper p:first-child {
   font-weight: 700;
 }
+
+@media screen and (max-width: 1000px) {
+  .menuNav {
+    flex-direction: row;
+    width: 90%;
+    margin: auto;
+  }
+
+  .accountWrapper {
+    display: none;
+  }
+}

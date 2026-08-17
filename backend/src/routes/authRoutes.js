@@ -6,7 +6,12 @@ const {
   registerUserRequest,
   verifyEmail,
   loginUser,
+  resetPasswordRequest,
+  resetPassword,
+  logoutUser,
+  verifyResetPasswordToken,
 } = require("../controllers/authController");
+const checkAuthentication = require("../middlewares/checkAuthentication");
 
 router.post(
   "/register_request",
@@ -25,5 +30,21 @@ router.post(
   ],
   loginUser
 );
+
+router.post("/checkAuth", checkAuthentication, (req, res) => {
+  return res.sendStatus(200);
+});
+
+router.post(
+  "/reset_password_request",
+  check("email").normalizeEmail({ all_lowercase: true }),
+  resetPasswordRequest
+);
+
+router.patch("/reset_password", resetPassword);
+
+router.post("/verify_reset_password_token", verifyResetPasswordToken);
+
+router.post("/logout", logoutUser);
 
 module.exports = router;

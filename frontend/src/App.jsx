@@ -1,14 +1,33 @@
-import Introduction from "./components/introduction/introductionPage/Introduction";
+import "@mantine/dates/styles.css";
+import "@mantine/core/styles/global.css";
+import { lazy } from "react";
+const Introduction = lazy(() =>
+  import("./components/introduction/introductionPage/Introduction")
+);
 import { BrowserRouter, Routes, Route } from "react-router";
-import Register from "./components/authentication/register/Register";
-import Login from "./components/authentication/login/Login";
-import UserPage from "./components/application/userPage/userPage";
-import CalendarComponent from "./components/application/calendar/CalendarComponent";
-import Performance from "./components/application/performance/Performance";
-import Tasks from "./components/application/tasks/Tasks";
+const Register = lazy(() =>
+  import("./components/authentication/register/Register")
+);
+const Login = lazy(() => import("./components/authentication/login/Login"));
+const Store = lazy(() => import("./components/application/store/Store"));
+const CalendarComponent = lazy(() =>
+  import("./components/application/calendar/CalendarComponent")
+);
+const Performance = lazy(() =>
+  import("./components/application/performance/Performance")
+);
+const Tasks = lazy(() => import("./components/application/tasks/Tasks"));
 import "./App.css";
-import Settings from "./components/application/settings/Settings";
-import EmailVerify from "./components/authentication/verify/EmailVerify";
+const Settings = lazy(() =>
+  import("./components/application/settings/Settings")
+);
+const EmailVerify = lazy(() =>
+  import("./components/authentication/verify/EmailVerify")
+);
+import ProtectedRoute from "./components/authentication/protected/ProtectedRoute";
+import PublicRoute from "./components/authentication/public/PublicRoute";
+import ResetPassword from "./components/authentication/resetPassword/ResetPassword";
+import MyStory from "./components/application/myStory/MyStory";
 
 function App() {
   return (
@@ -17,12 +36,20 @@ function App() {
         <Route index path="/" element={<Introduction />} />
         <Route path="/register" element={<Register />} />
         <Route path="/verify-email" element={<EmailVerify />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/home" element={<UserPage />} />
-        <Route path="/calendar" element={<CalendarComponent />} />
-        <Route path="/performance" element={<Performance />} />
-        <Route path="/tasks" element={<Tasks />} />
-        <Route path="/settings/*" element={<Settings />} />
+        <Route path="reset_password" element={<ResetPassword />} />
+
+        <Route element={<PublicRoute />}>
+          <Route path="/login" element={<Login />} />
+        </Route>
+
+        <Route element={<ProtectedRoute />}>
+          <Route path="/mystory" element={<MyStory />} />
+          <Route path="/store" element={<Store />} />
+          <Route path="/calendar" element={<CalendarComponent />} />
+          <Route path="/performance" element={<Performance />} />
+          <Route path="/tasks/*" element={<Tasks />} />
+          <Route path="/settings/*" element={<Settings />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
